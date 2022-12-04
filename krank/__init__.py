@@ -1,5 +1,8 @@
 import logging
 
+from krank.extractors import *
+from krank.fetchers import *
+
 # Define krank logger.
 logging.basicConfig(
     format="%(asctime)s | %(levelname)s | %(message)s",
