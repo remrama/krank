@@ -39,7 +39,10 @@ classifiers = [
 Homepage = "https://github.com/remrama/krank"
 
 [project.optional-dependencies]
-dev = ["pydata-sphinx-theme"]
+dev = [
+  "sphinx",
+  "pydata-sphinx-theme",
+]
 
 [tool.setuptools]
 include-package-data = true

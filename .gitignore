@@ -1,6 +1,16 @@
 __pycache__/
+.DS_Store
+
+# Docs
+docs/_build/
+docs/generated/
+docs/make.bat
+docs/Makefile
+
+# PyPi
 build/
-_build/
 dist/
-*.egg-info/
-_version.py
+krank.egg-info/
+
+# src
+src/krank/_version.py
