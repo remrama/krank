@@ -4,8 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "krank"
-# dynamic = ["version"]
-version = "0.0.0.dev0"
+dynamic = ["version"]
 description = "Fetch psychology datasets from remote sources."
 authors = [
   {name = "Remington Mallett", email = "mallett.remy@gmail.com"},
@@ -55,7 +54,7 @@ krank = [
   "krank/data/tables.json",
 ]
 
-# [tool.setuptools_scm]
-# version_scheme = "python-simplified-semver"
-# local_scheme = "no-local-version"
-# version_file = "src/krank/_version.py"
+[tool.setuptools_scm]
+version_scheme = "python-simplified-semver"
+local_scheme = "no-local-version"
+version_file = "src/krank/_version.py"
