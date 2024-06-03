@@ -44,6 +44,7 @@ extensions = [
     "sphinx.ext.intersphinx",  # Link to other project's documentation (see mapping below)
     # "sphinx_autodoc_typehints",  # Automatically document param types (less noise in class signature)
     # "numpydoc",
+    # "sphinx_copybutton",  # Adds a copy button to code blocks (for pasting)
     "sphinx.ext.autosectionlabel",
     # "sphinx.ext.linkcode",
 ]
@@ -151,8 +152,8 @@ html_theme_options = {
 
 # configure sphinx-copybutton
 # https://github.com/executablebooks/sphinx-copybutton
-copybutton_prompt_text = r">>> |\.\.\. |\$ "
-copybutton_prompt_is_regexp = True
+# copybutton_prompt_text = r">>> |\.\.\. |\$ "
+# copybutton_prompt_is_regexp = True
 
 
 # -- Options for autosummary/autodoc output ------------------------------------
@@ -172,6 +173,7 @@ autodoc_default_options = {
 # -- Intersphinx ------------------------------------------------
 
 intersphinx_mapping = {
+    "krank": ("https://remrama.github.io/krank", None),
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable", None),
     "pooch": ("https://www.fatiando.org/pooch/latest", None),
     "python": ("https://docs.python.org/3", None),

@@ -5,10 +5,17 @@ Krank
 
 Fetch psychology datasets from remote sources.
 
-**Krank** is a single-stop for using publicly available remote datasets. It offers simplified downloading, storing, version controlling, loading into Python, minimal/corrective pre-processing, and in some cases, data harmonization of various datasets. This project has a huge dependency on the `Pooch <https://www.fatiando.org/pooch` Python package, which makes retrieving and storing any remote file incredibly easy.
+.. important::
+
+   Refer to `Krank's online documentation <https://remrama.github.io/krank>`_ for the most comprehensive and up-to-date description of features and functions.
 
 
-.. warning:: This project is in the planning stage of development. Don't use it.
+**Krank** is a single-stop for using publicly available remote datasets. It offers simplified downloading, storing, version controlling, loading into Python, minimal/corrective pre-processing, and in some cases, data harmonization of various datasets. This project has a huge dependency on the `Pooch <https://www.fatiando.org/pooch>`_ Python package, which makes retrieving and storing any remote file incredibly easy.
+
+
+.. warning::
+
+   This project is in the planning stage of development. Don't use it.
 
 
 **Krank** currently has a limited set of modules that are each dedicated to a specific type of dataset. The topical focus of these datasets is probably *psychology* or *cognitive neuroscience*. The datasets are grouped into separate modules for organizational purposes, where each module focuses on a specific type of dataset. Each module functions almost identically, and the separation of fetching functions into these separate modules is primarily for organizational purposes.
@@ -18,6 +25,16 @@ Currently implemented modules include:
 * ``tables``: Fetch tables that were manually extracted from journal publications.
 * ``lexicons``: Fetch lexicons that contain vocabularies with associated numerical scores.
 * ``liwc``: Fetch previously published or shared LIWC scores/output.
+
+
+
+Installation
+------------
+
+.. code-block:: shell
+
+   pip install --upgrade krank
+
 
 
 Usage
@@ -36,17 +53,10 @@ An identical way to fetch the same file is through krank's top-level interface, 
 
 .. code-block:: python
 
-    import krank
+   import krank
 
-    df = krank.fetch_lexicon("threat")
+   df = krank.fetch_lexicon("threat")
 
-
-Installation
-------------
-
-.. code-block:: shell
-
-   pip install krank
 
 
 Contributing
