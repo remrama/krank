@@ -7,10 +7,6 @@ docs/generated/
 docs/make.bat
 docs/Makefile
 
-# PyPi
-build/
+# PyPI
 dist/
 krank.egg-info/
-
-# src
-src/krank/_version.py
