@@ -40,8 +40,9 @@ Homepage = "https://github.com/remrama/krank"
 
 [project.optional-dependencies]
 dev = [
-  "sphinx",
+  "black",
   "pydata-sphinx-theme",  # Needs to be in requirements.txt also (for docs.yml).
+  "sphinx",
 ]
 
 [tool.setuptools.dynamic]
@@ -59,3 +60,8 @@ krank = [
   "krank/data/lexicons.json",
   "krank/data/tables.json",
 ]
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+include = '\.pyi?$'
