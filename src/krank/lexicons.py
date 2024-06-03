@@ -30,16 +30,14 @@ def _read_registry():
     return registry
 
 
-def _retrieve_lexicon(name, version, **kwargs):
+def _retrieve_lexicon(dataset, version, **kwargs):
     """
     Retrieve/download a lexicon from a remote URL (if not already retrieved).
 
     Parameters
     ----------
-    publication : str
-        Name of publication.
-    extract : str
-        Name of extract or item from within the publication.
+    dataset : str
+        Name of dataset/lexicon.
     version : str
         Name of version.
     **kwargs : dict, optional
@@ -52,11 +50,11 @@ def _retrieve_lexicon(name, version, **kwargs):
     """
     registry = _read_registry()
     if version is None:
-        version = sorted(registry[name])[-1]
-    kwargs.setdefault("fname", name)
+        version = sorted(registry[dataset])[-1]
+    kwargs.setdefault("fname", dataset)
     kwargs.setdefault("path", pooch.os_cache("krank").joinpath("lexicons"))
-    kwargs.setdefault("url", registry[name][version]["url"])
-    kwargs.setdefault("known_hash", "md5:" + registry[name][version]["md5"])
+    kwargs.setdefault("url", registry[dataset][version]["url"])
+    kwargs.setdefault("known_hash", "md5:" + registry[dataset][version]["md5"])
     fp = pooch.retrieve(**kwargs)
     return fp
 
@@ -120,7 +118,7 @@ def fetch_honor(version=None, load=False, **kwargs):
     Filepath or DataFrame
     """
     dataset = inspect.stack()[0][3].split("_")[-1]
-    fp = _retrieve_lexicon(name=name, version=version, **kwargs)
+    fp = _retrieve_lexicon(dataset=dataset, version=version, **kwargs)
     if not load:
         return fp
     elif callable(load):
@@ -177,7 +175,7 @@ def fetch_threat(version=None, load=True, **kwargs):
         A dictionary with abbreviated category names as keys and category words as values.
     """
     dataset = inspect.stack()[0][3].split("_")[-1]
-    fp = _retrieve_lexicon(name=name, version=version, **kwargs)
+    fp = _retrieve_lexicon(dataset=dataset, version=version, **kwargs)
     if not load:
         return fp
     elif callable(load):

@@ -61,7 +61,7 @@ def fetch_table(dataset, table, version=None, load=True, **kwargs):
     str or :class:`~pandas.DataFrame`
         Path of retrieved file if ``load`` is False, or :class:`pandas.DataFrame` if ``load`` is True.
     """
-    if (fetch_function := getattr(extracts, f"fetch_{dataset}")) is None:
+    if (fetch_function := getattr(tables, f"fetch_{dataset}")) is None:
         raise ValueError(f"Could not find fetching function for {dataset} Tables dataset")
     return fetch_function(table=table, version=version, load=load, **kwargs)
 
