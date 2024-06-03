@@ -41,7 +41,7 @@ Homepage = "https://github.com/remrama/krank"
 [project.optional-dependencies]
 dev = [
   "sphinx",
-  "pydata-sphinx-theme",
+  "pydata-sphinx-theme",  # Needs to be in requirements.txt also (for docs.yml).
 ]
 
 [tool.setuptools]

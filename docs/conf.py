@@ -6,18 +6,24 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-
-import os
+from pathlib import Path
 import time
 import sys
 
 from importlib.metadata import metadata
 
+# Need to make sure that krank can be imported, and also that
+# it is importing the local one (as opposed to a previously pip installed one).
+# So this can be from the krank/src/krank directory or through a locally
+# built or locally pip installed version.
+#
+# This prevents the need to build krank manually in the github action for pages.
+#
 # autodoc needs to import your modules in order to extract the docstrings.
 # Therefore, you must add the appropriate path to sys.path in your conf.py.
-sys.path.insert(0, os.path.abspath("../krank/src"))
-
+sys.path.insert(0, str(Path(__file__).parents[1].joinpath("src")))
 import krank
+
 
 project = krank.__name__
 release = krank.__version__  # Full project version
@@ -106,14 +112,23 @@ html_theme_options = {
         {"name": "Contributing", "url": "https://github.com/remrama/krank#contributing"},
     ],
     "header_links_before_dropdown": 4,
+    "navbar_start": ["navbar-logo", "navbar-icon-links"],  # "version-switcher"
+    "navbar_center": ["navbar-nav"],
+    "navbar_end": [],
+    # "navbar_persistent": [],  # Default is a nice search bubble that I otherwise don't get
+    "search_bar_text": "Search...",
+    # "article_header_start": ["breadcrumbs"],
+    # "article_header_end": [],
+    # "article_footer_items": [],
+    "footer_start": ["last-updated"],  # "search-field" "search-button"
+    "footer_center": [],
+    "footer_end": [],  # "theme-switcher"
+    "content_footer_items": [],
+    "show_prev_next": False,
     # "sidebarwidth": 230,
     # "navbar_start": ["navbar-logo", "version-switcher"],
     "show_version_warning_banner": True,
     "announcement": "BEWARE! This project is in the <a href='https://github.com/remrama/krank'>planning stage</a>.",
-    # "navbar_end": ["theme-switcher", "navbar-icon-links"],
-    "navbar_end": ["navbar-icon-links"],
-    # "navbar_end": ["theme-switcher", "navbar-icon-links", "search-field"],
-    # "search_bar_text": "Search for something...",
     "navbar_align": "left",  # [left, content, right] For testing that the navbar items align properly
     "show_nav_level": 3,
     "show_toc_level": 3,
@@ -126,7 +141,7 @@ html_theme_options = {
     # "icon_links_label": "Quick Links",
     "icon_links": [
         {
-            "name": "GitHub",
+            "name": "Krank on GitHub",
             "url": "https://github.com/remrama/krank",
             "icon": "fa-brands fa-square-github",
             "type": "fontawesome",

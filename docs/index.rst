@@ -2,6 +2,7 @@
 .. image:: https://badge.fury.io/py/krank.svg
    :target: https://badge.fury.io/py/krank
 
+----
 
 Krank
 =====
