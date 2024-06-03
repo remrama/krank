@@ -1,6 +1,7 @@
 """
 Top-level Krank functions for retrieving an arbitrary dataset from each module.
 """
+
 from . import lexicons
 from . import liwc
 from . import tables
@@ -62,7 +63,9 @@ def fetch_table(dataset, table, version=None, load=True, **kwargs):
         Path of retrieved file if ``load`` is False, or :class:`pandas.DataFrame` if ``load`` is True.
     """
     if (fetch_function := getattr(tables, f"fetch_{dataset}")) is None:
-        raise ValueError(f"Could not find fetching function for {dataset} Tables dataset")
+        raise ValueError(
+            f"Could not find fetching function for {dataset} Tables dataset"
+        )
     return fetch_function(table=table, version=version, load=load, **kwargs)
 
 

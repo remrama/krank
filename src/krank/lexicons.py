@@ -3,6 +3,7 @@ Fetchers for Krank's Lexicons module.
 
 The Lexicons module fetches open-source lexicons (including LIWC dictionaries).
 """
+
 from importlib.resources import files
 import inspect
 import json
@@ -18,10 +19,10 @@ __all__ = [
 ]
 
 
-
 ################################################################################
 # Private Utilities
 ################################################################################
+
 
 def _read_registry():
     data_dir = files("krank.data")
@@ -81,10 +82,10 @@ def _read_txt(fp, **kwargs):
         return f.read()
 
 
-
 ################################################################################
 # Specific Lexicon Fetchers
 ################################################################################
+
 
 def fetch_honor(version=None, load=False, **kwargs):
     """
@@ -143,10 +144,15 @@ def fetch_honor(version=None, load=False, **kwargs):
     words = re.findall(r"^([^\s\%0-9][^\t]+)((?:\s+\d+)*)", data, flags=re.MULTILINE)
     words = {k: v.strip().split() for k, v in words}
     unknown_category_ids = ["800", "999"]
-    words = {k: [categories[x] for x in v if x not in unknown_category_ids] for k, v in words.items()}
+    words = {
+        k: [categories[x] for x in v if x not in unknown_category_ids]
+        for k, v in words.items()
+    }
     # words = {k: re.findall(r"\d+", a) for k, v in categories}
     # dictionary = {catname: catkey for catkey, catname in categories.items()}
-    df = pd.DataFrame(data=False, index=list(words), columns=list(categories.values()), dtype=bool)
+    df = pd.DataFrame(
+        data=False, index=list(words), columns=list(categories.values()), dtype=bool
+    )
     df = df.sort_index(axis=0).sort_index(axis=1)  # Speeding loop up?
     for k, v in words.items():
         df.loc[k, v] = True

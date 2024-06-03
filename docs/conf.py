@@ -90,7 +90,7 @@ html_show_copyright = False
 html_show_sphinx = False
 html_output_encoding = "utf-8"
 html_sidebars = {
-#     "**": ["localtoc.html", "globaltoc.html", "searchbox.html"],
+    #     "**": ["localtoc.html", "globaltoc.html", "searchbox.html"],
     "**": [],  # to remove primary sidebar from all pages
 }
 # html_additional_pages = {}
@@ -110,7 +110,10 @@ html_theme_options = {
     "navigation_with_keys": False,
     "external_links": [
         {"name": "Releases", "url": "https://github.com/remrama/krank/releases"},
-        {"name": "Contributing", "url": "https://github.com/remrama/krank#contributing"},
+        {
+            "name": "Contributing",
+            "url": "https://github.com/remrama/krank#contributing",
+        },
     ],
     "header_links_before_dropdown": 4,
     "navbar_start": ["navbar-logo", "navbar-icon-links"],  # "version-switcher"
