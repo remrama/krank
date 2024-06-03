@@ -75,7 +75,7 @@ templates_path = ["_templates"]
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "pydata_sphinx_theme"
-html_title = f"Krank {release}"  # defaults to "<project> v<revision> documentation"
+html_title = f"Krank v{release}"  # defaults to "<project> v<revision> documentation"
 html_short_title = "Krank"
 html_logo = None
 html_favicon = None
