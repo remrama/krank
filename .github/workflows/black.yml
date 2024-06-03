@@ -13,10 +13,10 @@ jobs:
       #     python-version: "3.12"
       - name: Format
         uses: psf/black@stable
-        with:
-          options: "--check --diff"
-          src: "./src"
-          use_pyproject: true
-          # version: "py311"
-          jupyter: false
-          summary: true
+        # with:
+        #   options: "--check --diff"
+        #   src: "./src"
+        #   use_pyproject: true
+        #   # version: "py311"
+        #   jupyter: false
+        #   summary: true
