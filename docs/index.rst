@@ -1,9 +1,8 @@
 
 .. image:: https://badge.fury.io/py/krank.svg
    :target: https://badge.fury.io/py/krank
+   :alt: PyPI
 
-.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
-   :target: https://github.com/psf/black
 
 ----
 
@@ -18,11 +17,19 @@ Fetch psychology datasets from remote sources.
 
 See Krank's :doc:`api` for a complete list of currently available functions.
 
+Feel free to post questions, bugs, feature requests, new dataset proposals, or even new module proposals on the `Krank GitHub Issues page <https://github.com/remrama/krank/issues>`_. See :doc:`contributing` for more details.
 
-.. warning::
 
-   This project is in the planning stage of development. Don't use it.
+.. danger::
 
+   This project is in the planning stage of development. DO NOT USE!
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Contents
+
+   api.rst
 
 
 Installation
@@ -64,12 +71,3 @@ An identical way to fetch the same file is through krank's top-level interface, 
    import krank
 
    df = krank.fetch_lexicon("threat")
-
-
-
-Contributing
-------------
-
-Currently, Krank is developed mostly for my own personal desires for more convenient data access, more convenient data storage, a better ability to see a high-level view of all the datasets available for my projects, and better version-control over the public datasets I use and create. Making a Python package with documentation to view the datasets seemed like the best way to do this.
-
-That being said, if anyone else finds it useful and wants to contribute, please do. Feel free to post questions, bugs, feature requests, new dataset proposals, or even new module proposals on the `Krank GitHub Issues page <https://github.com/remrama/krank/issues>`_.

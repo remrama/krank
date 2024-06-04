@@ -1,0 +1,26 @@
+{
+    "andrewshanna2022": {
+        "v0": {
+            "url": "https://osf.io/download/z8ha4?view_only=449d1ed6f90e4651badc0b47a9302ae5",
+            "mdf": "39023fe7f50c429d5273c63eb9c92f3f"
+        }
+    },
+    "bainbridge2023": {
+        "v1": {
+            "study1": {
+                "url": "https://raw.githubusercontent.com/conbainbridge/covid_thoughts/CT_public_repo_1.0/data/study1_LIWC_all.csv",
+                "md5": "76b8ac3eafa03d5f73b932ed4a683cf0"
+            },
+            "study2": {
+                "url": "https://raw.githubusercontent.com/conbainbridge/covid_thoughts/CT_public_repo_1.0/data/study2_LIWC_all.csv",
+                "md5": "e923075330339f49ecb7bea48cab43f1"
+            }
+        }
+    },
+    "pearson2023": {
+        "v0": {
+            "url": "https://osf.io/download/u6kdv",
+            "md5": "f5a8aa1526bb2a4d4374ec03ab3284b3"
+        }
+    }
+}

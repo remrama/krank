@@ -1,9 +1,15 @@
 
 .. image:: https://badge.fury.io/py/krank.svg
    :target: https://badge.fury.io/py/krank
+   :alt: PyPI
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
+   :alt: Black
+
+.. image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
+   :target: https://github.com/astral-sh/ruff
+   :alt: Ruff
 
 ----
 
@@ -64,12 +70,3 @@ An identical way to fetch the same file is through krank's top-level interface, 
    import krank
 
    df = krank.fetch_lexicon("threat")
-
-
-
-Contributing
-------------
-
-Currently, Krank is developed mostly for my own personal desires for more convenient data access, more convenient data storage, a better ability to see a high-level view of all the datasets available for my projects, and better version-control over the public datasets I use and create. Making a Python package with documentation to view the datasets seemed like the best way to do this.
-
-That being said, if anyone else finds it useful and wants to contribute, please do. Feel free to post questions, bugs, feature requests, new dataset proposals, or even new module proposals on the `Krank GitHub Issues page <https://github.com/remrama/krank/issues>`_.

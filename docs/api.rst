@@ -34,8 +34,10 @@ LIWC
    :toctree: generated/
    :nosignatures:
 
+   krank.liwc.fetch_bainbridge2023
    krank.liwc.fetch_barrett2020
    krank.liwc.fetch_cariola2010
+   krank.liwc.fetch_pearson2023
 
 
 Tables

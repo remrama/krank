@@ -132,7 +132,7 @@ html_theme_options = {
     # "sidebarwidth": 230,
     # "navbar_start": ["navbar-logo", "version-switcher"],
     "show_version_warning_banner": True,
-    "announcement": "BEWARE! This project is in the <a href='https://github.com/remrama/krank'>planning stage</a>.",
+    "announcement": "BEWARE! <a href='https://github.com/remrama/krank'>This project</a> is in the planning stage. DO NOT USE!",
     "navbar_align": "left",  # [left, content, right] For testing that the navbar items align properly
     "show_nav_level": 3,
     "show_toc_level": 3,
