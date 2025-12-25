@@ -1,0 +1,561 @@
+{
+    "2010 Demographic Survey": {
+        "krank_id": "Demographic2010",
+        "description": "A 2010 YouGov survey asking about various dream types (Earliest dream, Most recent dream, and Worst nightmare) along with demographics.",
+        "probes": ["Earliest", "Recent", "Nightmare"],
+        "year": "2010",
+        "type": "survey (YouGov)"
+    },
+    "2011 Children's Dream Survey": {
+        "krank_id": "Children",
+        "description": "A 2011 YouGov survey asking children about their most memorable dream.",
+        "probes": ["Memorable"],
+        "year": "2010",
+        "type": "survey (YouGov)"
+    },
+    "2011 Memorable Dream Survey": {
+        "krank_id": "Memorable",
+        "description": "A 2011 YouGov survey asking adults about their most memorable dream.",
+        "probes": ["Memorable"],
+        "year": "2010",
+        "type": "survey (YouGov)"
+    },
+    "2012 Demographic Survey": {
+        "krank_id": "Demographic2012",
+        "description": "A 2012 YouGov survey asking about various dream types, along with demographics.",
+        "probes": ["Awareness", "Visitation", "Work"],
+        "year": "2012",
+        "type": "survey (YouGov)"
+    },
+    "2013 Demographic Survey Summer": {
+        "krank_id": "Demographic2013Summer",
+        "description": "A 2013 (Summer) YouGov survey asking about most recent dream, along with demographics.",
+        "probes": ["Recent"],
+        "year": "Summer 2013",
+        "type": "survey (YouGov)"
+    },
+    "2013 Demographic Survey Winter": {
+        "krank_id": "Demographic2013Winter",
+        "description": "A 2013 (Winter) YouGov survey asking about most recent dream, along with demographics.",
+        "probes": ["Recent"],
+        "year": "Winter 2013",
+        "type": "survey (YouGov)"
+    },
+    "2020 Pandemic April": {
+        "krank_id": "PandemicApril",
+        "description": "A 2020 (April) YouGov survey asking about a dream related to the COVID-19 pandemic.",
+        "probes": ["Pandemic"],
+        "year": "April 2020",
+        "type": "survey (YouGov)"
+    },
+    "2020 Pandemic May": {
+        "krank_id": "PandemicMay",
+        "description": "A 2020 (May) YouGov survey asking about a dream related to the COVID-19 pandemic.",
+        "probes": ["COVID"],
+        "year": "May 2020",
+        "type": "survey (YouGov)"
+    },
+    "2020 Racial Justice Survey": {
+        "krank_id": "PandemicMay",
+        "description": "A 2020 YouGov survey asking about a dream related to the Black Lives Matter protests.",
+        "probes": ["BLM"],
+        "year": "2020",
+        "type": "survey (YouGov)"
+    },
+    "AD Journals: Lola, Paul, Sophia, Will 2006-2007": {
+        "krank_id": "ADJournals",
+        "description": "Dream journals from Lola, Paul, Sophia, and Will.",
+        "probes": ["Last night"],
+        "year": "2006-2007",
+        "type": "journal (written)"
+    },
+    "African Church Dreams A": {
+        "krank_id": "AfricanChurchA",
+        "description": "TODO",
+        "probes": ["Recent"]
+    },
+    "African Church Dreams B": {
+        "krank_id": "AfricanChurchB",
+        "description": "TODO",
+        "probes": ["Recent"]
+    },
+    "African Church Dreams C": {
+        "krank_id": "AfricanChurchC",
+        "description": "TODO",
+        "probes": ["Recent"]
+    },
+    "Ana Journal 2020": {
+        "krank_id": "Ana",
+        "description": "Ana's dream journal.",
+        "probes": ["Last night"],
+        "type": "journal"
+    },
+    "Anna Kingsford Journal 1876-1887": {
+        "krank_id": "Anna",
+        "description": "Anna's dream journal.",
+        "probes": ["Last night"],
+        "year": "1876-1887",
+        "type": "journal"
+    },
+    "Anthropological Dreams": {
+        "krank_id": "Anthropological",
+        "description": "TODO",
+        "probes": ["Memorable", "Most memorable", "Recent"]
+    },
+    "Aristides Journal 2nd century CE": {
+        "krank_id": "Aristides",
+        "description": "Aristides's dream journal.",
+        "probes": ["Last night"],
+        "year": "101-200",
+        "type": "journal (written)"
+    },
+    "Barack Obama Dreams 2008": {
+        "krank_id": "Obama",
+        "description": "A 2008 YouGov survey asking about a dream related to Barack Obama.",
+        "probes": ["Obama"],
+        "year": "2008",
+        "type": "survey (YouGov)"
+    },
+    "Barb Sanders baseline 250": {
+        "krank_id": "Barb",
+        "description": "Barb's dream journal.",
+        "probes": ["Last night"],
+        "type": "journal"
+    },
+    "Bea Journal 2003-2005": {
+        "krank_id": "Bea1",
+        "description": "Part 1/2 of Bea's dream journal.",
+        "probes": ["Last night"],
+        "year": "2003-2005",
+        "type": "journal"
+    },
+    "Bea Journal 2007-2010": {
+        "krank_id": "Bea2",
+        "description": "Part 2/2 of Bea's dream journal.",
+        "probes": ["Last night"],
+        "year": "2007-2010",
+        "type": "journal"
+    },
+    "Beverly Journal 1986": {
+        "krank_id": "Beverly1",
+        "description": "Part 1/4 of Beverly's dream journal.",
+        "probes": ["Last night"],
+        "year": "1986",
+        "type": "journal"
+    },
+    "Beverly Journal 1996": {
+        "krank_id": "Beverly2",
+        "description": "Part 2/4 of Beverly's dream journal.",
+        "probes": ["Last night"],
+        "year": "1996",
+        "type": "journal"
+    },
+    "Beverly Journal 2006": {
+        "krank_id": "Beverly3",
+        "description": "Part 3/4 of Beverly's dream journal.",
+        "probes": ["Last night"],
+        "year": "2006",
+        "type": "journal"
+    },
+    "Beverly Journal 2016": {
+        "krank_id": "Beverly4",
+        "description": "Part 4/4 of Beverly's dream journal.",
+        "probes": ["Last night"],
+        "year": "2016",
+        "type": "journal"
+    },
+    "Burgess Journal 2020": {
+        "krank_id": "Burgess",
+        "description": "Burgess's dream journal.",
+        "probes": ["Last night"],
+        "year": "2020",
+        "type": "journal"
+    },
+    "Dreamboard Nightmares 2014": {
+        "krank_id": "DreamboardNM",
+        "description": "TODO",
+        "probes": ["Nightmare"],
+        "year": "2014",
+        "type": "App"
+    },
+    "Film-Related Dreams": {
+        "krank_id": "Film",
+        "description": "TODO",
+        "probes": ["Last night", "Memorable"],
+        "type": "TODO"
+    },
+    "Francine Journal 2015": {
+        "krank_id": "Francine",
+        "description": "Francine's dream journal.",
+        "probes": ["Last night"],
+        "year": "2015",
+        "type": "journal"
+    },
+    "Freya Journal 1981-2019": {
+        "krank_id": "Freya1",
+        "description": "Part 1/2 of Freya's dream journal.",
+        "probes": ["Last night"],
+        "year": "1981-2019",
+        "type": "journal"
+    },
+    "Freya Journal 2020": {
+        "krank_id": "Freya2",
+        "description": "Part 2/2 of Freya's dream journal.",
+        "probes": ["Last night"],
+        "year": "2020",
+        "type": "journal"
+    },
+    "Hall & Van de Castle Female Norms 1947-1950": {
+        "krank_id": "HVdCF",
+        "description": "Hall & Van de Castle Female Norms 1947-1950",
+        "probes": ["Last night"],
+        "year": "1947-1950",
+        "type": "survey"
+    },
+    "Hall & Van de Castle Male Norms 1947-1950": {
+        "krank_id": "HVdCM",
+        "description": "Hall & Van de Castle Male Norms 1947-1950",
+        "probes": ["Last night"],
+        "year": "1947-1950",
+        "type": "survey"
+    },
+    "Hillary Clinton Dreams 2008": {
+        "krank_id": "Clinton",
+        "description": "A 2008 YouGov survey asking about a dream related to Barack Obama.",
+        "probes": ["Clinton"],
+        "year": "2008",
+        "type": "survey (YouGov)"
+    },
+    "Historical Dreams": {
+        "krank_id": "Historical",
+        "description": "TODO",
+        "probes": ["Last night", "Memorable", "Recent"],
+        "year": "TODO",
+        "type": "TODO"
+    },
+    "Janet Journal 2012-2013": {
+        "krank_id": "Janet",
+        "description": "Janet's dream journal.",
+        "probes": ["Last night"],
+        "year": "2012-2013",
+        "type": "journal"
+    },
+    "Jasmine Journal A": {
+        "krank_id": "Jasmine1",
+        "description": "Part 1/4 of Jasmine's dream journal.",
+        "probes": ["Last night"],
+        "type": "journal"
+    },
+    "Jasmine Journal B": {
+        "krank_id": "Jasmine2",
+        "description": "Part 2/4 of Jasmine's dream journal.",
+        "probes": ["Last night"],
+        "type": "journal"
+    },
+    "Jasmine Journal C": {
+        "krank_id": "Jasmine3",
+        "description": "Part 3/4 of Jasmine's dream journal.",
+        "probes": ["Last night"],
+        "type": "journal"
+    },
+    "Jasmine Journal D": {
+        "krank_id": "Jasmine4",
+        "description": "Part 4/4 of Jasmine's dream journal.",
+        "probes": ["Last night"],
+        "type": "journal"
+    },
+    "Jordan Dream Journal": {
+        "krank_id": "Jordan",
+        "description": "Jordan's dream journal.",
+        "probes": ["Last night", "Earliest", "Memorable", "Recent", "Recurring", "Nightmare"],
+        "type": "journal"
+    },
+    "KB Journal 2012": {
+        "krank_id": "KB1",
+        "description": "Part 1/4 of KB's dream journal.",
+        "probes": ["Last night"],
+        "year": "2012",
+        "type": "journal"
+    },
+    "KB Journal 2019a": {
+        "krank_id": "KB2",
+        "description": "Part 2/4 of KB's dream journal.",
+        "probes": ["Last night"],
+        "year": "2019",
+        "type": "journal"
+    },
+    "KB Journal 2020": {
+        "krank_id": "KB3",
+        "description": "Part 3/4 of KB's dream journal.",
+        "probes": ["Last night"],
+        "year": "2020",
+        "type": "journal"
+    },
+    "KB Journal 2022": {
+        "krank_id": "KB4",
+        "description": "Part 4/4 of KB's dream journal.",
+        "probes": ["Last night"],
+        "year": "2022",
+        "type": "journal"
+    },
+    "KM Journal 2015": {
+        "krank_id": "KM",
+        "description": "KM's dream journal.",
+        "probes": ["Last night"],
+        "year": "2015",
+        "type": "journal"
+    },
+    "Krippner International Survey 1990-2005": {
+        "krank_id": "Krippner",
+        "description": "TODO",
+        "probes": ["Recent"],
+        "year": "1990-2005",
+        "type": "survey"
+    },
+    "Lawrence Journal 2011": {
+        "krank_id": "Lawrence",
+        "description": "Lawrence's dream journal.",
+        "probes": ["Last night"],
+        "year": "2011",
+        "type": "journal"
+    },
+    "Literary Dreams": {
+        "krank_id": "Literary",
+        "description": "TODO",
+        "probes": ["Last night"]
+    },
+    "Lucid Dreams 2010": {
+        "krank_id": "LucidJGB",
+        "description": "Gackenbach lucid dreams?",
+        "probes": ["Lucid"],
+        "year": "2010"
+    },
+    "Lucid Dreams Study 2018 A": {
+        "krank_id": "LucidStudy1",
+        "description": "Part 1/2 of a lucid dreams study.",
+        "probes": ["Lucid", "Recent"],
+        "year": "2018"
+    },
+    "Lucid Dreams Study 2018 B": {
+        "krank_id": "LucidStudy2",
+        "description": "Part 2/2 of a lucid dreams study.",
+        "probes": ["Lucid", "Recent"],
+        "year": "2018"
+    },
+    "Lucille Journal 1998-2018": {
+        "krank_id": "Lucille",
+        "description": "Lucille's dream journal.",
+        "probes": ["Last night"],
+        "year": "1998-2018",
+        "type": "journal"
+    },
+    "Lucrecia de Leon Journal 1587-1588 ": {
+        "krank_id": "Lucrecia1",
+        "description": "Part 1/2 of Lucrecia's dream journal.",
+        "probes": ["Last night"],
+        "year": "1587-1588",
+        "type": "journal"
+    },
+    "Lucrecia de Leon Journal 1590": {
+        "krank_id": "Lucrecia2",
+        "description": "Part 2/2 of Lucrecia's dream journal.",
+        "probes": ["Last night"],
+        "year": "1590",
+        "type": "journal"
+    },
+    "Magnolia Journal 2015": {
+        "krank_id": "Magnolia",
+        "description": "Magnolia's dream journal.",
+        "probes": ["Last night"],
+        "year": "2015",
+        "type": "journal"
+    },
+    "Mary Journal 2020": {
+        "krank_id": "Mary",
+        "description": "Mary's dream journal.",
+        "probes": ["Last night"],
+        "year": "2020",
+        "type": "journal"
+    },
+    "Maxwell Journal 2015": {
+        "krank_id": "Maxwell",
+        "description": "Maxwell's dream journal.",
+        "probes": ["Last night"],
+        "year": "2015",
+        "type": "journal"
+    },
+    "Mehinaku of Brazil Dreams 1970's": {
+        "krank_id": "Mehinaku",
+        "description": "TODO",
+        "probes": ["Last night"],
+        "year": "1970"
+    },
+    "Melvin Journal 2020": {
+        "krank_id": "Melvin",
+        "description": "Melvin's dream journal.",
+        "probes": ["Last night"],
+        "year": "2020",
+        "type": "journal"
+    },
+    "Miami Home Dreams 1964-1965": {
+        "krank_id": "MiamiHome",
+        "description": "TODO",
+        "probes": ["Last night"],
+        "year": "1964-1965",
+        "type": "TODO"
+    },
+    "Miami Lab Dreams 1963-1965": {
+        "krank_id": "MiamiLab",
+        "description": "TODO",
+        "probes": ["Last night"],
+        "year": "1963-1965",
+        "type": "TODO"
+    },
+    "Mike Journal 1970": {
+        "krank_id": "Mike",
+        "description": "Mike's dream journal.",
+        "probes": ["Recent"],
+        "year": "1970",
+        "type": "journal"
+    },
+    "Myoe Shonin Journal 13th century CE": {
+        "krank_id": "Myoe",
+        "description": "Myoe's dream journal.",
+        "probes": ["Last night"],
+        "year": "1201-1300",
+        "type": "journal"
+    },
+    "Nan Journal 2001-2002": {
+        "krank_id": "Nan",
+        "description": "Nan's dream journal.",
+        "probes": ["Last night"],
+        "year": "2001-2002",
+        "type": "journal"
+    },
+    "Natural Scientist Journal 1939": {
+        "krank_id": "Natural",
+        "description": "Natural's dream journal.",
+        "probes": ["Last night"],
+        "year": "1939",
+        "type": "journal"
+    },
+    "Nepal Dreams 2014": {
+        "krank_id": "Nepal",
+        "description": "TODO",
+        "probes": ["Recent", "Non-spiritual", "Spiritual", "Significant"],
+        "year": "2014",
+        "type": "survey"
+    },
+    "Online Dreams 2015": {
+        "krank_id": "Online",
+        "description": "TODO",
+        "probes": ["Last night"],
+        "year": "2015",
+        "type": "survey"
+    },
+    "Palliative Care Dreams 2011": {
+        "krank_id": "Palliative",
+        "description": "TODO",
+        "probes": ["Recent"],
+        "year": "2011",
+        "type": "survey"
+    },
+    "RB Journal 1996": {
+        "krank_id": "RB",
+        "description": "RB's dream journal.",
+        "probes": ["Last night"],
+        "year": "1996",
+        "type": "journal"
+    },
+    "Research Study 2015 A": {
+        "krank_id": "Research1",
+        "description": "Part 1/2 of dreams from a 2015 research study.",
+        "probes": ["Last night"],
+        "year": "2015",
+        "type": "survey"
+    },
+    "Research Study 2015 B": {
+        "krank_id": "Research2",
+        "description": "Part 2/2 of dreams from a 2015 research study.",
+        "probes": ["Last night"],
+        "year": "2015",
+        "type": "survey"
+    },
+    "Rosa Journal 2020": {
+        "krank_id": "Rosa",
+        "description": "Rosa's dream journal.",
+        "probes": ["Last night"],
+        "year": "2020",
+        "type": "journal"
+    },
+    "Rose Journal 2020": {
+        "krank_id": "Rose",
+        "description": "Rose's dream journal.",
+        "probes": ["Last night"],
+        "year": "2020",
+        "type": "journal"
+    },
+    "Santa Clara Dreams 2008": {
+        "krank_id": "SCU1",
+        "description": "Part 1/2 of Santa Clara Univerity dreams. Kahan publication?",
+        "probes": ["Last night"],
+        "year": "2008",
+        "type": "journal"
+    },
+    "Santa Clara Dreams 2012": {
+        "krank_id": "SCU2",
+        "description": "Part 2/2 of Santa Clara Univerity dreams. Kahan publication?",
+        "probes": ["Last night"],
+        "year": "2012",
+        "type": "journal"
+    },
+    "Sports Dreams Survey 2021": {
+        "krank_id": "Sports",
+        "description": "TODO",
+        "probes": ["LSD_q3_open1"],
+        "year": "2021",
+        "type": "TODO"
+    },
+    "Swedenborg Journal 1743-1744": {
+        "krank_id": "Swedenborg",
+        "description": "Swedenborg's dream journal.",
+        "probes": ["Recent"],
+        "year": "1743-1744",
+        "type": "journal"
+    },
+    "Tanya Journal 2003-2013": {
+        "krank_id": "Tanya",
+        "description": "Tanya's dream journal.",
+        "probes": ["Last night"],
+        "year": "2003-2013",
+        "type": "journal"
+    },
+    "Tita Journal 2020": {
+        "krank_id": "Tita",
+        "description": "Tita's dream journal.",
+        "probes": ["Last night"],
+        "year": "2020",
+        "type": "journal"
+    },
+    "Trump Dreams 2016-2017": {
+        "krank_id": "Trump",
+        "description": "A 2008 YouGov survey asking about a dream related to Barack Obama.",
+        "probes": ["Trump"],
+        "year": "2016-2017",
+        "type": "survey (YouGov)"
+    },
+    "Vera Journal 2020": {
+        "krank_id": "Vera",
+        "description": "Vera's dream journal.",
+        "probes": ["Recent"],
+        "year": "2020",
+        "type": "journal"
+    },
+    "Wolfgang Pauli dreams 1930's": {
+        "krank_id": "Wolfgang",
+        "description": "Wolfgang's dream journal.",
+        "probes": ["Last night"],
+        "year": "1930-1939",
+        "type": "journal"
+    }
+}

@@ -1,0 +1,390 @@
+{
+    "ADJournals": {
+        "description": "Dream journals from Lola, Paul, Sophia, and Will.",
+        "type": "journal (written)",
+        "year": "2006-2007"
+    },
+    "AfricanChurchA": {
+        "description": "TODO"
+    },
+    "AfricanChurchB": {
+        "description": "TODO"
+    },
+    "AfricanChurchC": {
+        "description": "TODO"
+    },
+    "Ana": {
+        "description": "Ana's dream journal.",
+        "type": "journal"
+    },
+    "Anna": {
+        "description": "Anna's dream journal.",
+        "type": "journal",
+        "year": "1876-1887"
+    },
+    "Anthropological": {
+        "description": "TODO"
+    },
+    "Aristides": {
+        "description": "Aristides's dream journal.",
+        "type": "journal (written)",
+        "year": "101-200"
+    },
+    "Barb": {
+        "description": "Barb's dream journal.",
+        "type": "journal"
+    },
+    "Bea1": {
+        "description": "Part 1/2 of Bea's dream journal.",
+        "type": "journal",
+        "year": "2003-2005"
+    },
+    "Bea2": {
+        "description": "Part 2/2 of Bea's dream journal.",
+        "type": "journal",
+        "year": "2007-2010"
+    },
+    "Beverly1": {
+        "description": "Part 1/4 of Beverly's dream journal.",
+        "type": "journal",
+        "year": "1986"
+    },
+    "Beverly2": {
+        "description": "Part 2/4 of Beverly's dream journal.",
+        "type": "journal",
+        "year": "1996"
+    },
+    "Beverly3": {
+        "description": "Part 3/4 of Beverly's dream journal.",
+        "type": "journal",
+        "year": "2006"
+    },
+    "Beverly4": {
+        "description": "Part 4/4 of Beverly's dream journal.",
+        "type": "journal",
+        "year": "2016"
+    },
+    "Burgess": {
+        "description": "Burgess's dream journal.",
+        "type": "journal",
+        "year": "2020"
+    },
+    "Children": {
+        "description": "A 2011 YouGov survey asking children about their most memorable dream.",
+        "type": "survey (YouGov)",
+        "year": "2010"
+    },
+    "Clinton": {
+        "description": "A 2008 YouGov survey asking about a dream related to Barack Obama.",
+        "type": "survey (YouGov)",
+        "year": "2008"
+    },
+    "Demographic2010": {
+        "description": "A 2010 YouGov survey asking about various dream types (Earliest dream, Most recent dream, and Worst nightmare) along with demographics.",
+        "type": "survey (YouGov)",
+        "year": "2010"
+    },
+    "Demographic2012": {
+        "description": "A 2012 YouGov survey asking about various dream types, along with demographics.",
+        "type": "survey (YouGov)",
+        "year": "2012"
+    },
+    "Demographic2013Summer": {
+        "description": "A 2013 (Summer) YouGov survey asking about most recent dream, along with demographics.",
+        "type": "survey (YouGov)",
+        "year": "Summer 2013"
+    },
+    "Demographic2013Winter": {
+        "description": "A 2013 (Winter) YouGov survey asking about most recent dream, along with demographics.",
+        "type": "survey (YouGov)",
+        "year": "Winter 2013"
+    },
+    "DreamboardNM": {
+        "description": "TODO",
+        "type": "App",
+        "year": "2014"
+    },
+    "Film": {
+        "description": "TODO",
+        "type": "TODO"
+    },
+    "Francine": {
+        "description": "Francine's dream journal.",
+        "type": "journal",
+        "year": "2015"
+    },
+    "Freya1": {
+        "description": "Part 1/2 of Freya's dream journal.",
+        "type": "journal",
+        "year": "1981-2019"
+    },
+    "Freya2": {
+        "description": "Part 2/2 of Freya's dream journal.",
+        "type": "journal",
+        "year": "2020"
+    },
+    "HVdCF": {
+        "description": "Hall & Van de Castle Female Norms 1947-1950",
+        "type": "survey",
+        "year": "1947-1950"
+    },
+    "HVdCM": {
+        "description": "Hall & Van de Castle Male Norms 1947-1950",
+        "type": "survey",
+        "year": "1947-1950"
+    },
+    "Historical": {
+        "description": "TODO",
+        "type": "TODO",
+        "year": "TODO"
+    },
+    "Janet": {
+        "description": "Janet's dream journal.",
+        "type": "journal",
+        "year": "2012-2013"
+    },
+    "Jasmine1": {
+        "description": "Part 1/4 of Jasmine's dream journal.",
+        "type": "journal"
+    },
+    "Jasmine2": {
+        "description": "Part 2/4 of Jasmine's dream journal.",
+        "type": "journal"
+    },
+    "Jasmine3": {
+        "description": "Part 3/4 of Jasmine's dream journal.",
+        "type": "journal"
+    },
+    "Jasmine4": {
+        "description": "Part 4/4 of Jasmine's dream journal.",
+        "type": "journal"
+    },
+    "Jordan": {
+        "description": "Jordan's dream journal.",
+        "type": "journal"
+    },
+    "KB1": {
+        "description": "Part 1/4 of KB's dream journal.",
+        "type": "journal",
+        "year": "2012"
+    },
+    "KB2": {
+        "description": "Part 2/4 of KB's dream journal.",
+        "type": "journal",
+        "year": "2019"
+    },
+    "KB3": {
+        "description": "Part 3/4 of KB's dream journal.",
+        "type": "journal",
+        "year": "2020"
+    },
+    "KB4": {
+        "description": "Part 4/4 of KB's dream journal.",
+        "type": "journal",
+        "year": "2022"
+    },
+    "KM": {
+        "description": "KM's dream journal.",
+        "type": "journal",
+        "year": "2015"
+    },
+    "Krippner": {
+        "description": "TODO",
+        "type": "survey",
+        "year": "1990-2005"
+    },
+    "Lawrence": {
+        "description": "Lawrence's dream journal.",
+        "type": "journal",
+        "year": "2011"
+    },
+    "Literary": {
+        "description": "TODO"
+    },
+    "LucidJGB": {
+        "description": "Gackenbach lucid dreams?",
+        "year": "2010"
+    },
+    "LucidStudy1": {
+        "description": "Part 1/2 of a lucid dreams study.",
+        "year": "2018"
+    },
+    "LucidStudy2": {
+        "description": "Part 2/2 of a lucid dreams study.",
+        "year": "2018"
+    },
+    "Lucille": {
+        "description": "Lucille's dream journal.",
+        "type": "journal",
+        "year": "1998-2018"
+    },
+    "Lucrecia1": {
+        "description": "Part 1/2 of Lucrecia's dream journal.",
+        "type": "journal",
+        "year": "1587-1588"
+    },
+    "Lucrecia2": {
+        "description": "Part 2/2 of Lucrecia's dream journal.",
+        "type": "journal",
+        "year": "1590"
+    },
+    "Magnolia": {
+        "description": "Magnolia's dream journal.",
+        "type": "journal",
+        "year": "2015"
+    },
+    "Mary": {
+        "description": "Mary's dream journal.",
+        "type": "journal",
+        "year": "2020"
+    },
+    "Maxwell": {
+        "description": "Maxwell's dream journal.",
+        "type": "journal",
+        "year": "2015"
+    },
+    "Mehinaku": {
+        "description": "TODO",
+        "year": "1970"
+    },
+    "Melvin": {
+        "description": "Melvin's dream journal.",
+        "type": "journal",
+        "year": "2020"
+    },
+    "Memorable": {
+        "description": "A 2011 YouGov survey asking adults about their most memorable dream.",
+        "type": "survey (YouGov)",
+        "year": "2010"
+    },
+    "MiamiHome": {
+        "description": "TODO",
+        "type": "TODO",
+        "year": "1964-1965"
+    },
+    "MiamiLab": {
+        "description": "TODO",
+        "type": "TODO",
+        "year": "1963-1965"
+    },
+    "Mike": {
+        "description": "Mike's dream journal.",
+        "type": "journal",
+        "year": "1970"
+    },
+    "Myoe": {
+        "description": "Myoe's dream journal.",
+        "type": "journal",
+        "year": "1201-1300"
+    },
+    "Nan": {
+        "description": "Nan's dream journal.",
+        "type": "journal",
+        "year": "2001-2002"
+    },
+    "Natural": {
+        "description": "Natural's dream journal.",
+        "type": "journal",
+        "year": "1939"
+    },
+    "Nepal": {
+        "description": "TODO",
+        "type": "survey",
+        "year": "2014"
+    },
+    "Obama": {
+        "description": "A 2008 YouGov survey asking about a dream related to Barack Obama.",
+        "type": "survey (YouGov)",
+        "year": "2008"
+    },
+    "Online": {
+        "description": "TODO",
+        "type": "survey",
+        "year": "2015"
+    },
+    "Palliative": {
+        "description": "TODO",
+        "type": "survey",
+        "year": "2011"
+    },
+    "PandemicApril": {
+        "description": "A 2020 (April) YouGov survey asking about a dream related to the COVID-19 pandemic.",
+        "type": "survey (YouGov)",
+        "year": "April 2020"
+    },
+    "PandemicMay": {
+        "description": "A 2020 YouGov survey asking about a dream related to the Black Lives Matter protests.",
+        "type": "survey (YouGov)",
+        "year": "2020"
+    },
+    "RB": {
+        "description": "RB's dream journal.",
+        "type": "journal",
+        "year": "1996"
+    },
+    "Research1": {
+        "description": "Part 1/2 of dreams from a 2015 research study.",
+        "type": "survey",
+        "year": "2015"
+    },
+    "Research2": {
+        "description": "Part 2/2 of dreams from a 2015 research study.",
+        "type": "survey",
+        "year": "2015"
+    },
+    "Rosa": {
+        "description": "Rosa's dream journal.",
+        "type": "journal",
+        "year": "2020"
+    },
+    "Rose": {
+        "description": "Rose's dream journal.",
+        "type": "journal",
+        "year": "2020"
+    },
+    "SCU1": {
+        "description": "Part 1/2 of Santa Clara Univerity dreams. Kahan publication?",
+        "type": "journal",
+        "year": "2008"
+    },
+    "SCU2": {
+        "description": "Part 2/2 of Santa Clara Univerity dreams. Kahan publication?",
+        "type": "journal",
+        "year": "2012"
+    },
+    "Sports": {
+        "description": "TODO",
+        "type": "TODO",
+        "year": "2021"
+    },
+    "Swedenborg": {
+        "description": "Swedenborg's dream journal.",
+        "type": "journal",
+        "year": "1743-1744"
+    },
+    "Tanya": {
+        "description": "Tanya's dream journal.",
+        "type": "journal",
+        "year": "2003-2013"
+    },
+    "Tita": {
+        "description": "Tita's dream journal.",
+        "type": "journal",
+        "year": "2020"
+    },
+    "Trump": {
+        "description": "A 2008 YouGov survey asking about a dream related to Barack Obama.",
+        "type": "survey (YouGov)",
+        "year": "2016-2017"
+    },
+    "Vera": {
+        "description": "Vera's dream journal.",
+        "type": "journal",
+        "year": "2020"
+    },
+    "Wolfgang": {
+        "description": "Wolfgang's dream journal.",
+        "type": "journal",
+        "year": "1930-1939"
+    }
+}

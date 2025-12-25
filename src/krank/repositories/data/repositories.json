@@ -1,0 +1,123 @@
+{
+
+    "DreamBank": {
+        "source": "https://dreambank.net",
+        "description": "A classic metadataset of dream report datasets, primarily focused on long dream series/journals.",
+        "citations": [
+            {
+                "type": "article",
+                "title": "Studying dream content using the archive and search engine on DreamBank.net",
+                "author": "Domhoff, G. William and Schneider, Adam",
+                "journal": "Consciousness and Cognition",
+                "year": "2008",
+                "month": "dec",
+                "volume": "17",
+                "number": "4",
+                "pages": "1238–1247",
+                "doi": "10.1016/j.concog.2008.06.010"
+            }
+        ]
+    },
+
+    "DREAM": {
+        "source": "https://bridges.monash.edu/projects/The_Dream_EEG_and_Mentation_DREAM_database/158987",
+        "description": ".",
+        "citations": [
+            {
+                "type": "misc",
+                "title": "The DREAM database",
+                "author": "William Wong and Thomas Andrillon and Nicolas Decat and Rubén Herzog and Valdas Noreika and Katja Valli and Jennifer Windt and Naotsugu Tsuchiya",
+                "year": "2023",
+                "month": "feb",
+                "doi": "10.26180/22133105.v4",
+                "url": "https://bridges.monash.edu/articles/dataset/The_DREAM_database/22133105"
+            },
+            {
+                "type": "misc",
+                "title": "DREAM: A Dream EEG and Mentation database",
+                "author": "Wong, William and Andrade, Kátia C and Andrillon, Thomas and de Araujo, Draulio B and Arnulf, Isabelle and Avvenuti, Giulia and Baird, Benjamin and Bellesi, Michele and Bergamo, Damiana and Bernardi, Giulio and et al.",
+                "year": "2023",
+                "month": "may",
+                "doi": "10.31234/osf.io/69e43",
+                "url": "https://osf.io/preprints/psyarxiv/69e43"
+            }
+        ]
+    },
+
+    "Samson2023": {
+        "source": "https://osf.io/7n6kf",
+        "description": "A collection of surveys from different cultural backgrounds and clinical groups.",
+        "citations": [
+            {
+                "type": "article",
+                "title": "Evidence for an emotional adaptive function of dreams: a cross-cultural study",
+                "author": "Samson, David R. and Clerget, Alice and Abbas, Noor and Senese, Jeffrey and Sarma, Mallika S. and Lew-Levy, Sheina and Mabulla, Ibrahim A. and Mabulla, Audax Z. P. and Miegakanda, Valchy and Borghese, Francesca and Henckaerts, Pauline and Schwartz, Sophie and Sterpenich, Virginie and Gettler, Lee T. and Boyette, Adam and Crittenden, Alyssa N. and Perogamvros, Lampros",
+                "journal": "Scientific Reports",
+                "year": "2023",
+                "month": "oct",
+                "volume": "13",
+                "number": "11",
+                "pages": "16530",
+                "doi": "10.1038/s41598-023-43319-z"
+            }
+        ]
+    },
+
+    "Scala2014": {
+        "source": "https://figshare.com/articles/dataset/Dreaming_similar_contents_intentionally/25488214",
+        "description": "Dreams transcriptions related to the study 'Dreaming similar contents intentionally: an empirical evidence'",
+        "citations": [
+            {
+                "type": "misc",
+                "title": "Dreaming similar contents intentionally: an empirical evidence",
+                "author": "Scala, Vincenzo F and Cozzi, Giorgio and Castiglioni, Maria L and Finelli, Maria E and Vitali, Paola and Liberale, Laura and Sinesio, Fernando and Tressoldi, Patrizio",
+                "publisher": "PsyArXiv",
+                "year": "2024",
+                "month": "mar",
+                "doi": "10.31234/osf.io/9r3z5",
+                "url": "https://osf.io/preprints/psyarxiv/9r3z5"
+            },
+            {
+                "type": "misc",
+                "title": "Dreaming similar contents intentionally",
+                "author": "Tressoldi, Patrizio",
+                "publisher": "figshare",
+                "year": "2024",
+                "month": "mar",
+                "doi": "10.6084/m9.figshare.25488214.v1",
+                "url": "https://figshare.com/articles/dataset/Dreaming_similar_contents_intentionally/25488214"
+            }
+        ]
+    },
+
+    "SDDb": {
+        "source": "https://sleepanddreamdatabase.org",
+        "description": "A metadataset of dream reports from a large variety of sources",
+        "citations": [
+            {
+                "type": "article",
+                "title": "Digital dream analysis: A revised method",
+                "author": "Bulkeley, Kelly",
+                "journal": "Consciousness and Cognition",
+                "year": "2014",
+                "month": "oct",
+                "volume": "29",
+                "pages": "159–170",
+                "doi": "10.1016/j.concog.2014.08.015"
+            },
+            {
+                "type": "article",
+                "title": "New Approaches in the Empirical Study of Dreams",
+                "author": "Bulkeley, Kelly",
+                "journal": "Poligrafi",
+                "year": "2023",
+                "month": "dec",
+                "volume": "28",
+                "number": "109/110",
+                "pages": "195–220",
+                "doi": "10.35469/poligrafi.2023.412"
+            }
+        ]
+    }
+
+}

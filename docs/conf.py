@@ -42,11 +42,13 @@ extensions = [
     "sphinx.ext.autodoc",  # Core Sphinx library for auto html doc generation from docstrings
     "sphinx.ext.autosummary",  # Create neat summary tables for modules/classes/methods etc
     "sphinx.ext.intersphinx",  # Link to other project's documentation (see mapping below)
+    "sphinx.ext.autosectionlabel",
     # "sphinx_autodoc_typehints",  # Automatically document param types (less noise in class signature)
     # "numpydoc",
-    # "sphinx_copybutton",  # Adds a copy button to code blocks (for pasting)
-    "sphinx.ext.autosectionlabel",
+    "sphinx_copybutton",  # Adds a copy button to code blocks (for pasting)
+    "sphinx_design",  # more options for pydatasphinx theme, eg, dropdowns, tabs
     # "sphinx.ext.linkcode",
+    # "jupyter_sphinx",
 ]
 
 # sphinx.ext.autosectionlabel option
@@ -60,7 +62,13 @@ source_encoding = "utf-8"
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # include_patterns = "**"
 templates_path = ["_templates"]
-# rst_epilog = """"""
+rst_epilog = """
+.. |krank| replace:: `krank`
+
+.. role:: python(code)
+   :language: python
+
+"""
 # rst_prolog = """"""
 # keep_warnings = False
 # show_warning_types = False
@@ -75,10 +83,10 @@ templates_path = ["_templates"]
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "pydata_sphinx_theme"
-html_title = f"Krank v{release}"  # defaults to "<project> v<revision> documentation"
-html_short_title = "Krank"
-html_logo = None
-html_favicon = None
+html_title = f"krank v{release}"  # defaults to "<project> v<revision> documentation"
+html_short_title = "krank"
+html_logo = "_static/logo.png"
+html_favicon = "_static/icon.webp"
 html_css_files = []
 html_static_path = ["_static"]
 html_last_updated_fmt = ""  # empty string is equivalent to "%b %d, %Y"
@@ -90,10 +98,11 @@ html_show_copyright = False
 html_show_sphinx = False
 html_output_encoding = "utf-8"
 html_sidebars = {
-    #     "**": ["localtoc.html", "globaltoc.html", "searchbox.html"],
-    "**": [],  # to remove primary sidebar from all pages
+    # "**": [],  # remove sidebar from all pages
+    "usage": [],  # remove sidebar from usage page
+    "contributing": [],  # remove sidebar from contributing page
 }
-# html_additional_pages = {}
+html_additional_pages = {}
 # :html_theme.sidebar_secondary.remove: true
 
 # I think this is just for showing source?
@@ -106,20 +115,20 @@ html_context = {
     "default_mode": "auto",  # light, dark, auto
 }
 
+
+# Full list:
+# https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/layout.html#references
 html_theme_options = {
     "navigation_with_keys": False,
     "external_links": [
         {"name": "Releases", "url": "https://github.com/remrama/krank/releases"},
-        {
-            "name": "Contributing",
-            "url": "https://github.com/remrama/krank#contributing",
-        },
     ],
     "header_links_before_dropdown": 4,
-    "navbar_start": ["navbar-logo", "navbar-icon-links"],  # "version-switcher"
+    "navbar_start": ["navbar-logo"],  # "version-switcher"
     "navbar_center": ["navbar-nav"],
-    "navbar_end": [],
+    "navbar_end": ["navbar-icon-links"],
     # "navbar_persistent": [],  # Default is a nice search bubble that I otherwise don't get
+    "navbar_align": "left",  # left/content/right
     "search_bar_text": "Search...",
     # "article_header_start": ["breadcrumbs"],
     # "article_header_end": [],
@@ -132,10 +141,9 @@ html_theme_options = {
     # "sidebarwidth": 230,
     # "navbar_start": ["navbar-logo", "version-switcher"],
     "show_version_warning_banner": True,
-    "announcement": "BEWARE! <a href='https://github.com/remrama/krank'>This project</a> is in the planning stage. DO NOT USE!",
-    "navbar_align": "left",  # [left, content, right] For testing that the navbar items align properly
-    "show_nav_level": 3,
-    "show_toc_level": 3,
+    "announcement": "This project is being developed by the <a href='https://www.dreamengineeringlab.com'>Dream Engineering Lab</a> in collaboration with the <a href='https://sleepanddreamdatabase.org'>Sleep and Dream Database</a>.",
+    "show_nav_level": 1,
+    "show_toc_level": 1,  # How many to show (rest are still uncollapsible)
     "navigation_depth": 3,
     "collapse_navigation": False,
     # "secondary_sidebar_items": [],
@@ -145,7 +153,7 @@ html_theme_options = {
     # "icon_links_label": "Quick Links",
     "icon_links": [
         {
-            "name": "Krank on GitHub",
+            "name": "krank on GitHub",
             "url": "https://github.com/remrama/krank",
             "icon": "fa-brands fa-square-github",
             "type": "fontawesome",
@@ -176,7 +184,6 @@ autodoc_default_options = {
 # -- Intersphinx ------------------------------------------------
 
 intersphinx_mapping = {
-    "krank": ("https://remrama.github.io/krank", None),
     "pandas": ("https://pandas.pydata.org/pandas-docs/stable", None),
     "pooch": ("https://www.fatiando.org/pooch/latest", None),
     "python": ("https://docs.python.org/3", None),

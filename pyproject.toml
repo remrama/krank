@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "krank"
 dynamic = ["version"]
-description = "Fetch psychology datasets from remote sources."
+description = "Researcher access point for the Sleep and Dream Database."
 authors = [
   {name = "Remington Mallett", email = "mallett.remy@gmail.com"},
 ]
@@ -17,11 +17,11 @@ dependencies = [
   "pandas>=2.0",
   "pooch>=1.8",
 ]
-readme = "README.rst"
+readme = "README.md"
 keywords = ["data", "datasets", "text", "LIWC", "meta-analysis"]
 classifiers = [
   "Development Status :: 1 - Planning",
-  "License :: OSI Approved :: BSD License",
+  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Intended Audience :: Science/Research",
   "Topic :: Scientific/Engineering",
@@ -36,13 +36,14 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/remrama/krank"
+Homepage = "https://github.com/dxelab/krank"
 
 [project.optional-dependencies]
-dev = [
-  "black",
-  "pydata-sphinx-theme",  # Needs to be in requirements.txt also (for docs.yml).
+docs = [
   "sphinx",
+  "pydata-sphinx-theme",
+  "sphinx-design",
+  "sphinx_copybutton",
 ]
 
 [tool.setuptools.dynamic]
@@ -56,12 +57,4 @@ namespaces = false
 where = ["src"]
 
 [tool.setuptools.package-data]
-krank = [
-  "krank/data/lexicons.json",
-  "krank/data/tables.json",
-]
-
-[tool.black]
-line-length = 88
-target-version = ["py312"]
-# include = '\.pyi?$'
+krank = ["krank/repositories/data/registries/*.txt"]

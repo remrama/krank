@@ -1,0 +1,78 @@
+{
+    "profile": "data-package",
+    "name": "a-unique-human-readable-and-url-usable-identifier",
+    "title": "A nice title",
+    "keywords": "",
+    "image": "",
+    "homepage": "",
+    "created": "1985-04-12T23:20:50.52Z",
+    "version": "",
+    "licenses": [
+        {
+          "name": "ODC-PDDL-1.0",
+          "path": "http://opendatacommons.org/licenses/pddl/",
+          "title": "Open Data Commons Public Domain Dedication and License v1.0"
+        }
+    ],
+    "sources": [
+        {
+          "title": "World Bank and OECD",
+          "path": "http://data.worldbank.org/indicator/NY.GDP.MKTP.CD"
+        }
+    ],
+    "contributors": [
+        {
+            "title": "Joe Bloggs",
+            "email": "joe@bloggs.com",
+            "path": "http://www.bloggs.com",
+            "role": "author"
+        }
+    ],
+    "resources": [
+        {
+            "profile": "tabular-data-resource",
+            "name": "solar-system",
+            "title": "The Solar System",
+            "description": "My favourite data about the solar system.",
+            "path": "test.csv",
+            "format": "csv",
+            "mediatype": "text/csv",
+            "encoding": "utf-8",
+            "bytes": 455671,
+            "hash": "2bfae4df01ee9eb53e8ff3bacf08a747",
+            "sources": "",
+            "licenses": "",
+            "schema": {
+                "missingValues": [""],
+                "primaryKey": "id",
+                "foreignKeys": [
+                    {
+                        "fields": "parent",
+                        "reference": {
+                            "resource": "",
+                            "fields": "id"
+                        }
+                    }
+                ],
+                "fields": [
+                    {
+                        "name": "ID",
+                        "title": "Participant ID",
+                        "description": "Unique participant identifier",
+                        "example": "1",
+                        "type": "string",
+                        "format": "default"
+                    },
+                    {
+                        "name": "Population",
+                        "title": "A nicer human readable label or title for the field",
+                        "description": "A description for the field",
+                        "example": "An example value for the field",
+                        "type": "string",
+                        "format": "default"
+                    }
+                ]
+            }
+        }
+    ]
+}

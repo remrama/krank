@@ -1,0 +1,99 @@
+probe:
+
+  Distance:
+    - immediate  # What was going through your mind? Common for lab studies (but a lab study can have both).
+    - last_night  # What did you dream last night? Also for most dream journals.
+    - recent  # Tell me a recent dream. (Overlaps with others but here it's not as precise).
+    - earliest  # What was your earliest remembered dream?
+    - unspecified  # Tell me a dream you had.
+    - unreported  # When not reported by the researcher or database.
+    - other  # Leaving in case I've missed something.
+
+  Class:
+    - unreported  # When not reported by the researcher or database.
+    - unspecified  # Report a dream.
+    - other  # Report a narrative dream.
+    - typical  # Report a typical dream.
+    - nightmare  # Report a nightmare.
+      - worst_nightmare
+      - bad_dream
+      - experimenter_rated
+        - human
+        - text
+    - lucid
+      - semi-lucid
+      - pre-lucid
+    - target  # Dreams about specific items, events, people, etc.
+      - obama
+      - blm
+      - covid
+    - memorable  # Report your most memorable dream.
+    - significant
+      - big
+      - spiritual
+      - religious
+
+  Context:
+    - survey
+    - lab
+    - journal
+    - blog
+    - app
+    - misc
+    - interview
+
+  Language: str  # ISO code
+
+  AdditionalInstructions: str
+  Tense:
+    - unspecified
+    - unreported
+    - FirstPerson
+    - SecondPerson
+    - ThirdPerson
+    - Past
+    - Present
+    - Future
+
+response:
+
+  Date: str?
+
+  Medium:
+    - verbal
+      - transcribed
+      - 
+    - typed
+      - phone
+      - keyboard
+      - typewriter
+      - unspecified
+    - drawn
+    - handwritten
+
+  SourceLanguage: str  # ISO code
+  TargetLanguage: str  # ISO code
+  Translation:
+    - Automatic
+    - Manual
+
+  Preprocessing:
+    - min_word_count
+    - max_word_count
+    - remove_nondream
+    - 
+
+demographics:
+  # Age
+  Age: int
+  AgeRange: str
+  Country: str  # ISO code
+  UsaState: str  # ISO code
+  Race: str
+  Religion: str  # Forced categorization, with "other" option
+  Nightmares:
+    - unspecified
+    - nonclinical (by what standard?)
+    - clinical (by what standard?)
+  PersonalityMeasures: extras
+
