@@ -7,6 +7,5 @@ docs/generated/
 docs/make.bat
 docs/Makefile
 
-# PyPI
-dist/
-krank.egg-info/
+# Pip
+*.egg-info/

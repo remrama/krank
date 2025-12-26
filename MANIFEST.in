@@ -1,2 +1,1 @@
-include src/krank/data/lexicons.json
-include src/krank/data/tables.json
+include src/krank/data/registry.yaml

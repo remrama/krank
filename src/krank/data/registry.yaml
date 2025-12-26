@@ -1,0 +1,35 @@
+collections:
+  dreambank:
+    title: "DreamBank"
+    description: "..."
+    corpora:
+      - hvdc
+      - barb_sanders
+  sddb:
+    title: "Sleep and Dream Database"
+    corpora:
+      - hvdc
+      - barb_sanders
+
+corpora:
+  zhang2019:
+    title: "Zhang & Wamsley 2019 Dream Reports"
+    description: "Dream reports collected from an laboratory polysomnography study"
+    column_map:
+      report: "Text of Report"
+      author: "Subject ID"
+      age: "Subject age"
+      sex: "Subject sex"
+      time: "Time of awakening"
+      stage_intended: "Intended last sleep stage"
+      stage_actual: "Actual last sleep stage"
+      experience: "Experience"
+    author_fields:
+      - "age"
+      - "sex"
+    latest: "1"
+    versions:
+      "1":
+        download_url: "https://zenodo.org/records/18050635/files/zhang2019.csv?download=1"
+        hash: "md5:a61a3c56f4ee8c14e4a6466044df88f8"
+        doi: "10.5281/zenodo.18050635"
