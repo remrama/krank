@@ -4,7 +4,7 @@ from . import _corpus
 from . import _registry
 
 
-__version__ = "0.1.0.dev1"
+__version__ = "0.1.0.dev2"
 
 __all__ = [
     "info",
