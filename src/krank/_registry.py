@@ -1,18 +1,17 @@
+"""Registry loading and access functions.
+
+This module provides utilities for managing the corpus registry, including loading
+the registry from YAML, fetching corpus data from remote sources, and accessing
+individual corpus metadata entries.
 """
-Registry loading and access functions.
-"""
-from importlib.resources import files
 from pathlib import Path
 
 import pooch
 import yaml
 
-
 __all__ = [
     "fetch_corpus",
     "get_entry",
-    "list_versions",
-    "load_collections",
     "load_registry",
 ]
 
@@ -22,7 +21,25 @@ _registry_cache = None
 
 
 def fetch_corpus(name: str, version: str = None) -> Path:
-    """Download corpus file via pooch, return local path."""
+    """Download corpus file via pooch, return local path.
+
+    Parameters
+    ----------
+    name : str
+        Name of the corpus to fetch.
+    version : str, optional
+        Specific version to fetch. If None, fetches the latest version.
+
+    Returns
+    -------
+    Path
+        Local file system path to the downloaded corpus CSV file.
+
+    Notes
+    -----
+    The corpus file is cached locally using pooch. Subsequent calls for the same
+    corpus version will return the cached file without re-downloading.
+    """
     entry = get_entry(name, version=version)
 
     # Use version in filename for cache separation
@@ -40,7 +57,33 @@ def fetch_corpus(name: str, version: str = None) -> Path:
 
 
 def get_entry(name: str, version: str = None) -> dict:
-    """Get single corpus entry by name, with version info merged in."""
+    """Get single corpus entry by name, with version info merged in.
+
+    Parameters
+    ----------
+    name : str
+        Name of the corpus to retrieve.
+    version : str, optional
+        Specific version to retrieve. If None, returns the latest version.
+
+    Returns
+    -------
+    dict
+        Dictionary containing corpus metadata with version-specific fields merged in.
+        Includes keys like 'title', 'description', 'version', 'download_url', 'hash',
+        'n_reports', 'collection', and other metadata.
+
+    Raises
+    ------
+    KeyError
+        If the corpus name is not found in the registry, or if the specified version
+        does not exist for the corpus.
+
+    Notes
+    -----
+    The nested 'versions' and 'latest' keys are removed from the returned entry,
+    with version-specific information merged into the top level.
+    """
     registry = load_registry()
     corpora = registry["corpora"]
     if name not in corpora:
@@ -72,7 +115,18 @@ def get_entry(name: str, version: str = None) -> dict:
 
 
 def load_registry() -> dict:
-    """Load registry.yaml and return as dict. Cached after first load."""
+    """Load registry.yaml and return as dict. Cached after first load.
+
+    Returns
+    -------
+    dict
+        Dictionary containing the full registry with 'corpora' and 'collections' keys.
+
+    Notes
+    -----
+    The registry is cached in memory after the first load to avoid repeated file I/O.
+    The cache persists for the lifetime of the Python process.
+    """
     global _registry_cache
     if _registry_cache is None:
         with open(_REGISTRY_PATH, "r", encoding="utf-8") as f:
