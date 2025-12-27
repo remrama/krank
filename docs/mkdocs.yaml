@@ -9,8 +9,15 @@ site_dir: ../site
 
 theme:
   name: material
+  favicon: images/logo.png
+  logo: images/logo.png
+  icon:
+    repo: fontawesome/brands/github
   palette:
     primary: deep purple
+  font:
+    text: Dosis
+    code: Google Code Pro
   features:
     - navigation.sections
     - navigation.expand

@@ -1,3 +1,7 @@
+[![PyPI](https://badge.fury.io/py/krank.svg)](https://badge.fury.io/py/krank)
+[![PyPI](https://pepy.tech/badge/krank)](https://pepy.tech/badge/krank)
+[![Built with Material for MkDocs](https://img.shields.io/badge/Material_for_MkDocs-526CFE?logo=MaterialForMkDocs&logoColor=white)](https://squidfunk.github.io/mkdocs-material/)
+
 # krank
 
 Fetch curated dream reports.
