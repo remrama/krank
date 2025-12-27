@@ -156,9 +156,9 @@ def test_corpus_load_caching(mock_corpus_csv):
     corpus = _corpus.Corpus("test", metadata, mock_corpus_csv)
 
     # First access
-    reports1 = corpus.reports
+    _ = corpus.reports
     # Second access should use cached data
-    reports2 = corpus.reports
+    _ = corpus.reports
 
     # They should be different objects (copy), but same underlying cached data
     assert corpus._df is not None

@@ -1,7 +1,7 @@
 """Tests for krank._registry module."""
 
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 import pytest
 
@@ -86,6 +86,8 @@ def test_fetch_corpus(mock_registry, tmp_path):
                 assert isinstance(path, Path)
                 assert path == mock_path
                 mock_retrieve.assert_called_once()
-                assert mock_retrieve.call_args[1]["url"] == "https://example.com/test.csv"
+                assert (
+                    mock_retrieve.call_args[1]["url"] == "https://example.com/test.csv"
+                )
                 assert mock_retrieve.call_args[1]["known_hash"] == "md5:abc123"
                 assert mock_retrieve.call_args[1]["fname"] == "test_corpus_v1.csv"
