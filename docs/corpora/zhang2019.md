@@ -1,18 +1,19 @@
 # zhang2019
 
-Dream reports collected during a laboratory polysomnography study.
+Dream reports collected from an laboratory polysomnography study
 
 ## Overview
 
 | Field | Value |
 |-------|-------|
 | **Title** | Zhang & Wamsley 2019 Dream Reports |
-| **Reports** | 10+ |
-| **License** | CC-BY-4.0 |
+| **Reports** | N/A |
+| **Language** | N/A |
+| **License** | N/A |
 
 ## Citation
 ```
-Zhang, W., & Wamsley, E. J. (2019). ...
+N/A
 ```
 
 ## Usage
@@ -29,26 +30,23 @@ corpus.reports
 
 | Column | Description |
 |--------|-------------|
-| `dream` | Dream report text |
-| `author_id` | Unique author identifier |
-| ... | ... |
+
 
 ### Authors
 
 | Column | Description |
 |--------|-------------|
 | `author_id` | Unique author identifier |
-| `age` | Author age |
-| `sex` | Author sex |
+| `age` | |
+| `sex` | |
 
 ## Source
 
-- **Original**: [Figshare](https://figshare.com/...)
-- **Processed**: [Zenodo](https://zenodo.org/...)
-- **Processing code**: [krank-sources/zhang2019](https://github.com/krank-sources/zhang2019)
+- **Original**: []()
+- **Download**: [Zenodo](https://zenodo.org/records/18050635/files/zhang2019.csv?download=1)
 
 ## Version History
 
-| Version | Date | Notes |
-|---------|------|-------|
-| 1.0.0 | 2024-XX-XX | Initial release |
+| Version | Hash |
+|---------|------|
+| 1 | `md5:a61a3c56f4ee8c14...` |

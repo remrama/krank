@@ -4,7 +4,7 @@ Browse available dream text corpora.
 
 | Corpus | Description | Reports | Language |
 |--------|-------------|---------|----------|
-| [zhang2019](zhang2019.md) | Dream reports collected from an laboratory polysom... | N/A | N/A |
+{{ corpora_table }}
 
 ## Adding Corpora
 

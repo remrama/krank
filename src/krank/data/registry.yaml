@@ -14,7 +14,7 @@ collections:
 corpora:
   zhang2019:
     title: "Zhang & Wamsley 2019 Dream Reports"
-    description: "Dream reports collected from an laboratory polysomnography study"
+    description: "Dream reports collected from a laboratory polysomnography study"
     column_map:
       report: "Text of Report"
       author: "Subject ID"
