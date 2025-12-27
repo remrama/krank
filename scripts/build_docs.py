@@ -11,7 +11,9 @@ from pathlib import Path
 import krank
 
 DOCS_DIR = Path(__file__).parent.parent / "docs" / "corpora"
-REGISTRY_PATH = Path(__file__).parent.parent / "src" / "krank" / "data" / "registry.yaml"
+REGISTRY_PATH = (
+    Path(__file__).parent.parent / "src" / "krank" / "data" / "registry.yaml"
+)
 TEMPLATES_DIR = Path(__file__).parent / "templates"
 
 
@@ -50,14 +52,14 @@ def generate_corpus_page(name: str, info: dict, versions: dict) -> str:
         Formatted markdown content for the corpus documentation page.
     """
     template = load_template("corpus.md")
-    
+
     available_versions = krank.list_versions(name)
     latest_version = available_versions[-1]
     corpus = krank.load(name, version=latest_version)
 
     latest = info["latest"]
     version_info = versions[latest]
-    
+
     # Build version table
     def build_version_table() -> str:
         """Build a markdown table listing all versions.
@@ -106,10 +108,12 @@ def generate_corpus_page(name: str, info: dict, versions: dict) -> str:
         all_columns = list(descriptions)
         descriptions.update(DEFAULT_DESCRIPTIONS)
         author_columns = corpus.metadata.get("author_columns", [])
-        report_columns = [ col for col in all_columns if col not in author_columns ]
+        report_columns = [col for col in all_columns if col not in author_columns]
         columns = author_columns if author_or_reports == "author" else report_columns
-        column_descriptions = {col: descriptions.get(col, "No description available") for col in columns}
-        rows = [ f"| `{col}` | {desc} |" for col, desc in column_descriptions.items() ]
+        column_descriptions = {
+            col: descriptions.get(col, "No description available") for col in columns
+        }
+        rows = [f"| `{col}` | {desc} |" for col, desc in column_descriptions.items()]
         table = "\n".join(rows)
         return table
 
@@ -131,7 +135,6 @@ def generate_corpus_page(name: str, info: dict, versions: dict) -> str:
         text = re.sub(PATTERN, lambda m: f"[{m.group(0)}]({m.group(0)})", text)
         return text
 
-
     replacements = {
         "{{ name }}": name,
         "{{ title }}": info.get("title", "N/A"),
@@ -147,14 +150,14 @@ def generate_corpus_page(name: str, info: dict, versions: dict) -> str:
         "{{ version_table }}": build_version_table(),
         "{{ n_reports }}": str(len(corpus.reports)),
         "{{ n_authors }}": str(len(corpus.authors)),
-        "{{ m_report_length }}": f"{corpus.reports["report"].str.split().apply(len).mean():.0f}",
-        "{{ mdn_report_length }}": f"{corpus.reports["report"].str.split().apply(len).median():.0f}",
+        "{{ m_report_length }}": f"{corpus.reports['report'].str.split().apply(len).mean():.0f}",
+        "{{ mdn_report_length }}": f"{corpus.reports['report'].str.split().apply(len).median():.0f}",
     }
 
     content = template
     for placeholder, value in replacements.items():
         content = content.replace(placeholder, value)
-    
+
     return content
 
 
@@ -172,7 +175,7 @@ def generate_index_page(corpora: dict) -> str:
         Formatted markdown content for the corpora index page.
     """
     template = load_template("corpora_index.md")
-    
+
     rows = []
     for name, entry in sorted(corpora.items()):
         desc = entry.get("description", "")[:50]
@@ -186,10 +189,10 @@ def generate_index_page(corpora: dict) -> str:
         name_linked = f"[{name}]({name}.md)"
         row = f"| {name_linked} | {desc} | {environment} | {probe} | {n_reports} | {n_authors} |"
         rows.append(row)
-    
+
     corpora_table = "\n".join(rows)
     content = template.replace("{{ corpora_table }}", corpora_table)
-    
+
     return content
 
 
@@ -200,10 +203,10 @@ def main():
     listing all available corpora. Output is written to the docs/corpora directory.
     """
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
-    
+
     registry = krank._registry.load_registry()
     corpora = registry.get("corpora", {})
-    
+
     # Generate individual corpus pages
     for name, entry in corpora.items():
         versions = entry.get("versions", {})
@@ -211,7 +214,7 @@ def main():
         output_path = DOCS_DIR / f"{name}.md"
         output_path.write_text(content, encoding="utf-8")
         print(f"Generated {output_path}")
-    
+
     # Generate index page
     index_content = generate_index_page(corpora)
     index_path = DOCS_DIR / "index.md"

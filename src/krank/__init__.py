@@ -120,14 +120,14 @@ def list_versions(name: str) -> list[str]:
 
 def load(name: str, version: str = None) -> _corpus.Corpus:
     """Load a corpus by name. Downloads if not cached.
-    
+
     Parameters
     ----------
     name : str
         Corpus name (e.g., "zhang2019").
     version : str, optional
         Specific version to load. If None, loads latest.
-    
+
     Returns
     -------
     Corpus

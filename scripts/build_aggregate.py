@@ -33,6 +33,7 @@ def compile_single_corpus(corpus_name: str) -> pd.DataFrame:
     df.insert(0, "corpus_version", corpus_string)
     return df
 
+
 def build_aggregate(output_path: str = "reports.csv") -> None:
     """Load all corpora reports and combine into single CSV.
 
@@ -47,9 +48,9 @@ def build_aggregate(output_path: str = "reports.csv") -> None:
     and numeric quoting for all fields.
     """
     corpora = krank.list_corpora()
-    
-    df = pd.concat([ compile_single_corpus(name) for name in corpora ], ignore_index=True)
-    
+
+    df = pd.concat([compile_single_corpus(name) for name in corpora], ignore_index=True)
+
     df.to_csv(
         path_or_buf=output_path,
         index=False,

@@ -4,6 +4,7 @@ This module provides utilities for managing the corpus registry, including loadi
 the registry from YAML, fetching corpus data from remote sources, and accessing
 individual corpus metadata entries.
 """
+
 from pathlib import Path
 
 import pooch
@@ -89,28 +90,30 @@ def get_entry(name: str, version: str = None) -> dict:
     if name not in corpora:
         available = ", ".join(sorted(corpora.keys()))
         raise KeyError(f"Corpus '{name}' not found. Available: {available}")
-    
+
     entry = corpora[name].copy()
-    
+
     # Resolve version
     if version is None:
         version = entry["latest"]
-    
+
     versions = entry.get("versions", {})
     if version not in versions:
         available_versions = ", ".join(sorted(versions.keys()))
-        raise KeyError(f"Version '{version}' not found for '{name}'. Available: {available_versions}")
-    
+        raise KeyError(
+            f"Version '{version}' not found for '{name}'. Available: {available_versions}"
+        )
+
     # Merge version-specific fields into entry
     version_info = versions[version]
     entry["version"] = version
     entry["download_url"] = version_info["download_url"]
     entry["hash"] = version_info["hash"]
-    
+
     # Remove nested versions dict from returned entry
     del entry["versions"]
     del entry["latest"]
-    
+
     return entry
 
 

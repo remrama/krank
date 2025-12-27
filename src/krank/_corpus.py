@@ -34,13 +34,13 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
     - Stripping leading and trailing whitespace
     """
     df = df.copy()
-    
+
     # Collapse whitespace (newlines, tabs, multiple spaces) to single space
     df[text_column] = df[text_column].str.replace(r"\s+", " ", regex=True)
-    
+
     # Strip leading/trailing whitespace
     df[text_column] = df[text_column].str.strip()
-    
+
     return df
 
 
@@ -82,7 +82,7 @@ class Corpus:
     >>> corpus.reports.head()
     >>> corpus.authors.head()
     """
-    
+
     def __init__(self, name: str, metadata: dict, path: Path):
         self.name = name
         self.metadata = metadata
@@ -103,7 +103,7 @@ class Corpus:
             File system path to the corpus CSV file.
         """
         return self._path
-    
+
     @property
     def reports(self) -> pd.DataFrame:
         """Report-level data (no author metadata columns).
@@ -115,19 +115,19 @@ class Corpus:
         pd.DataFrame
             DataFrame containing dream reports and associated report-level metadata.
             Author-specific columns are excluded.
-        
+
         Notes
         -----
         If you need the raw CSV without normalization or column mapping,
         access it via the .path attribute.
-        
+
         If you want to load the data without accessing it,
         use _load_and_normalize() directly to load the dataframe in place.
         """
         df = self._load()
         author_columns = self.metadata.get("author_columns", [])
         return df.drop(columns=author_columns).copy()
-    
+
     @property
     def authors(self) -> pd.DataFrame:
         """Deduplicated author-level metadata. Tidy format.
@@ -143,12 +143,13 @@ class Corpus:
         AssertionError
             If 'author_columns' is missing from the corpus metadata.
         """
-        assert "author_columns" in self.metadata, "Corpus metadata missing 'author_columns'"
+        assert "author_columns" in self.metadata, (
+            "Corpus metadata missing 'author_columns'"
+        )
         df = self._load()
         author_columns = self.metadata.get("author_columns", [])
         cols = ["author"] + author_columns
         return df[cols].drop_duplicates().reset_index(drop=True)
-
 
     def _load(self) -> pd.DataFrame:
         """Load and normalize full dataframe. Called once, cached.
@@ -157,7 +158,7 @@ class Corpus:
         -------
         pd.DataFrame
             Fully loaded and normalized DataFrame with column mappings applied.
-    
+
         Notes
         -----
         The decision to normalize text mandatorily here, as opposed to offering a
