@@ -6,3 +6,6 @@ site/
 
 # Pip
 *.egg-info/
+
+# Aggregated reports file
+reports.csv
