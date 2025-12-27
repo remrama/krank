@@ -71,8 +71,7 @@ def get_entry(name: str, version: str = None) -> dict:
     -------
     dict
         Dictionary containing corpus metadata with version-specific fields merged in.
-        Includes keys like 'title', 'description', 'version', 'download_url', 'hash',
-        'n_reports', 'collection', and other metadata.
+        Includes keys like 'title', 'description', and other metadata.
 
     Raises
     ------
@@ -128,7 +127,6 @@ def load_registry() -> dict:
     Notes
     -----
     The registry is cached in memory after the first load to avoid repeated file I/O.
-    The cache persists for the lifetime of the Python process.
     """
     global _registry_cache
     if _registry_cache is None:

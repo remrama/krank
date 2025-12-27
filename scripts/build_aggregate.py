@@ -23,14 +23,14 @@ def compile_single_corpus(corpus_name: str) -> pd.DataFrame:
     -------
     pd.DataFrame
         DataFrame containing all reports from the corpus with an added
-        'corpus_version' column identifying the source.
+        'corpus' column identifying the source.
     """
     print(f"Loading {corpus_name}...")
     corpus = krank.load(corpus_name)
     df = corpus.reports.copy()
     version = corpus.metadata["version"]
     corpus_string = f"{corpus_name}-v{version}"
-    df.insert(0, "corpus_version", corpus_string)
+    df.insert(0, "corpus", corpus_string)
     return df
 
 

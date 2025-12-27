@@ -1,12 +1,4 @@
-"""krank: Fetch curated dream reports.
-
-krank is a Python package for accessing curated dream report corpora from
-published research studies. It provides a simple interface to download,
-cache, and load dream reports with associated metadata.
-
-The package handles version control, data normalization, and provides
-a consistent interface across different corpora sources.
-"""
+"""krank: Fetch curated dream reports."""
 
 from . import _corpus, _registry
 
@@ -28,15 +20,6 @@ def info(name: str) -> None:
     ----------
     name : str
         Name of the corpus to display information for.
-
-    Examples
-    --------
-    >>> import krank
-    >>> krank.info("zhang2019")
-    Corpus: zhang2019
-      Title: Zhang & Wamsley 2019 Dream Reports
-      Description: Dream reports collected from a laboratory polysomnography study
-      ...
     """
     entry = _registry.get_entry(name)
     print(f"Corpus: {name}")
@@ -55,12 +38,6 @@ def list_collections() -> list[str]:
     -------
     list[str]
         Sorted list of available collection names.
-
-    Examples
-    --------
-    >>> import krank
-    >>> krank.list_collections()
-    ['lab', 'online', 'home']
     """
     registry = _registry.load_registry()
     collections = registry["collections"]
@@ -74,12 +51,6 @@ def list_corpora() -> list[str]:
     -------
     list[str]
         Sorted list of available corpus names.
-
-    Examples
-    --------
-    >>> import krank
-    >>> krank.list_corpora()
-    ['zhang2019', 'domhoff2020', ...]
     """
     registry = _registry.load_registry()
     corpora = registry["corpora"]
@@ -103,12 +74,6 @@ def list_versions(name: str) -> list[str]:
     ------
     KeyError
         If the corpus name is not found in the registry.
-
-    Examples
-    --------
-    >>> import krank
-    >>> krank.list_versions("zhang2019")
-    ['1']
     """
     registry = _registry.load_registry()
     corpora = registry["corpora"]
@@ -137,15 +102,6 @@ def load(name: str, version: str = None) -> _corpus.Corpus:
     ------
     KeyError
         If the corpus name or version is not found in the registry.
-
-    Examples
-    --------
-    >>> import krank
-    >>> corpus = krank.load("zhang2019")
-    >>> corpus
-    Corpus('zhang2019', n_reports=204)
-    >>> corpus.reports.head()
-    >>> corpus.authors.head()
     """
     metadata = _registry.get_entry(name, version=version)
     path = _registry.fetch_corpus(name, version=version)

@@ -72,15 +72,6 @@ class Corpus:
         Report-level data without author metadata columns (lazy-loaded).
     authors : pd.DataFrame
         Deduplicated author-level metadata (lazy-loaded).
-
-    Examples
-    --------
-    >>> import krank
-    >>> corpus = krank.load("zhang2019")
-    >>> corpus
-    Corpus('zhang2019', n_reports=204)
-    >>> corpus.reports.head()
-    >>> corpus.authors.head()
     """
 
     def __init__(self, name: str, metadata: dict, path: Path):
