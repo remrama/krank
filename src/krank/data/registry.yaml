@@ -13,8 +13,14 @@ collections:
 
 corpora:
   zhang2019:
-    title: "Zhang & Wamsley 2019 Dream Reports"
-    description: "Dream reports collected from an laboratory polysomnography study"
+    title: "Zhang & Wamsley, 2019"
+    description: "Dream reports collected from a laboratory polysomnography study"
+    citations:
+      - Zhang, J., & Wamsley, E. J. (2019). EEG predictors of dreaming outside of REM sleep. Psychophysiology, 56(7), e13368. https://doi.org/10.1111/psyp.13368
+      - Wong, W., Herzog, R., Andrade, K. C., Andrillon, T., De Araujo, D. B., Arnulf, I., ... & Tsuchiya, N. (2025). A dream EEG and mentation database. Nature Communications, 16(1), 7495. https://doi.org/10.1038/s41467-025-61945-1
+    environment: "lab"
+    probe: "serial awakening"
+    includes_norecall: true
     column_map:
       report: "Text of Report"
       author: "Subject ID"
@@ -24,7 +30,12 @@ corpora:
       stage_intended: "Intended last sleep stage"
       stage_actual: "Actual last sleep stage"
       experience: "Experience"
-    author_fields:
+    column_descriptions:
+      time: "Time of awakening for dream report"
+      stage_intended: "Sleep stage the experimenter intended to awaken the participant from"
+      stage_actual: "Sleep stage the participant was actually in when awakened"
+      experience: "True if the report contains any conscious experience, otherwise False"
+    author_columns:
       - "age"
       - "sex"
     latest: "1"

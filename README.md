@@ -1,3 +1,7 @@
+[![PyPI](https://badge.fury.io/py/krank.svg)](https://badge.fury.io/py/krank)
+[![PyPI](https://pepy.tech/badge/krank)](https://pepy.tech/badge/krank)
+[![Built with Material for MkDocs](https://img.shields.io/badge/Material_for_MkDocs-526CFE?logo=MaterialForMkDocs&logoColor=white)](https://squidfunk.github.io/mkdocs-material/)
+
 # krank
 
 Fetch curated dream reports.
@@ -36,7 +40,7 @@ for k, v in corpus.metadata.items():
 #          title: Zhang & Wamsley 2019 Dream Reports
 #    description: Dream reports collected from an laboratory polysomnography study
 #     column_map: {'report': 'Text of Report', 'author': 'Subject ID', 'age': 'Subject age', 'sex': 'Subject sex', 'time': 'Time of awakening', 'stage_intended': 'Intended last sleep stage', 'stage_actual': 'Actual last sleep stage', 'experience': 'Experience'}
-#  author_fields: ['age', 'sex']
+#  author_columns: ['age', 'sex']
 #        version: 1
 #   download_url: https://zenodo.org/records/18050635/files/zhang2019.csv?download=1
 #           hash: md5:a61a3c56f4ee8c14e4a6466044df88f8

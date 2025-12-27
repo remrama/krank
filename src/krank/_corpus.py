@@ -52,16 +52,16 @@ class Corpus:
         use _load_and_normalize() directly to load the dataframe in place.
         """
         df = self._load()
-        author_fields = self.metadata.get("author_fields", [])
-        return df.drop(columns=author_fields).copy()
+        author_columns = self.metadata.get("author_columns", [])
+        return df.drop(columns=author_columns).copy()
     
     @property
     def authors(self) -> pd.DataFrame:
         """Deduplicated author-level metadata. Tidy format."""
-        assert "author_fields" in self.metadata, "Corpus metadata missing 'author_fields'"
+        assert "author_columns" in self.metadata, "Corpus metadata missing 'author_columns'"
         df = self._load()
-        author_fields = self.metadata.get("author_fields", [])
-        cols = ["author"] + author_fields
+        author_columns = self.metadata.get("author_columns", [])
+        cols = ["author"] + author_columns
         return df[cols].drop_duplicates().reset_index(drop=True)
 
 

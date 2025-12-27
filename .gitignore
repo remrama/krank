@@ -2,10 +2,10 @@ __pycache__/
 .DS_Store
 
 # Docs
-docs/_build/
-docs/generated/
-docs/make.bat
-docs/Makefile
+site/
 
 # Pip
 *.egg-info/
+
+# Aggregated reports file
+reports.csv

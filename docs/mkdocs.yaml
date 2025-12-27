@@ -1,0 +1,42 @@
+site_name: krank
+site_description: Fetch curated dream reports
+site_url: https://remrama.github.io/krank
+repo_url: https://github.com/remrama/krank
+repo_name: remrama/krank
+
+docs_dir: .
+site_dir: ../site
+
+theme:
+  name: material
+  favicon: images/logo.png
+  logo: images/logo.png
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    primary: deep purple
+  font:
+    text: Dosis
+    code: Google Code Pro
+  features:
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Usage: usage.md
+  - Corpora:
+    - Overview: corpora/index.md
+    - zhang2019: corpora/zhang2019.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
