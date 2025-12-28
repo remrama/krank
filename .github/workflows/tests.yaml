@@ -30,12 +30,7 @@ jobs:
       
       - name: Run tests with coverage
         run: |
-          pytest tests/ -m "not network" --cov=krank --cov-report=xml --cov-report=term-missing
-      
-      - name: Run network tests (ubuntu only, one Python version)
-        if: matrix.os == 'ubuntu-latest' && matrix.python-version == '3.12'
-        run: |
-          pytest tests/ -m network -v
+          pytest tests/ --cov=krank --cov-report=xml --cov-report=term-missing
       
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5

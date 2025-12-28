@@ -73,9 +73,3 @@ quote-style = "double"
 docstring-code-format = false
 docstring-code-line-length = 88
 
-[tool.pytest.ini_options]
-markers = [
-    "network: tests that require network access (deselect with '-m \"not network\"')",
-]
-
-
