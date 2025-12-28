@@ -49,7 +49,7 @@ def test_normalize_text_preserves_original():
 
 def test_corpus_init():
     """Test Corpus initialization."""
-    metadata = {"title": "Test", "n_reports": 10}
+    metadata = {"title": "Test"}
     path = Path("/tmp/test.csv")
 
     corpus = _corpus.Corpus("test", metadata, path)
@@ -62,17 +62,10 @@ def test_corpus_init():
 
 def test_corpus_repr():
     """Test Corpus string representation."""
-    metadata = {"n_reports": 42}
+    metadata = {"title": "Test"}
     corpus = _corpus.Corpus("test", metadata, Path("/tmp/test.csv"))
 
-    assert repr(corpus) == "Corpus('test', n_reports=42)"
-
-
-def test_corpus_repr_without_n_reports():
-    """Test Corpus repr when n_reports is missing."""
-    corpus = _corpus.Corpus("test", {}, Path("/tmp/test.csv"))
-
-    assert repr(corpus) == "Corpus('test', n_reports=?)"
+    assert repr(corpus) == "Corpus('test')"
 
 
 def test_corpus_path_property():

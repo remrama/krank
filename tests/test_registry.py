@@ -91,3 +91,27 @@ def test_fetch_corpus(mock_registry, tmp_path):
                 )
                 assert mock_retrieve.call_args[1]["known_hash"] == "md5:abc123"
                 assert mock_retrieve.call_args[1]["fname"] == "test_corpus_v1.csv"
+
+
+@pytest.mark.network
+def test_fetch_corpus_real_download():
+    """Test fetching a real corpus (zhang2019) and verifying its hash.
+
+    This test requires network access and will download ~500KB of data.
+    Run with: pytest -m network
+    """
+    import hashlib
+
+    # Fetch the real zhang2019 corpus
+    path = _registry.fetch_corpus("zhang2019")
+
+    # Verify the file exists
+    assert path.exists()
+    assert path.is_file()
+
+    # Verify the hash matches what's in the registry
+    with open(path, "rb") as f:
+        file_hash = hashlib.md5(f.read()).hexdigest()
+
+    expected_hash = "a61a3c56f4ee8c14e4a6466044df88f8"
+    assert file_hash == expected_hash
