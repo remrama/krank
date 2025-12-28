@@ -82,7 +82,7 @@ class Corpus:
         # self._df_core = None
 
     def __repr__(self) -> str:
-        return f"Corpus('{self.name}', n_reports={self.metadata.get('n_reports', '?')})"
+        return f"Corpus('{self.name}')"
 
     @property
     def path(self) -> Path:

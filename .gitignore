@@ -9,3 +9,10 @@ site/
 
 # Aggregated reports file
 reports.csv
+
+# Testing
+.coverage
+.pytest_cache/
+coverage.xml
+htmlcov/
+

@@ -40,7 +40,7 @@ Homepage = "https://remrama.github.io/krank"
 Source = "https://github.com/remrama/krank"
 
 [project.optional-dependencies]
-dev = ["ruff>=0.14"]
+dev = ["ruff>=0.14", "pytest>=8.0", "pytest-cov>=6.0"]
 docs = ["mkdocs-material>=9.0"]
 
 [tool.setuptools.dynamic]

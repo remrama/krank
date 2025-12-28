@@ -1,5 +1,6 @@
 [![PyPI](https://badge.fury.io/py/krank.svg)](https://badge.fury.io/py/krank)
 [![PyPI](https://pepy.tech/badge/krank)](https://pepy.tech/badge/krank)
+[![codecov](https://codecov.io/gh/remrama/krank/branch/main/graph/badge.svg)](https://codecov.io/gh/remrama/krank)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Built with Material for MkDocs](https://img.shields.io/badge/Material_for_MkDocs-526CFE?logo=MaterialForMkDocs&logoColor=white)](https://squidfunk.github.io/mkdocs-material/)
 
