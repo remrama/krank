@@ -4,6 +4,7 @@ Browse available dream text corpora.
 
 | Corpus | Description | Environment | Probe | _N_ reports | _N_ authors |
 |-------:|:------------|:------------|:------|:------------|:------------|
+| [hvdc](hvdc.md) | Historically significant collection of dream repor... | varied | spontaneous report | 981 | 981 |
 | [zhang2019](zhang2019.md) | Dream reports collected from a laboratory polysomn... | lab | serial awakening | 308 | 28 |
 
 ## Adding Corpora
