@@ -8,8 +8,8 @@ Historically significant collection of dream reports used to establish normative
 |------:|:------|
 | **Title** | Hall & Van de Castle Norms |
 | **DOI** | [10.5281/zenodo.18089278](https://doi.org/10.5281/zenodo.18089278) |
-| **Environment** | varied |
-| **Probe** | spontaneous report |
+| **Environment** | unknown |
+| **Probe** | unknown |
 | **_N_ reports** | 981 |
 | **_N_ authors** | 981 |
 | **_M_ report length** | 125 words |

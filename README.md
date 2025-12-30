@@ -1,4 +1,4 @@
-[![PyPI](https://img.shields.io/pypi/v/krank)](https://img.shields.io/pypi/v/krank)
+[![PyPI](https://img.shields.io/pypi/v/krank)](https://pypi.org/project/krank)
 [![Downloads](https://pepy.tech/badge/krank)](https://pepy.tech/badge/krank)
 [![codecov](https://codecov.io/gh/remrama/krank/branch/main/graph/badge.svg)](https://codecov.io/gh/remrama/krank)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
@@ -23,7 +23,11 @@ import krank
 
 # View a list of available corpora.
 krank.list_corpora()
-# ['zhang2019']
+# ['hvdc', 'zhang2019']
+
+# View a list of available versions for a corpus.
+krank.list_versions("zhang2019")
+# ['1']
 
 # Print metadata about a single corpus.
 krank.info("zhang2019")
@@ -67,4 +71,4 @@ corpus.reports.head()
 
 Open an [Issue](https://github.com/remrama/krank) to request a new corpus (or for any other reason).
 
-Adding a new corpus does not require any changes to underlying code. It only needs to be added to the [registry.yaml](./src/krank/data/registry.yaml) file (and one line to [mkdocs.yaml](./docs/mkdocs.yaml)). Browse that for other corpora and see what would need to be filled out for the new dataset. To keep things separate, most of the corpus curation code is over in the [krank sources collection], a set of repositories under a single organization heading. But if you want a new dataset there, place an Issue here in this repository.
+Adding a new corpus does not require any changes to underlying code. It only needs to be added to the [registry.yaml](./src/krank/data/registry.yaml) file (and one line to [mkdocs.yaml](./docs/mkdocs.yaml)). Browse that for other corpora and see what would need to be filled out for the new dataset. To keep things separate, most of the corpus curation code is over in the [krank sources collection](https://github.com/krank-sources), a set of repositories under a single organization heading. But if you want a new dataset there, place an Issue here in this repository.
