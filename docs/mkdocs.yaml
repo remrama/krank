@@ -33,6 +33,7 @@ nav:
   - Corpora:
     - Overview: corpora/index.md
     - hvdc: corpora/hvdc.md
+    - urbina1975: corpora/urbina1975.md
     - zhang2019: corpora/zhang2019.md
 
 markdown_extensions:
