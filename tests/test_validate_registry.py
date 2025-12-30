@@ -1,13 +1,11 @@
 """Tests for registry validation script."""
 
-import tempfile
+# Import validation functions from the script
+import sys
 from pathlib import Path
 
 import pytest
 import yaml
-
-# Import validation functions from the script
-import sys
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 from validate_registry import (
