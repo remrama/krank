@@ -46,7 +46,7 @@ corpus.metadata["title"]
 corpus.metadata["hash"]
 # 'md5:a61a3c56f4ee8c14e4a6466044df88f8'
 corpus.metadata["description"]
-# 'Dream reports collected from an laboratory polysomnography study'
+# 'Dream reports collected from a laboratory polysomnography study'
 
 # Return unique authors and their associated metadata in a tidy dataframe.
 corpus.authors.head()
