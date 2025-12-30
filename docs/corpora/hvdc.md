@@ -36,7 +36,7 @@ Historically significant collection of dream reports used to establish normative
 
 | Column | Description |
 |-------:|:------------|
-| `author_id` | Unique author identifier |
+| `author` | Unique author identifier |
 | `sex` | Reported sex of author at time of report |
 
 ## Source

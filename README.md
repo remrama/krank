@@ -33,7 +33,7 @@ krank.list_versions("zhang2019")
 krank.info("zhang2019")
 # Corpus: zhang2019
 #   Title: Zhang & Wamsley 2019 Dream Reports
-#   Description: Dream reports collected from an laboratory polysomnography study
+#   Description: Dream reports collected from a laboratory polysomnography study
 
 # Load a corpus.
 corpus = krank.load("zhang2019")

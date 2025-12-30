@@ -34,7 +34,7 @@
 
 | Column | Description |
 |-------:|:------------|
-| `author_id` | Unique author identifier |
+| `author` | Unique author identifier |
 {{ author_columns_table }}
 
 ## Source
