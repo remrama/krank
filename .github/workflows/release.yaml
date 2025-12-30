@@ -21,6 +21,14 @@ jobs:
         with:
           python-version: "3.11"
       
+      - name: Cache pooch data
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/krank
+          key: krank-pooch-${{ runner.os }}-${{ hashFiles('src/krank/data/registry.yaml') }}
+          restore-keys: |
+            krank-pooch-${{ runner.os }}-
+      
       - name: Install package
         run: pip install .
       
