@@ -8,6 +8,25 @@ import pytest
 from krank import _corpus
 
 
+def test_extract_author_year():
+    """Test citation author and year extraction."""
+    # Standard citation format - splits at first ")."
+    result = _corpus._extract_author_year(
+        "Smith, J. (2020). Title. Journal, 1(1), 1-10."
+    )
+    assert result == "Smith, J. (2020)"
+
+    # Multiple authors with ampersand
+    result = _corpus._extract_author_year(
+        "Smith, J., & Doe, A. (2024). Title. Journal, 1(1), 1-10."
+    )
+    assert result == "Smith, J., & Doe, A. (2024)"
+
+    # No ")." - should return truncated citation
+    result = _corpus._extract_author_year("Some citation without the pattern")
+    assert len(result) <= 53  # 50 chars + "..."
+
+
 def test_normalize_text():
     """Test text normalization function."""
     df = pd.DataFrame(
@@ -280,6 +299,47 @@ def test_corpus_repr():
     assert repr(corpus) == "Corpus('test')"
 
 
+def test_corpus_str():
+    """Test Corpus __str__ method shows descriptive metadata."""
+    metadata = {
+        "title": "Test Corpus",
+        "description": "A test corpus for unit testing",
+        "version": "1",
+        "citations": [
+            "Smith, J., & Doe, A. (2024). Test dreams. Journal of Dreams, 1(1), 1-10.",
+            "Brown, B. (2023). More test dreams. Sleep Research, 2(2), 20-30.",
+        ],
+    }
+    corpus = _corpus.Corpus("test", metadata, Path("/tmp/test.csv"))
+
+    result = str(corpus)
+
+    assert "Corpus: test" in result
+    assert "Title: Test Corpus" in result
+    assert "Description: A test corpus for unit testing" in result
+    assert "Version: 1" in result
+    assert "Citations:" in result
+    assert "Smith" in result
+    assert "2024" in result
+    assert "Brown" in result
+    assert "2023" in result
+    assert ";" in result  # Citations should be separated by semicolons
+
+
+def test_corpus_str_missing_fields():
+    """Test Corpus __str__ with missing metadata fields."""
+    metadata = {}
+    corpus = _corpus.Corpus("test", metadata, Path("/tmp/test.csv"))
+
+    result = str(corpus)
+
+    assert "Corpus: test" in result
+    assert "Title: N/A" in result
+    assert "Description: N/A" in result
+    assert "Version: N/A" in result
+    # Citations is optional, so it shouldn't show N/A
+
+
 def test_corpus_path_property():
     """Test Corpus path property."""
     path = Path("/tmp/test.csv")
@@ -381,3 +441,38 @@ def test_corpus_without_column_map(tmp_path):
 
     assert "report" in reports.columns
     assert reports["report"].iloc[0] == "Dream A"
+
+
+def test_corpus_n_reports(mock_corpus_csv):
+    """Test n_reports property returns correct count."""
+    metadata = {
+        "column_map": {
+            "report": "Report Text",
+            "author": "Author ID",
+            "age": "Age",
+            "sex": "Sex",
+        },
+        "author_columns": ["age", "sex"],
+    }
+
+    corpus = _corpus.Corpus("test", metadata, mock_corpus_csv)
+
+    assert corpus.n_reports == 3
+
+
+def test_corpus_n_authors(mock_corpus_csv):
+    """Test n_authors property returns correct count."""
+    metadata = {
+        "column_map": {
+            "report": "Report Text",
+            "author": "Author ID",
+            "age": "Age",
+            "sex": "Sex",
+        },
+        "author_columns": ["age", "sex"],
+    }
+
+    corpus = _corpus.Corpus("test", metadata, mock_corpus_csv)
+
+    # Should be 2 unique authors (A1 and A2)
+    assert corpus.n_authors == 2

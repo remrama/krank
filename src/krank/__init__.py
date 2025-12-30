@@ -21,14 +21,9 @@ def info(name: str) -> None:
     name : str
         Name of the corpus to display information for.
     """
-    entry = _registry.get_entry(name)
-    print(f"Corpus: {name}")
-    print(f"  Title: {entry.get('title', 'N/A')}")
-    print(f"  Description: {entry.get('description', 'N/A')}")
-    print(f"  Reports: {entry.get('n_reports', 'N/A')}")
-    print(f"  Citation: {entry.get('citation', 'N/A')}")
-    print(f"  Version: {entry.get('version', 'N/A')}")
-    print(f"  Collection: {entry.get('collection', 'N/A')}")
+    # Load the corpus and print its string representation
+    corpus = load(name)
+    print(corpus)
 
 
 def list_collections() -> list[str]:

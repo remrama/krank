@@ -12,11 +12,24 @@ krank.list_corpora(language="en")
 
 # Get metadata without downloading
 krank.info("zhang2019")
+# Corpus: zhang2019
+#   Title: Zhang & Wamsley, 2019
+#   Description: Dream reports collected from a laboratory polysomnography study
+#   Version: 1
+#   Citations: Zhang, J., & Wamsley, E. J. (2019); Wong, W., Herzog, R., ... (2025)
 ```
 
 ## Loading Data
 ```python
 corpus = krank.load("zhang2019")
+
+# Print corpus info
+print(corpus)
+# Corpus: zhang2019
+#   Title: Zhang & Wamsley, 2019
+#   Description: Dream reports collected from a laboratory polysomnography study
+#   Version: 1
+#   Citations: Zhang, J., & Wamsley, E. J. (2019); Wong, W., Herzog, R., ... (2025)
 ```
 
 The data is not downloaded until you access it:
@@ -30,6 +43,8 @@ corpus.reports  # triggers download on first access
 |-----------|-------------|
 | `corpus.reports` | DataFrame of dream reports (tidy format) |
 | `corpus.authors` | DataFrame of author metadata (deduplicated) |
+| `corpus.n_reports` | Number of reports in corpus |
+| `corpus.n_authors` | Number of unique authors in corpus |
 | `corpus.metadata` | Dict of corpus metadata from registry |
 | `corpus.path` | Local path to cached file |
 | `corpus.name` | Corpus name |

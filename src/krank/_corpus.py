@@ -17,6 +17,31 @@ from ._schemas import AuthorsSchema, ReportsSchema
 __all__ = ["Corpus"]
 
 
+def _extract_author_year(citation: str) -> str:
+    """Extract author(s) and year from a citation string.
+
+    Parameters
+    ----------
+    citation : str
+        Full citation string.
+
+    Returns
+    -------
+    str
+        Shortened citation with just author(s) and year (e.g., "Smith et al., 2020").
+
+    Notes
+    -----
+    Extracts the portion of the citation before the first ")." which typically
+    contains the authors and year. Falls back to first 50 chars if not found.
+    """
+    # Split by first ")." to get author(s) and year
+    if ")." in citation:
+        return citation.split(").")[0] + ")"
+    # If we can't parse it, return first 50 chars
+    return citation[:50] + "..." if len(citation) > 50 else citation
+
+
 # Configure ftfy with all options explicitly set
 # This provides a single config location for most normalization decisions
 # Defined at module level for performance (avoid recreating on each call)
@@ -188,6 +213,41 @@ class Corpus:
     def __repr__(self) -> str:
         return f"Corpus('{self.name}')"
 
+    def __str__(self) -> str:
+        """Return descriptive string representation of corpus metadata.
+
+        Returns
+        -------
+        str
+            Multi-line string containing corpus metadata from the metadata dict.
+            Does not load reports or authors data.
+        """
+        lines = [f"Corpus: {self.name}"]
+
+        # Add metadata fields in a consistent order
+        metadata_keys = ["title", "description", "version", "citations"]
+
+        for key in metadata_keys:
+            value = self.metadata.get(key)
+
+            if key == "citations" and value:
+                # Show all citations with only authors and year, separated by semicolons
+                short_citations = [_extract_author_year(cit) for cit in value]
+                citation_str = "; ".join(short_citations)
+                label = key.title()
+                lines.append(f"  {label}: {citation_str}")
+            elif value:
+                # Regular field
+                label = key.title()
+                lines.append(f"  {label}: {value}")
+            else:
+                # Show N/A for missing fields (except citations which is optional)
+                if key != "citations":
+                    label = key.title()
+                    lines.append(f"  {label}: N/A")
+
+        return "\n".join(lines)
+
     @property
     def path(self) -> Path:
         """Local path to cached CSV file.
@@ -251,6 +311,36 @@ class Corpus:
         # Validate the authors dataframe with pandera
         authors_df = AuthorsSchema.validate(authors_df)
         return authors_df
+
+    @property
+    def n_reports(self) -> int:
+        """Number of reports in the corpus.
+
+        Returns
+        -------
+        int
+            Total number of dream reports in the corpus.
+
+        Notes
+        -----
+        This property loads the reports data if not already loaded.
+        """
+        return len(self.reports)
+
+    @property
+    def n_authors(self) -> int:
+        """Number of unique authors in the corpus.
+
+        Returns
+        -------
+        int
+            Total number of unique authors in the corpus.
+
+        Notes
+        -----
+        This property loads the authors data if not already loaded.
+        """
+        return len(self.authors)
 
     def _load(self) -> pd.DataFrame:
         """Load and normalize full dataframe. Called once, cached.

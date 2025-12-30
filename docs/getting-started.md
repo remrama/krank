@@ -15,6 +15,11 @@ krank.list_corpora()
 
 # Get info about a corpus without downloading
 krank.info("zhang2019")
+# Corpus: zhang2019
+#   Title: Zhang & Wamsley, 2019
+#   Description: Dream reports collected from a laboratory polysomnography study
+#   Version: 1
+#   Citations: Zhang, J., & Wamsley, E. J. (2019); Wong, W., Herzog, R., ... (2025)
 
 # Load a corpus
 corpus = krank.load("zhang2019")
@@ -22,6 +27,8 @@ corpus = krank.load("zhang2019")
 # Access the data
 corpus.reports      # dream reports (tidy)
 corpus.authors      # author metadata (deduplicated)
+corpus.n_reports    # number of reports
+corpus.n_authors    # number of unique authors
 corpus.metadata     # corpus metadata dict
 ```
 
