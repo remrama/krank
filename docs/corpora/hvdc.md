@@ -19,7 +19,7 @@ Historically significant collection of dream reports used to establish normative
 
 - Domhoff, G. W., & Schneider, A. (2008). Studying dream content using the archive and search engine on DreamBank.net. Consciousness and Cognition, 17(4), 1238-1247. [https://doi.org/10.1016/j.concog.2008.06.010](https://doi.org/10.1016/j.concog.2008.06.010)
 
-- Hall, C. S., & Van De Castle, R. L. (1966). The content analysis of dreams. Appleton-Century-Crofts.
+- Hall, C. S., & Van de Castle, R. L. (1966). The content analysis of dreams. Appleton-Century-Crofts.
 
 
 ## Columns
