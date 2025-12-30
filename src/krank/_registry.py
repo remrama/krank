@@ -108,6 +108,8 @@ def get_entry(name: str, version: str = None) -> dict:
     entry["version"] = version
     entry["download_url"] = version_info["download_url"]
     entry["hash"] = version_info["hash"]
+    if "doi" in version_info:
+        entry["doi"] = version_info["doi"]
 
     # Remove nested versions dict from returned entry
     del entry["versions"]

@@ -8,6 +8,30 @@ import pytest
 from krank import _corpus
 
 
+def test_extract_author_year():
+    """Test citation author and year extraction."""
+    # Standard citation format
+    assert "Smith, 2020" in _corpus._extract_author_year(
+        "Smith, J. (2020). Title. Journal, 1(1), 1-10."
+    )
+
+    # Multiple authors with ampersand
+    result = _corpus._extract_author_year(
+        "Smith, J., & Doe, A. (2024). Title. Journal, 1(1), 1-10."
+    )
+    assert "et al." in result
+    assert "2024" in result
+
+    # Year after comma instead of parentheses
+    result = _corpus._extract_author_year("Brown, B., 2023. Title. Journal.")
+    assert "Brown" in result
+    assert "2023" in result
+
+    # No year - should return truncated citation
+    result = _corpus._extract_author_year("Some citation without year")
+    assert "citation" in result.lower()
+
+
 def test_normalize_text():
     """Test text normalization function."""
     df = pd.DataFrame(
@@ -286,8 +310,11 @@ def test_corpus_str():
         "title": "Test Corpus",
         "description": "A test corpus for unit testing",
         "version": "1",
-        "collection": "test_collection",
-        "citations": ["Test citation 2024"],
+        "doi": "10.5281/zenodo.12345",
+        "citations": [
+            "Smith, J., & Doe, A. (2024). Test dreams. Journal of Dreams, 1(1), 1-10.",
+            "Brown, B. (2023). More test dreams. Sleep Research, 2(2), 20-30.",
+        ],
     }
     corpus = _corpus.Corpus("test", metadata, Path("/tmp/test.csv"))
 
@@ -297,8 +324,13 @@ def test_corpus_str():
     assert "Title: Test Corpus" in result
     assert "Description: A test corpus for unit testing" in result
     assert "Version: 1" in result
-    assert "Collection: test_collection" in result
-    assert "Citation: Test citation 2024" in result
+    assert "DOI: https://doi.org/10.5281/zenodo.12345" in result
+    assert "Citations:" in result
+    assert "Smith" in result
+    assert "2024" in result
+    assert "Brown" in result
+    assert "2023" in result
+    assert ";" in result  # Citations should be separated by semicolons
 
 
 def test_corpus_str_missing_fields():
@@ -312,8 +344,8 @@ def test_corpus_str_missing_fields():
     assert "Title: N/A" in result
     assert "Description: N/A" in result
     assert "Version: N/A" in result
-    assert "Collection: N/A" in result
-    assert "Citation: N/A" in result
+    assert "DOI: N/A" in result
+    # Citations is optional, so it shouldn't show N/A
 
 
 def test_corpus_path_property():

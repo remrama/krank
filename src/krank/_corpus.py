@@ -5,6 +5,7 @@ including lazy-loading of data, text normalization, and separation of report
 and author metadata.
 """
 
+import re
 import warnings
 from pathlib import Path
 
@@ -15,6 +16,49 @@ from ftfy import TextFixerConfig
 from ._schemas import AuthorsSchema, ReportsSchema
 
 __all__ = ["Corpus"]
+
+
+def _extract_author_year(citation: str) -> str:
+    """Extract author(s) and year from a citation string.
+
+    Parameters
+    ----------
+    citation : str
+        Full citation string.
+
+    Returns
+    -------
+    str
+        Shortened citation with just author(s) and year (e.g., "Smith et al., 2020").
+
+    Notes
+    -----
+    Attempts to extract the first author name(s) and year from a citation.
+    Falls back to the original citation if parsing fails.
+    """
+    # Try to extract year (4 digits in parentheses or after comma)
+    year_match = re.search(r"\((\d{4})\)|,\s*(\d{4})", citation)
+    year = year_match.group(1) or year_match.group(2) if year_match else None
+
+    # Try to extract author(s) - text before the year
+    if year:
+        # Find the author part (before year)
+        author_part = citation.split(str(year))[0]
+        # Clean up - remove trailing punctuation and whitespace
+        author_part = re.sub(r"[,\.\(\)\s]+$", "", author_part)
+
+        # Check if there are multiple authors by looking for & or et al.
+        if "&" in author_part or "et al" in author_part.lower():
+            # Get first author (before comma, ampersand, or "and")
+            first_author = re.split(r"[,&]|(?:\s+and\s+)", author_part)[0].strip()
+            return f"{first_author} et al., {year}"
+        else:
+            # Single author - just use the surname (first part before comma)
+            surname = author_part.split(",")[0].strip()
+            return f"{surname}, {year}"
+
+    # If we can't parse it, return first 50 chars
+    return citation[:50] + "..." if len(citation) > 50 else citation
 
 
 # Configure ftfy with all options explicitly set
@@ -200,24 +244,30 @@ class Corpus:
         lines = [f"Corpus: {self.name}"]
 
         # Add metadata fields in a consistent order
-        metadata_keys = [
-            ("title", "Title"),
-            ("description", "Description"),
-            ("version", "Version"),
-            ("collection", "Collection"),
-        ]
+        metadata_keys = ["title", "description", "version", "doi", "citations"]
 
-        for key, label in metadata_keys:
-            value = self.metadata.get(key, "N/A")
-            lines.append(f"  {label}: {value}")
+        for key in metadata_keys:
+            value = self.metadata.get(key)
 
-        # Handle citations (list type)
-        citations = self.metadata.get("citations", [])
-        if citations:
-            # Show the first citation
-            lines.append(f"  Citation: {citations[0]}")
-        else:
-            lines.append("  Citation: N/A")
+            if key == "doi" and value:
+                # Format DOI as URL
+                label = key.upper()  # DOI should be uppercase
+                lines.append(f"  {label}: https://doi.org/{value}")
+            elif key == "citations" and value:
+                # Show all citations with only authors and year, separated by semicolons
+                short_citations = [_extract_author_year(cit) for cit in value]
+                citation_str = "; ".join(short_citations)
+                label = key.title()
+                lines.append(f"  {label}: {citation_str}")
+            elif value:
+                # Regular field
+                label = key.title()
+                lines.append(f"  {label}: {value}")
+            else:
+                # Show N/A for missing fields (except citations which is optional)
+                if key != "citations":
+                    label = key.upper() if key == "doi" else key.title()
+                    lines.append(f"  {label}: N/A")
 
         return "\n".join(lines)
 

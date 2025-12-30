@@ -16,8 +16,10 @@ def test_info(mock_registry, mock_corpus_csv, capsys):
                     "title": "Test Corpus",
                     "description": "A test corpus",
                     "version": "1",
-                    "collection": "test_collection",
-                    "citations": ["Test citation"],
+                    "doi": "10.5281/zenodo.12345",
+                    "citations": [
+                        "Smith, J. (2024). Test citation. Journal, 1(1), 1-10."
+                    ],
                     "column_map": {
                         "report": "Report Text",
                         "author": "Author ID",
@@ -32,8 +34,9 @@ def test_info(mock_registry, mock_corpus_csv, capsys):
                 assert "Title: Test Corpus" in captured.out
                 assert "Description: A test corpus" in captured.out
                 assert "Version: 1" in captured.out
-                assert "Collection: test_collection" in captured.out
-                assert "Citation: Test citation" in captured.out
+                assert "DOI: https://doi.org/10.5281/zenodo.12345" in captured.out
+                assert "Citations:" in captured.out
+                assert "Smith" in captured.out
 
 
 def test_info_missing_fields(mock_registry, mock_corpus_csv, capsys):
