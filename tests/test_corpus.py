@@ -326,18 +326,22 @@ def test_corpus_str():
     assert ";" in result  # Citations should be separated by semicolons
 
 
-def test_corpus_str_missing_fields():
-    """Test Corpus __str__ with missing metadata fields."""
-    metadata = {}
+def test_corpus_str_with_required_fields():
+    """Test Corpus __str__ with all required metadata fields."""
+    metadata = {
+        "title": "Test Corpus",
+        "description": "A test corpus",
+        "version": "1",
+    }
     corpus = _corpus.Corpus("test", metadata, Path("/tmp/test.csv"))
 
     result = str(corpus)
 
     assert "Corpus: test" in result
-    assert "Title: N/A" in result
-    assert "Description: N/A" in result
-    assert "Version: N/A" in result
-    # Citations is optional, so it shouldn't show N/A
+    assert "Title: Test Corpus" in result
+    assert "Description: A test corpus" in result
+    assert "Version: 1" in result
+    # Citations is optional, so it shouldn't show if not present
 
 
 def test_corpus_path_property():
@@ -398,14 +402,6 @@ def test_corpus_authors(mock_corpus_csv):
     assert set(authors["author"]) == {"A1", "A2"}
 
 
-def test_corpus_authors_without_author_columns():
-    """Test that authors property raises error without author_columns."""
-    corpus = _corpus.Corpus("test", {}, Path("/tmp/test.csv"))
-
-    with pytest.raises(AssertionError, match="author_columns"):
-        _ = corpus.authors
-
-
 def test_corpus_load_caching(mock_corpus_csv):
     """Test that dataframe is cached after first load."""
     metadata = {
@@ -429,13 +425,16 @@ def test_corpus_load_caching(mock_corpus_csv):
     assert corpus._df is not None
 
 
-def test_corpus_without_column_map(tmp_path):
-    """Test Corpus with no column_map."""
-    csv_path = tmp_path / "no_map.csv"
-    df = pd.DataFrame({"report": ["Dream A"], "author": ["X1"]})
+def test_corpus_with_column_map(tmp_path):
+    """Test Corpus with column_map that renames columns."""
+    csv_path = tmp_path / "mapped.csv"
+    df = pd.DataFrame({"my_report": ["Dream A"], "my_author": ["X1"]})
     df.to_csv(csv_path, index=False)
 
-    metadata = {"author_columns": []}
+    metadata = {
+        "column_map": {"report": "my_report", "author": "my_author"},
+        "author_columns": [],
+    }
     corpus = _corpus.Corpus("test", metadata, csv_path)
     reports = corpus.reports
 

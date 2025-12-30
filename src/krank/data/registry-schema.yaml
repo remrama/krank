@@ -1,0 +1,153 @@
+# Registry Schema
+#
+# This schema defines the structure of the registry.yaml file.
+# It uses JSON Schema format, which is human-readable and widely supported.
+#
+# Quick reference for adding a new corpus:
+# - All fields marked as "required" must be present
+# - See existing entries in registry.yaml for examples
+# - Run `python scripts/validate_registry.py` to validate your changes
+
+$schema: "http://json-schema.org/draft-07/schema#"
+title: Krank Registry Schema
+description: Schema for the krank dream corpus registry
+
+type: object
+required:
+  - collections
+  - corpora
+
+properties:
+  # Collections group related corpora together
+  collections:
+    type: object
+    additionalProperties:
+      type: object
+      required:
+        - title
+        - url
+        - corpora
+      properties:
+        title:
+          type: string
+          description: Human-readable collection name
+        description:
+          type: string
+          description: Optional description of the collection
+        url:
+          type: string
+          format: uri
+          pattern: "^https?://"
+          description: Collection website URL
+        corpora:
+          type: array
+          minItems: 1
+          items:
+            type: string
+          description: List of corpus IDs in this collection
+
+  # Corpora are individual datasets
+  corpora:
+    type: object
+    additionalProperties:
+      type: object
+      required:
+        - krank_sources_repo
+        - title
+        - description
+        - citations
+        - environment
+        - probe
+        - includes_norecall
+        - column_map
+        - author_columns
+        - latest
+        - versions
+      properties:
+        krank_sources_repo:
+          type: string
+          description: Repository name in krank-sources organization
+        
+        title:
+          type: string
+          description: Human-readable corpus title
+        
+        description:
+          type: string
+          description: Description of the corpus
+        
+        citations:
+          type: array
+          minItems: 1
+          items:
+            type: string
+          description: Academic citations for this corpus
+        
+        environment:
+          type: string
+          description: Data collection environment (e.g., "lab", "home", "unknown")
+        
+        probe:
+          type: string
+          description: Dream report collection method (e.g., "serial awakening", "most recent dream")
+        
+        includes_norecall:
+          type: boolean
+          description: Whether corpus includes no-recall/no-dream reports
+        
+        column_map:
+          type: object
+          required:
+            - report
+            - author
+          additionalProperties:
+            type: string
+          description: Maps standard column names to corpus-specific CSV column names
+          properties:
+            report:
+              type: string
+              description: CSV column name containing dream reports
+            author:
+              type: string
+              description: CSV column name containing author/participant IDs
+        
+        author_columns:
+          type: array
+          items:
+            type: string
+          description: List of author-level metadata column names (after mapping)
+        
+        latest:
+          type: string
+          description: Version identifier for the latest/recommended version
+        
+        versions:
+          type: object
+          minProperties: 1
+          additionalProperties:
+            type: object
+            required:
+              - download_url
+              - hash
+              - doi
+            properties:
+              download_url:
+                type: string
+                format: uri
+                pattern: "^https?://"
+                description: Direct download URL for the corpus CSV file
+              
+              hash:
+                type: string
+                pattern: "^md5:[a-fA-F0-9]{32}$|^sha256:[a-fA-F0-9]{64}$"
+                description: File hash for verification (format "md5:xxx" or "sha256:xxx")
+              
+              doi:
+                type: string
+                description: DOI for this corpus version
+        
+        column_descriptions:
+          type: object
+          additionalProperties:
+            type: string
+          description: Optional descriptions for specific columns
