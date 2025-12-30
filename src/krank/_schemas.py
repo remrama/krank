@@ -4,7 +4,6 @@ This module defines pandera schemas for validating dataframes used throughout
 the krank package to ensure data quality and consistency.
 """
 
-import pandas as pd
 from pandera.pandas import DataFrameModel, Field
 from pandera.typing import Series
 from typing import Optional
@@ -19,8 +18,8 @@ class ReportsSchema(DataFrameModel):
     excluding author-specific columns. The exact columns will vary by corpus.
     """
 
-    author: Series[pd.CategoricalDtype] = Field(coerce=True, nullable=False)
-    report: Series[pd.StringDtype] = Field(coerce=True, nullable=False)
+    author: Series["category"] = Field(coerce=True, nullable=False)
+    report: Series["string"] = Field(coerce=True, nullable=False)
 
     class Config:
         """Configuration for ReportsSchema."""
@@ -36,8 +35,8 @@ class AuthorsSchema(DataFrameModel):
     Each author appears only once.
     """
 
-    author: Series[pd.CategoricalDtype] = Field(coerce=True, nullable=False, unique=True)
-    sex: Optional[Series[pd.CategoricalDtype]] = Field(coerce=True)
+    author: Series["category"] = Field(coerce=True, nullable=False, unique=True)
+    sex: Optional[Series["category"]] = Field(coerce=True)
 
     class Config:
         """Configuration for AuthorsSchema."""
