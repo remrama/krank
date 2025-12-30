@@ -34,6 +34,27 @@ corpora:
         download_url: "https://zenodo.org/records/18089278/files/hvdc.csv?download=1"
         hash: "md5:bd376d9dcc77f5369e7f4a058a1ba166"
         doi: "10.5281/zenodo.18089278"
+  ucsc1996:
+    krank_sources_repo: "dreambank"
+    title: "UCSC, 1996"
+    description: "A DreamBank collection from women ages 18-24 at the University of California Santa Cruz in 1996."
+    citations:
+      - "Domhoff, G. W., & Schneider, A. (2008). Studying dream content using the archive and search engine on DreamBank.net. Consciousness and Cognition, 17(4), 1238-1247. https://doi.org/10.1016/j.concog.2008.06.010"
+    environment: "unknown"
+    probe: "most recent dream"
+    includes_norecall: false
+    column_map:
+      report: "report"
+      author: "author_id"
+    author_columns:
+      - "age"
+      - "sex"
+    latest: "1"
+    versions:
+      "1":
+        download_url: "https://zenodo.org/records/18099365/files/ucsc1996.csv?download=1"
+        hash: "md5:caf94dc6bac916330caeb200e60c5671"
+        doi: "10.5281/zenodo.18099365"
   urbina1975:
     krank_sources_repo: "dreambank"
     title: "Urbina & Grey, 1975"
