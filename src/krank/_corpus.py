@@ -5,7 +5,6 @@ including lazy-loading of data, text normalization, and separation of report
 and author metadata.
 """
 
-import re
 import warnings
 from pathlib import Path
 
@@ -33,36 +32,12 @@ def _extract_author_year(citation: str) -> str:
 
     Notes
     -----
-    Attempts to extract the first author name(s) and year from a citation.
-    Falls back to the original citation if parsing fails.
+    Extracts the portion of the citation before the first ")." which typically
+    contains the authors and year. Falls back to first 50 chars if not found.
     """
-    # Try to extract year (4 digits in parentheses or after comma)
-    year_match = re.search(r"\((\d{4})\)|,\s*(\d{4})", citation)
-    year = year_match.group(1) or year_match.group(2) if year_match else None
-
-    # Try to extract author(s) - text before the year
-    if year and year_match:
-        # Get the author part using the match position (more reliable than split)
-        author_part = citation[: year_match.start()].strip()
-        # Clean up - remove trailing punctuation
-        author_part = re.sub(r"[,\.\(\)\s]+$", "", author_part)
-
-        # Check if there are multiple authors by looking for &, 'and', or 'et al.'
-        if (
-            "&" in author_part
-            or " and " in author_part.lower()
-            or "et al" in author_part.lower()
-        ):
-            # Get first author (before comma, ampersand, or "and")
-            first_author = re.split(
-                r"[,&]|(?:\s+and\s+)", author_part, flags=re.IGNORECASE
-            )[0].strip()
-            return f"{first_author} et al., {year}"
-        else:
-            # Single author - just use the surname (first part before comma)
-            surname = author_part.split(",")[0].strip()
-            return f"{surname}, {year}"
-
+    # Split by first ")." to get author(s) and year
+    if ")." in citation:
+        return citation.split(").")[0] + ")"
     # If we can't parse it, return first 50 chars
     return citation[:50] + "..." if len(citation) > 50 else citation
 
@@ -250,16 +225,12 @@ class Corpus:
         lines = [f"Corpus: {self.name}"]
 
         # Add metadata fields in a consistent order
-        metadata_keys = ["title", "description", "version", "doi", "citations"]
+        metadata_keys = ["title", "description", "version", "citations"]
 
         for key in metadata_keys:
             value = self.metadata.get(key)
 
-            if key == "doi" and value:
-                # Format DOI as URL
-                label = key.upper()  # DOI should be uppercase
-                lines.append(f"  {label}: https://doi.org/{value}")
-            elif key == "citations" and value:
+            if key == "citations" and value:
                 # Show all citations with only authors and year, separated by semicolons
                 short_citations = [_extract_author_year(cit) for cit in value]
                 citation_str = "; ".join(short_citations)
@@ -272,7 +243,7 @@ class Corpus:
             else:
                 # Show N/A for missing fields (except citations which is optional)
                 if key != "citations":
-                    label = key.upper() if key == "doi" else key.title()
+                    label = key.title()
                     lines.append(f"  {label}: N/A")
 
         return "\n".join(lines)
