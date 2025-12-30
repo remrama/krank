@@ -6,6 +6,7 @@ the krank package to ensure data quality and consistency.
 
 from pandera.pandas import DataFrameModel, Field
 from pandera.typing import Series
+from typing import Optional
 
 __all__ = ["ReportsSchema", "AuthorsSchema", "AggregateReportsSchema"]
 
@@ -17,8 +18,8 @@ class ReportsSchema(DataFrameModel):
     excluding author-specific columns. The exact columns will vary by corpus.
     """
 
-    author: Series[str] = Field(coerce=True, nullable=False)
-    report: Series[str] = Field(coerce=True, nullable=False)
+    author: Series["category"] = Field(coerce=True, nullable=False, unique=False)
+    report: Series["string"] = Field(coerce=True, nullable=False, unique=False)
 
     class Config:
         """Configuration for ReportsSchema."""
@@ -34,7 +35,9 @@ class AuthorsSchema(DataFrameModel):
     Each author appears only once.
     """
 
-    author: Series[str] = Field(coerce=True, nullable=False, unique=True)
+    author: Series["category"] = Field(coerce=True, nullable=False, unique=True)
+    age: Optional[Series[int]] = Field(coerce=True, nullable=False, unique=False)
+    sex: Optional[Series["category"]] = Field(coerce=True, nullable=False, unique=False)
 
     class Config:
         """Configuration for AuthorsSchema."""

@@ -80,7 +80,8 @@ class TestReportsSchema:
             }
         )
         result = ReportsSchema.validate(df)
-        assert result["author"].dtype == object  # coerced to string
+        assert result["author"].dtype.name == "category"  # coerced to categorical
+        assert result["report"].dtype.name == "string"  # coerced to string
 
 
 class TestAuthorsSchema:
@@ -133,7 +134,42 @@ class TestAuthorsSchema:
         """Test that authors dataframe coerces types as needed."""
         df = pd.DataFrame({"author": [1, 2, 3]})  # integers
         result = AuthorsSchema.validate(df)
-        assert result["author"].dtype == object  # coerced to string
+        assert result["author"].dtype.name == "category"  # coerced to categorical
+
+    def test_authors_sex_categorical(self):
+        """Test that sex column is coerced to categorical when present."""
+        df = pd.DataFrame(
+            {
+                "author": ["A1", "A2", "A3"],
+                "sex": ["M", "F", "M"],
+            }
+        )
+        result = AuthorsSchema.validate(df)
+        assert result["sex"].dtype.name == "category"
+
+    def test_authors_age_integer(self):
+        """Test that age column is coerced to integer when present."""
+        df = pd.DataFrame(
+            {
+                "author": ["A1", "A2", "A3"],
+                "age": [25, 30, 35],
+            }
+        )
+        result = AuthorsSchema.validate(df)
+        assert result["age"].dtype.name == "int64"
+
+    def test_authors_with_age_and_sex(self):
+        """Test that both age and sex columns are properly typed when present."""
+        df = pd.DataFrame(
+            {
+                "author": ["A1", "A2", "A3"],
+                "age": [25, 30, 35],
+                "sex": ["M", "F", "M"],
+            }
+        )
+        result = AuthorsSchema.validate(df)
+        assert result["age"].dtype.name == "int64"
+        assert result["sex"].dtype.name == "category"
 
 
 class TestAggregateReportsSchema:
