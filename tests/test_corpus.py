@@ -280,6 +280,42 @@ def test_corpus_repr():
     assert repr(corpus) == "Corpus('test')"
 
 
+def test_corpus_str():
+    """Test Corpus __str__ method shows descriptive metadata."""
+    metadata = {
+        "title": "Test Corpus",
+        "description": "A test corpus for unit testing",
+        "version": "1",
+        "collection": "test_collection",
+        "citations": ["Test citation 2024"],
+    }
+    corpus = _corpus.Corpus("test", metadata, Path("/tmp/test.csv"))
+
+    result = str(corpus)
+
+    assert "Corpus: test" in result
+    assert "Title: Test Corpus" in result
+    assert "Description: A test corpus for unit testing" in result
+    assert "Version: 1" in result
+    assert "Collection: test_collection" in result
+    assert "Citation: Test citation 2024" in result
+
+
+def test_corpus_str_missing_fields():
+    """Test Corpus __str__ with missing metadata fields."""
+    metadata = {}
+    corpus = _corpus.Corpus("test", metadata, Path("/tmp/test.csv"))
+
+    result = str(corpus)
+
+    assert "Corpus: test" in result
+    assert "Title: N/A" in result
+    assert "Description: N/A" in result
+    assert "Version: N/A" in result
+    assert "Collection: N/A" in result
+    assert "Citation: N/A" in result
+
+
 def test_corpus_path_property():
     """Test Corpus path property."""
     path = Path("/tmp/test.csv")
@@ -381,3 +417,38 @@ def test_corpus_without_column_map(tmp_path):
 
     assert "report" in reports.columns
     assert reports["report"].iloc[0] == "Dream A"
+
+
+def test_corpus_n_reports(mock_corpus_csv):
+    """Test n_reports property returns correct count."""
+    metadata = {
+        "column_map": {
+            "report": "Report Text",
+            "author": "Author ID",
+            "age": "Age",
+            "sex": "Sex",
+        },
+        "author_columns": ["age", "sex"],
+    }
+
+    corpus = _corpus.Corpus("test", metadata, mock_corpus_csv)
+
+    assert corpus.n_reports == 3
+
+
+def test_corpus_n_authors(mock_corpus_csv):
+    """Test n_authors property returns correct count."""
+    metadata = {
+        "column_map": {
+            "report": "Report Text",
+            "author": "Author ID",
+            "age": "Age",
+            "sex": "Sex",
+        },
+        "author_columns": ["age", "sex"],
+    }
+
+    corpus = _corpus.Corpus("test", metadata, mock_corpus_csv)
+
+    # Should be 2 unique authors (A1 and A2)
+    assert corpus.n_authors == 2

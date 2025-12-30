@@ -188,6 +188,39 @@ class Corpus:
     def __repr__(self) -> str:
         return f"Corpus('{self.name}')"
 
+    def __str__(self) -> str:
+        """Return descriptive string representation of corpus metadata.
+
+        Returns
+        -------
+        str
+            Multi-line string containing corpus metadata from the metadata dict.
+            Does not load reports or authors data.
+        """
+        lines = [f"Corpus: {self.name}"]
+
+        # Add metadata fields in a consistent order
+        metadata_keys = [
+            ("title", "Title"),
+            ("description", "Description"),
+            ("version", "Version"),
+            ("collection", "Collection"),
+        ]
+
+        for key, label in metadata_keys:
+            value = self.metadata.get(key, "N/A")
+            lines.append(f"  {label}: {value}")
+
+        # Handle citations (list type)
+        citations = self.metadata.get("citations", [])
+        if citations:
+            # Show the first citation
+            lines.append(f"  Citation: {citations[0]}")
+        else:
+            lines.append("  Citation: N/A")
+
+        return "\n".join(lines)
+
     @property
     def path(self) -> Path:
         """Local path to cached CSV file.
@@ -251,6 +284,36 @@ class Corpus:
         # Validate the authors dataframe with pandera
         authors_df = AuthorsSchema.validate(authors_df)
         return authors_df
+
+    @property
+    def n_reports(self) -> int:
+        """Number of reports in the corpus.
+
+        Returns
+        -------
+        int
+            Total number of dream reports in the corpus.
+
+        Notes
+        -----
+        This property loads the reports data if not already loaded.
+        """
+        return len(self.reports)
+
+    @property
+    def n_authors(self) -> int:
+        """Number of unique authors in the corpus.
+
+        Returns
+        -------
+        int
+            Total number of unique authors in the corpus.
+
+        Notes
+        -----
+        This property loads the authors data if not already loaded.
+        """
+        return len(self.authors)
 
     def _load(self) -> pd.DataFrame:
         """Load and normalize full dataframe. Called once, cached.
