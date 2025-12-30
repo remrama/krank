@@ -2,17 +2,39 @@ collections:
   dreambank:
     title: "DreamBank"
     description: "..."
+    url: "https://dreambank.net"
     corpora:
       - hvdc
-      - barb_sanders
   sddb:
     title: "Sleep and Dream Database"
+    url: "https://sleepanddreamdatabase.org"
     corpora:
       - hvdc
-      - barb_sanders
 
 corpora:
+  hvdc:
+    krank_sources_repo: "dreambank"
+    title: "Hall & Van de Castle Norms"
+    description: "Historically significant collection of dream reports used to establish normative data for the Hall and Van de Castle coding system."
+    citations:
+      - Domhoff, G. W., & Schneider, A. (2008). Studying dream content using the archive and search engine on DreamBank.net. Consciousness and Cognition, 17(4), 1238-1247. https://doi.org/10.1016/j.concog.2008.06.010
+      - Hall, C. S., & Van de Castle, R. L. (1966). The content analysis of dreams. Appleton-Century-Crofts.
+    environment: "unknown"
+    probe: "unknown"
+    includes_norecall: false
+    column_map:
+      report: "report"
+      author: "author_id"
+    author_columns:
+      - "sex"
+    latest: "1"
+    versions:
+      "1":
+        download_url: "https://zenodo.org/records/18089278/files/hvdc.csv?download=1"
+        hash: "md5:bd376d9dcc77f5369e7f4a058a1ba166"
+        doi: "10.5281/zenodo.18089278"
   zhang2019:
+    krank_sources_repo: "zhang2019"
     title: "Zhang & Wamsley, 2019"
     description: "Dream reports collected from a laboratory polysomnography study"
     citations:

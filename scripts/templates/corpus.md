@@ -34,12 +34,12 @@
 
 | Column | Description |
 |-------:|:------------|
-| `author_id` | Unique author identifier |
+| `author` | Unique author identifier |
 {{ author_columns_table }}
 
 ## Source
 
-- **Original data and processing code**: [Notebook](https://github.com/krank-sources/{{ name }})
+- **Original data and processing code**: [Notebook](https://github.com/krank-sources/{{ krank_sources_repo }})
 - **Processed data file**: [Zenodo](https://doi.org/{{ doi }})
 
 ## Version History

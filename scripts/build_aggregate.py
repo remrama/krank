@@ -27,7 +27,7 @@ def compile_single_corpus(corpus_name: str) -> pd.DataFrame:
     """
     print(f"Loading {corpus_name}...")
     corpus = krank.load(corpus_name)
-    df = corpus.reports.copy()
+    df = corpus.reports[["author", "report"]].copy()
     version = corpus.metadata["version"]
     corpus_string = f"{corpus_name}-v{version}"
     df.insert(0, "corpus", corpus_string)
@@ -54,8 +54,9 @@ def build_aggregate(output_path: str = "reports.csv") -> None:
     df.to_csv(
         path_or_buf=output_path,
         index=False,
+        na_rep="N/A",
         sep=",",
-        mode="x",
+        mode="w",
         encoding="utf-8-sig",  # for improved Excel compatibility
         lineterminator="\n",
         quoting=QUOTE_NONNUMERIC,

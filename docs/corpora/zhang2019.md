@@ -39,7 +39,7 @@ Dream reports collected from a laboratory polysomnography study
 
 | Column | Description |
 |-------:|:------------|
-| `author_id` | Unique author identifier |
+| `author` | Unique author identifier |
 | `age` | Reported age of author at time of report |
 | `sex` | Reported sex of author at time of report |
 
