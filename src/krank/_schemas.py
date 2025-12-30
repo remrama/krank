@@ -18,8 +18,8 @@ class ReportsSchema(DataFrameModel):
     excluding author-specific columns. The exact columns will vary by corpus.
     """
 
-    author: Series["category"] = Field(coerce=True, nullable=False)
-    report: Series["string"] = Field(coerce=True, nullable=False)
+    author: Series["category"] = Field(coerce=True, nullable=False, unique=False)
+    report: Series["string"] = Field(coerce=True, nullable=False, unique=False)
 
     class Config:
         """Configuration for ReportsSchema."""
@@ -36,7 +36,8 @@ class AuthorsSchema(DataFrameModel):
     """
 
     author: Series["category"] = Field(coerce=True, nullable=False, unique=True)
-    sex: Optional[Series["category"]] = Field(coerce=True, nullable=True)
+    age: Optional[Series[int]] = Field(coerce=True, nullable=False, unique=False)
+    sex: Optional[Series["category"]] = Field(coerce=True, nullable=False, unique=False)
 
     class Config:
         """Configuration for AuthorsSchema."""

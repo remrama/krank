@@ -147,6 +147,30 @@ class TestAuthorsSchema:
         result = AuthorsSchema.validate(df)
         assert result["sex"].dtype.name == "category"
 
+    def test_authors_age_integer(self):
+        """Test that age column is coerced to integer when present."""
+        df = pd.DataFrame(
+            {
+                "author": ["A1", "A2", "A3"],
+                "age": [25, 30, 35],
+            }
+        )
+        result = AuthorsSchema.validate(df)
+        assert result["age"].dtype.name == "int64"
+
+    def test_authors_with_age_and_sex(self):
+        """Test that both age and sex columns are properly typed when present."""
+        df = pd.DataFrame(
+            {
+                "author": ["A1", "A2", "A3"],
+                "age": [25, 30, 35],
+                "sex": ["M", "F", "M"],
+            }
+        )
+        result = AuthorsSchema.validate(df)
+        assert result["age"].dtype.name == "int64"
+        assert result["sex"].dtype.name == "category"
+
 
 class TestAggregateReportsSchema:
     """Tests for AggregateReportsSchema validation."""
