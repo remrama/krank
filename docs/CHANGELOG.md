@@ -1,35 +1,28 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
 ## [Unreleased]
 
-## [0.1.0.dev2] - 2025-12-30
+## [v0.1.0-alpha.2] - 2025-12-30
 
 ### Added
-- Corpus info messages (#25)
-- Pretty-print corpus metadata with `krank.info()` function
-- String representation for Corpus objects displaying metadata
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit
+- Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+- Ut enim ad minim veniam, quis nostrud exercitation ullamco
 
 ### Changed
-- Improved user experience when inspecting corpus information
+- Laboris nisi ut aliquip ex ea commodo consequat
 
-## [0.0.1.dev3]
+## [v0.1.0-alpha.1]
 
 ### Added
-- Initial development release
-- Core functionality to fetch curated dream reports
-- Support for loading versioned corpora
-- Registry system for managing corpus metadata
-- Functions: `list_corpora()`, `list_versions()`, `load()`, `list_collections()`
-- Initial corpus support: hvdc, urbina1975, zhang2019
-- Data validation with Pandera schemas
-- Automatic corpus downloading and caching with Pooch
-- Documentation site with MkDocs Material
+- Duis aute irure dolor in reprehenderit in voluptate velit
+- Esse cillum dolore eu fugiat nulla pariatur
+- Excepteur sint occaecat cupidatat non proident
+- Sunt in culpa qui officia deserunt mollit anim id est laborum
+- Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+- Accusantium doloremque laudantium, totam rem aperiam
+- Eaque ipsa quae ab illo inventore veritatis et quasi architecto
 
-[Unreleased]: https://github.com/remrama/krank/compare/v0.1.0.dev2...HEAD
-[0.1.0.dev2]: https://github.com/remrama/krank/releases/tag/v0.1.0.dev2
-[0.0.1.dev3]: https://github.com/remrama/krank/releases/tag/v0.0.1.dev3
+[Unreleased]: https://github.com/remrama/krank/compare/v0.1.0-alpha.2...HEAD
+[v0.1.0-alpha.2]: https://github.com/remrama/krank/releases/tag/v0.1.0-alpha.2
+[v0.1.0-alpha.1]: https://github.com/remrama/krank/releases/tag/v0.1.0-alpha.1
