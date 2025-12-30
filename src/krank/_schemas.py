@@ -4,9 +4,10 @@ This module defines pandera schemas for validating dataframes used throughout
 the krank package to ensure data quality and consistency.
 """
 
+from typing import Optional
+
 from pandera.pandas import DataFrameModel, Field
 from pandera.typing import Series
-from typing import Optional
 
 __all__ = ["ReportsSchema", "AuthorsSchema", "AggregateReportsSchema"]
 

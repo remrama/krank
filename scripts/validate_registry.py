@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validate registry.yaml schema, uniqueness, and alphabetical ordering.
 
-This script validates the registry.yaml file against a Pydantic schema and checks
+This script validates the registry.yaml file against a JSON schema and checks
 for duplicate entries and alphabetical ordering of collections and corpora.
 
 Can be run locally or in CI to ensure registry quality.
@@ -18,117 +18,9 @@ Exit codes:
 import argparse
 import sys
 from pathlib import Path
-from typing import Any
 
 import yaml
-from pydantic import BaseModel, Field, ValidationError, field_validator
-
-
-class VersionInfo(BaseModel):
-    """Schema for version-specific information."""
-
-    download_url: str = Field(..., description="URL to download the corpus file")
-    hash: str = Field(
-        ..., pattern=r"^(md5|sha256):[a-fA-F0-9]+$", description="Hash of the file"
-    )
-    doi: str = Field(..., description="DOI for the corpus version")
-
-    @field_validator("download_url")
-    @classmethod
-    def validate_download_url(cls, v: str) -> str:
-        """Validate that download_url is a valid URL."""
-        if not v.startswith(("http://", "https://")):
-            raise ValueError("download_url must start with http:// or https://")
-        return v
-
-
-class CorpusEntry(BaseModel):
-    """Schema for a corpus entry in the registry."""
-
-    krank_sources_repo: str = Field(
-        ..., description="Repository name in krank-sources organization"
-    )
-    title: str = Field(..., description="Human-readable title of the corpus")
-    description: str = Field(..., description="Description of the corpus")
-    citations: list[str] = Field(
-        ..., min_length=1, description="List of citations for the corpus"
-    )
-    environment: str = Field(..., description="Environment where data was collected")
-    probe: str = Field(..., description="Probing method used")
-    includes_norecall: bool = Field(
-        ..., description="Whether the corpus includes no-recall reports"
-    )
-    column_map: dict[str, str] = Field(
-        ..., description="Mapping of standard column names to corpus-specific names"
-    )
-    author_columns: list[str] = Field(
-        ..., description="List of author-level metadata columns"
-    )
-    latest: str = Field(..., description="Latest version identifier")
-    versions: dict[str, VersionInfo] = Field(
-        ..., min_length=1, description="Available versions"
-    )
-    column_descriptions: dict[str, str] | None = Field(
-        None, description="Optional descriptions for columns"
-    )
-
-    @field_validator("column_map")
-    @classmethod
-    def validate_column_map(cls, v: dict[str, str]) -> dict[str, str]:
-        """Validate that column_map contains required keys."""
-        required_keys = {"report", "author"}
-        if not required_keys.issubset(v.keys()):
-            missing = required_keys - set(v.keys())
-            raise ValueError(f"column_map must contain keys: {missing}")
-        return v
-
-    @field_validator("versions")
-    @classmethod
-    def validate_latest_in_versions(cls, v: dict[str, Any], info) -> dict[str, Any]:
-        """Validate that latest version exists in versions dict."""
-        # This validator runs after all fields are set, so we can access other fields
-        # But info.data might not have 'latest' yet, so we skip this check here
-        # and do it in the model validator instead
-        return v
-
-    def model_post_init(self, __context: Any) -> None:
-        """Post-initialization validation."""
-        if self.latest not in self.versions:
-            raise ValueError(
-                f"latest version '{self.latest}' not found in versions: {list(self.versions.keys())}"
-            )
-
-
-class CollectionEntry(BaseModel):
-    """Schema for a collection entry in the registry."""
-
-    title: str = Field(..., description="Human-readable title of the collection")
-    description: str | None = Field(
-        None, description="Optional description of the collection"
-    )
-    url: str = Field(..., description="URL for the collection")
-    corpora: list[str] = Field(
-        ..., min_length=1, description="List of corpus names in this collection"
-    )
-
-    @field_validator("url")
-    @classmethod
-    def validate_url(cls, v: str) -> str:
-        """Validate that url is a valid URL."""
-        if not v.startswith(("http://", "https://")):
-            raise ValueError("url must start with http:// or https://")
-        return v
-
-
-class Registry(BaseModel):
-    """Schema for the registry.yaml file."""
-
-    collections: dict[str, CollectionEntry] = Field(
-        ..., description="Dictionary of collection entries"
-    )
-    corpora: dict[str, CorpusEntry] = Field(
-        ..., description="Dictionary of corpus entries"
-    )
+from jsonschema import Draft7Validator
 
 
 def load_yaml(path: Path) -> dict:
@@ -137,8 +29,14 @@ def load_yaml(path: Path) -> dict:
         return yaml.safe_load(f)
 
 
+def load_schema() -> dict:
+    """Load the JSON schema from registry-schema.yaml."""
+    schema_path = Path(__file__).parent.parent / "src" / "krank" / "data" / "registry-schema.yaml"
+    return load_yaml(schema_path)
+
+
 def validate_schema(registry_data: dict) -> tuple[bool, list[str]]:
-    """Validate registry data against Pydantic schema.
+    """Validate registry data against JSON schema.
 
     Parameters
     ----------
@@ -151,15 +49,33 @@ def validate_schema(registry_data: dict) -> tuple[bool, list[str]]:
         Tuple of (is_valid, error_messages).
     """
     errors = []
-    try:
-        Registry.model_validate(registry_data)
-        return True, []
-    except ValidationError as e:
-        for error in e.errors():
-            loc = " -> ".join(str(x) for x in error["loc"])
-            msg = error["msg"]
-            errors.append(f"  ❌ {loc}: {msg}")
-        return False, errors
+    schema = load_schema()
+    
+    # Create a validator
+    validator = Draft7Validator(schema)
+    
+    # Validate and collect errors
+    validation_errors = sorted(validator.iter_errors(registry_data), key=lambda e: e.path)
+    
+    if not validation_errors:
+        # Additional custom validations
+        # Check that 'latest' version exists in 'versions'
+        for corpus_name, corpus_data in registry_data.get("corpora", {}).items():
+            latest = corpus_data.get("latest")
+            versions = corpus_data.get("versions", {})
+            if latest and latest not in versions:
+                errors.append(
+                    f"  ❌ corpora -> {corpus_name} -> latest: "
+                    f"Version '{latest}' not found in versions {list(versions.keys())}"
+                )
+    
+    for error in validation_errors:
+        # Format the error path
+        path = " -> ".join(str(p) for p in error.path) if error.path else "root"
+        msg = error.message
+        errors.append(f"  ❌ {path}: {msg}")
+    
+    return len(errors) == 0, errors
 
 
 def validate_alphabetical_order(
