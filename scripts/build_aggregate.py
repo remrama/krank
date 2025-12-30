@@ -9,6 +9,7 @@ from csv import QUOTE_NONNUMERIC
 import pandas as pd
 
 import krank
+from krank._schemas import AggregateReportsSchema
 
 
 def compile_single_corpus(corpus_name: str) -> pd.DataFrame:
@@ -50,6 +51,9 @@ def build_aggregate(output_path: str = "reports.csv") -> None:
     corpora = krank.list_corpora()
 
     df = pd.concat([compile_single_corpus(name) for name in corpora], ignore_index=True)
+
+    # Validate the aggregate dataframe with pandera
+    df = AggregateReportsSchema.validate(df)
 
     df.to_csv(
         path_or_buf=output_path,
