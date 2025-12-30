@@ -5,6 +5,7 @@ collections:
     url: "https://dreambank.net"
     corpora:
       - hvdc
+      - urbina1975
   sddb:
     title: "Sleep and Dream Database"
     url: "https://sleepanddreamdatabase.org"
