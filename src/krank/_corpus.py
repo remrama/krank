@@ -69,32 +69,32 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
     Notes
     -----
     Normalization steps applied in order:
-    
+
     1. Apply ftfy text fixing with explicit configuration:
        - Fix mojibake (text decoded in wrong encoding)
        - Replace curly quotes with straight quotes
        - Apply NFC unicode normalization
        - Handle replacement characters (�) in lossy sequences where possible
        - Fix various encoding issues and control characters
-    
+
     2. Replace ellipsis character (…) with three dots (...)
-    
+
     3. Collapse all whitespace (newlines, tabs, multiple spaces) to single spaces
-    
+
     4. Strip leading and trailing whitespace
-    
+
     5. Strip surrounding quotes (single or double) from the entire report
-    
+
     6. Strip leading and trailing whitespace again (to remove any whitespace
        that was inside the surrounding quotes)
-    
+
     7. Check for remaining replacement characters (�) and warn if present
-    
+
     8. Verify no empty dream reports remain
-    
+
     The ftfy library handles most text normalization with a single config.
     See https://ftfy.readthedocs.io for details on each configuration option.
-    
+
     **Note that dream reports loaded via krank may look slightly different than
     those downloaded directly from source archives due to this normalization.**
     """
@@ -118,9 +118,7 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
     # Strip surrounding quotes (both single and double)
     # Only strip if the entire text is quoted (starts and ends with matching quotes)
     # Using regex for vectorized operation: match quoted strings and capture inner content
-    df[text_column] = df[text_column].str.replace(
-        r'^(["\'])(.+)\1$', r'\2', regex=True
-    )
+    df[text_column] = df[text_column].str.replace(r'^(["\'])(.+)\1$', r"\2", regex=True)
 
     # Strip leading/trailing whitespace again
     # This handles whitespace that was inside the surrounding quotes

@@ -12,4 +12,4 @@ jobs:
       - name: "Formatting"
         uses: astral-sh/ruff-action@v3
         with:
-          args: "format --check"
+          args: "format --check --diff"
