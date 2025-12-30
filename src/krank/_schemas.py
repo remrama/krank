@@ -36,7 +36,7 @@ class AuthorsSchema(DataFrameModel):
     """
 
     author: Series["category"] = Field(coerce=True, nullable=False, unique=True)
-    sex: Optional[Series["category"]] = Field(coerce=True)
+    sex: Optional[Series["category"]] = Field(coerce=True, nullable=True)
 
     class Config:
         """Configuration for AuthorsSchema."""
