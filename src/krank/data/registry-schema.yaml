@@ -139,7 +139,7 @@ properties:
               
               hash:
                 type: string
-                pattern: "^(md5|sha256):[a-fA-F0-9]+$"
+                pattern: "^md5:[a-fA-F0-9]{32}$|^sha256:[a-fA-F0-9]{64}$"
                 description: File hash for verification (format "md5:xxx" or "sha256:xxx")
               
               doi:

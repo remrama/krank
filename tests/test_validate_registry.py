@@ -45,7 +45,7 @@ def valid_registry():
                 "versions": {
                     "1": {
                         "download_url": "https://example.com/test.csv",
-                        "hash": "md5:abc123",
+                        "hash": "md5:5d41402abc4b2a76b9719d911017c592",
                         "doi": "10.1234/test",
                     }
                 },

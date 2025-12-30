@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 import yaml
-from jsonschema import Draft7Validator
+from jsonschema import Draft7Validator, FormatChecker
 
 
 def load_yaml(path: Path) -> dict:
@@ -51,8 +51,8 @@ def validate_schema(registry_data: dict) -> tuple[bool, list[str]]:
     errors = []
     schema = load_schema()
     
-    # Create a validator
-    validator = Draft7Validator(schema)
+    # Create a validator with format checker
+    validator = Draft7Validator(schema, format_checker=FormatChecker())
     
     # Validate and collect errors
     validation_errors = sorted(validator.iter_errors(registry_data), key=lambda e: e.path)
