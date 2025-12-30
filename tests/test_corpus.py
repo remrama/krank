@@ -229,18 +229,6 @@ def test_normalize_text_combined_issues():
     assert result["report"].iloc[0] == expected
 
 
-def test_strip_surrounding_quotes():
-    """Test the helper function for stripping quotes."""
-    assert _corpus._strip_surrounding_quotes('"quoted"') == "quoted"
-    assert _corpus._strip_surrounding_quotes("'quoted'") == "quoted"
-    assert _corpus._strip_surrounding_quotes('text with "quotes" inside') == 'text with "quotes" inside'
-    assert _corpus._strip_surrounding_quotes("no quotes") == "no quotes"
-    assert _corpus._strip_surrounding_quotes('"') == '"'  # Single char
-    assert _corpus._strip_surrounding_quotes("'") == "'"  # Single char
-    assert _corpus._strip_surrounding_quotes('""') == ""  # Empty after strip
-    assert _corpus._strip_surrounding_quotes('"mismatched\'') == '"mismatched\''  # Not stripped
-
-
 def test_corpus_init():
     """Test Corpus initialization."""
     metadata = {"title": "Test"}

@@ -16,6 +16,29 @@ from ._schemas import AuthorsSchema, ReportsSchema
 __all__ = ["Corpus"]
 
 
+# Configure ftfy with all options explicitly set
+# This provides a single config location for most normalization decisions
+# Defined at module level for performance (avoid recreating on each call)
+_FTFY_CONFIG = TextFixerConfig(
+    unescape_html="auto",  # Unescape HTML entities when safe
+    remove_terminal_escapes=True,  # Remove ANSI terminal escapes
+    fix_encoding=True,  # Fix mojibake
+    restore_byte_a0=True,  # Restore non-breaking spaces
+    replace_lossy_sequences=True,  # Handle � replacement characters
+    decode_inconsistent_utf8=True,  # Fix mixed encoding issues
+    fix_c1_controls=True,  # Fix C1 control characters
+    fix_latin_ligatures=True,  # Fix ligatures like ﬁ → fi
+    fix_character_width=True,  # Fix full-width characters
+    uncurl_quotes=True,  # Replace curly quotes with straight quotes
+    fix_line_breaks=True,  # Normalize line breaks
+    fix_surrogates=True,  # Fix surrogate pairs
+    remove_control_chars=True,  # Remove control characters
+    normalization="NFC",  # Apply NFC unicode normalization
+    max_decode_length=1000000,  # Max segment length for processing
+    explain=False,  # Don't generate explanations (for performance)
+)
+
+
 def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
     """Apply universal text normalization to dream text column.
 
@@ -65,29 +88,10 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
     """
     df = df.copy()
 
-    # Configure ftfy with all options explicitly set
-    # This provides a single config location for most normalization decisions
-    ftfy_config = TextFixerConfig(
-        unescape_html="auto",  # Unescape HTML entities when safe
-        remove_terminal_escapes=True,  # Remove ANSI terminal escapes
-        fix_encoding=True,  # Fix mojibake
-        restore_byte_a0=True,  # Restore non-breaking spaces
-        replace_lossy_sequences=True,  # Handle � replacement characters
-        decode_inconsistent_utf8=True,  # Fix mixed encoding issues
-        fix_c1_controls=True,  # Fix C1 control characters
-        fix_latin_ligatures=True,  # Fix ligatures like ﬁ → fi
-        fix_character_width=True,  # Fix full-width characters
-        uncurl_quotes=True,  # Replace curly quotes with straight quotes
-        fix_line_breaks=True,  # Normalize line breaks
-        fix_surrogates=True,  # Fix surrogate pairs
-        remove_control_chars=True,  # Remove control characters
-        normalization="NFC",  # Apply NFC unicode normalization
-        max_decode_length=1000000,  # Max segment length for processing
-        explain=False,  # Don't generate explanations (for performance)
+    # Apply ftfy text fixing using module-level config
+    df[text_column] = df[text_column].apply(
+        lambda text: ftfy.fix_text(text, _FTFY_CONFIG)
     )
-
-    # Apply ftfy text fixing
-    df[text_column] = df[text_column].apply(lambda text: ftfy.fix_text(text, ftfy_config))
 
     # Replace ellipsis character with three dots
     # (ftfy preserves ellipsis, but we want consistent three-dot representation)
@@ -101,7 +105,10 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
 
     # Strip surrounding quotes (both single and double)
     # Only strip if the entire text is quoted (starts and ends with matching quotes)
-    df[text_column] = df[text_column].apply(_strip_surrounding_quotes)
+    # Using regex for vectorized operation: match quoted strings and capture inner content
+    df[text_column] = df[text_column].str.replace(
+        r'^(["\'])(.+)\1$', r'\2', regex=True
+    )
 
     # Verify no empty dream reports
     empty_count = (df[text_column] == "").sum()
@@ -112,29 +119,6 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
         )
 
     return df
-
-
-def _strip_surrounding_quotes(text: str) -> str:
-    """Strip surrounding quotes from text if present.
-
-    Only removes quotes that surround the entire text (matching pairs).
-    Quotes within the text are preserved.
-
-    Parameters
-    ----------
-    text : str
-        Text to process.
-
-    Returns
-    -------
-    str
-        Text with surrounding quotes removed if present.
-    """
-    if len(text) >= 2:
-        # Check for matching quotes at start and end
-        if (text[0] == '"' and text[-1] == '"') or (text[0] == "'" and text[-1] == "'"):
-            return text[1:-1]
-    return text
 
 
 class Corpus:
