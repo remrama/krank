@@ -82,8 +82,11 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
 
     Raises
     ------
+    TypeError
+        If df is not a pandas DataFrame or text_column is not a string.
     ValueError
-        If any dream reports are empty strings after normalization.
+        If text_column is not in the DataFrame, or if any dream reports are
+        empty strings after normalization.
 
     Warnings
     --------
@@ -123,6 +126,19 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
     **Note that dream reports loaded via krank may look slightly different than
     those downloaded directly from source archives due to this normalization.**
     """
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError(
+            f"df must be a pandas DataFrame, got {type(df).__name__}"
+        )
+    if not isinstance(text_column, str):
+        raise TypeError(
+            f"text_column must be a string, got {type(text_column).__name__}"
+        )
+    if text_column not in df.columns:
+        raise ValueError(
+            f"Column '{text_column}' not found in DataFrame. "
+            f"Available columns: {', '.join(df.columns)}"
+        )
     df = df.copy()
 
     # Apply ftfy text fixing using module-level config
@@ -204,6 +220,18 @@ class Corpus:
     """
 
     def __init__(self, name: str, metadata: dict, path: Path):
+        if not isinstance(name, str):
+            raise TypeError(f"Corpus name must be a string, got {type(name).__name__}")
+        if not name:
+            raise ValueError("Corpus name cannot be empty")
+        if not isinstance(metadata, dict):
+            raise TypeError(
+                f"Metadata must be a dictionary, got {type(metadata).__name__}"
+            )
+        if not isinstance(path, Path):
+            raise TypeError(
+                f"Path must be a pathlib.Path object, got {type(path).__name__}"
+            )
         self.name = name
         self.metadata = metadata
         self._path = path
