@@ -32,13 +32,29 @@ krank.list_versions("zhang2019")
 # Print metadata about a single corpus.
 krank.info("zhang2019")
 # Corpus: zhang2019
-#   Title: Zhang & Wamsley 2019 Dream Reports
+#   Title: Zhang & Wamsley, 2019
 #   Description: Dream reports collected from a laboratory polysomnography study
+#   Version: 1
+#   Citations: Zhang, J., & Wamsley, E. J. (2019); Wong, W., Herzog, R., ... (2025)
 
 # Load a corpus.
 corpus = krank.load("zhang2019")
 corpus
 # Corpus('zhang2019')
+
+# Print corpus info (same as krank.info()).
+print(corpus)
+# Corpus: zhang2019
+#   Title: Zhang & Wamsley, 2019
+#   Description: Dream reports collected from a laboratory polysomnography study
+#   Version: 1
+#   Citations: Zhang, J., & Wamsley, E. J. (2019); Wong, W., Herzog, R., ... (2025)
+
+# Get number of reports and authors.
+corpus.n_reports
+# 120
+corpus.n_authors
+# 16
 
 # Return metadata as a dictionary.
 corpus.metadata["title"]
