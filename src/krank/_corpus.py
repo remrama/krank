@@ -41,16 +41,22 @@ def _extract_author_year(citation: str) -> str:
     year = year_match.group(1) or year_match.group(2) if year_match else None
 
     # Try to extract author(s) - text before the year
-    if year:
-        # Find the author part (before year)
-        author_part = citation.split(str(year))[0]
-        # Clean up - remove trailing punctuation and whitespace
+    if year and year_match:
+        # Get the author part using the match position (more reliable than split)
+        author_part = citation[: year_match.start()].strip()
+        # Clean up - remove trailing punctuation
         author_part = re.sub(r"[,\.\(\)\s]+$", "", author_part)
 
-        # Check if there are multiple authors by looking for & or et al.
-        if "&" in author_part or "et al" in author_part.lower():
+        # Check if there are multiple authors by looking for &, 'and', or 'et al.'
+        if (
+            "&" in author_part
+            or " and " in author_part.lower()
+            or "et al" in author_part.lower()
+        ):
             # Get first author (before comma, ampersand, or "and")
-            first_author = re.split(r"[,&]|(?:\s+and\s+)", author_part)[0].strip()
+            first_author = re.split(
+                r"[,&]|(?:\s+and\s+)", author_part, flags=re.IGNORECASE
+            )[0].strip()
             return f"{first_author} et al., {year}"
         else:
             # Single author - just use the surname (first part before comma)
