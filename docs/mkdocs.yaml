@@ -30,6 +30,7 @@ nav:
   - Home: index.md
   - Getting Started: getting-started.md
   - Usage: usage.md
+  - Changelog: CHANGELOG.md
   - Corpora:
     - Overview: corpora/index.md
     - hvdc: corpora/hvdc.md
