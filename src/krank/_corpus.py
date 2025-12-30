@@ -9,6 +9,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from ._schemas import AuthorsSchema, ReportsSchema
+
 __all__ = ["Corpus"]
 
 
@@ -117,7 +119,10 @@ class Corpus:
         """
         df = self._load()
         author_columns = self.metadata.get("author_columns", [])
-        return df.drop(columns=author_columns).copy()
+        reports_df = df.drop(columns=author_columns).copy()
+        # Validate the reports dataframe with pandera
+        reports_df = ReportsSchema.validate(reports_df)
+        return reports_df
 
     @property
     def authors(self) -> pd.DataFrame:
@@ -140,7 +145,10 @@ class Corpus:
         df = self._load()
         author_columns = self.metadata.get("author_columns", [])
         cols = ["author"] + author_columns
-        return df[cols].drop_duplicates().reset_index(drop=True)
+        authors_df = df[cols].drop_duplicates().reset_index(drop=True)
+        # Validate the authors dataframe with pandera
+        authors_df = AuthorsSchema.validate(authors_df)
+        return authors_df
 
     def _load(self) -> pd.DataFrame:
         """Load and normalize full dataframe. Called once, cached.
