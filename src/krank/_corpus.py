@@ -5,6 +5,7 @@ including lazy-loading of data, text normalization, and separation of report
 and author metadata.
 """
 
+import warnings
 from pathlib import Path
 
 import ftfy
@@ -59,6 +60,12 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
     ValueError
         If any dream reports are empty strings after normalization.
 
+    Warnings
+    --------
+    UserWarning
+        If replacement characters (�) remain after normalization, indicating
+        unrecoverable text corruption.
+
     Notes
     -----
     Normalization steps applied in order:
@@ -67,7 +74,7 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
        - Fix mojibake (text decoded in wrong encoding)
        - Replace curly quotes with straight quotes
        - Apply NFC unicode normalization
-       - Handle replacement characters (�) in lossy sequences
+       - Handle replacement characters (�) in lossy sequences where possible
        - Fix various encoding issues and control characters
     
     2. Replace ellipsis character (…) with three dots (...)
@@ -78,13 +85,18 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
     
     5. Strip surrounding quotes (single or double) from the entire report
     
-    6. Verify no empty dream reports remain
+    6. Strip leading and trailing whitespace again (to remove any whitespace
+       that was inside the surrounding quotes)
+    
+    7. Check for remaining replacement characters (�) and warn if present
+    
+    8. Verify no empty dream reports remain
     
     The ftfy library handles most text normalization with a single config.
     See https://ftfy.readthedocs.io for details on each configuration option.
     
-    Note that dream reports loaded via krank may look slightly different than
-    those downloaded directly from source archives due to this normalization.
+    **Note that dream reports loaded via krank may look slightly different than
+    those downloaded directly from source archives due to this normalization.**
     """
     df = df.copy()
 
@@ -109,6 +121,23 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
     df[text_column] = df[text_column].str.replace(
         r'^(["\'])(.+)\1$', r'\2', regex=True
     )
+
+    # Strip leading/trailing whitespace again
+    # This handles whitespace that was inside the surrounding quotes
+    df[text_column] = df[text_column].str.strip()
+
+    # Check for remaining replacement characters (�)
+    # These indicate unrecoverable text corruption that ftfy couldn't fix
+    replacement_char_mask = df[text_column].str.contains("\ufffd", na=False)
+    replacement_count = replacement_char_mask.sum()
+    if replacement_count > 0:
+        warnings.warn(
+            f"Found {replacement_count} dream report(s) containing replacement "
+            f"characters (�) after normalization. These indicate unrecoverable "
+            f"text corruption in the source data.",
+            UserWarning,
+            stacklevel=2,
+        )
 
     # Verify no empty dream reports
     empty_count = (df[text_column] == "").sum()

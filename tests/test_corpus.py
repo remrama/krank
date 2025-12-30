@@ -122,6 +122,35 @@ def test_normalize_text_surrounding_quotes():
     assert result["report"].tolist() == expected
 
 
+def test_normalize_text_quotes_with_whitespace():
+    """Test that whitespace inside quotes is properly handled.
+    
+    This tests the specific case mentioned in PR feedback where whitespace
+    within quotes should be removed after stripping the quotes.
+    """
+    df = pd.DataFrame(
+        {
+            "report": [
+                '"  text with internal spaces  "',  # Whitespace inside quotes
+                '  "text with external spaces"  ',  # Whitespace outside quotes
+                '  "  text with both  "  ',  # Whitespace on both sides
+                '"no extra spaces"',  # No extra whitespace
+            ]
+        }
+    )
+
+    result = _corpus._normalize_text(df, "report")
+
+    expected = [
+        "text with internal spaces",  # Internal whitespace stripped
+        "text with external spaces",  # External whitespace stripped
+        "text with both",  # Both types stripped
+        "no extra spaces",  # Unchanged except quotes removed
+    ]
+
+    assert result["report"].tolist() == expected
+
+
 def test_normalize_text_unicode_normalization():
     """Test that NFC unicode normalization is applied."""
     # Create text with decomposed unicode (NFD form)
@@ -157,7 +186,7 @@ def test_normalize_text_mojibake():
 
 
 def test_normalize_text_replacement_character():
-    """Test handling of replacement character (�)."""
+    """Test handling of replacement character (�) with warning."""
     df = pd.DataFrame(
         {
             "report": [
@@ -167,11 +196,12 @@ def test_normalize_text_replacement_character():
         }
     )
 
-    result = _corpus._normalize_text(df, "report")
+    # Should emit a warning about remaining replacement characters
+    with pytest.warns(UserWarning, match="replacement characters"):
+        result = _corpus._normalize_text(df, "report")
 
-    # ftfy with replace_lossy_sequences=True should handle this
-    # The exact behavior depends on context, but it should not error
-    assert isinstance(result["report"].iloc[0], str)
+    # The replacement character remains (ftfy can't fix it)
+    assert "\ufffd" in result["report"].iloc[0]
     assert isinstance(result["report"].iloc[1], str)
 
 
