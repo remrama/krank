@@ -69,6 +69,6 @@ corpus.reports.head()
 
 ## Contributing
 
-Open an [Issue](https://github.com/remrama/krank) to request a new corpus (or for any other reason).
+Open an [Issue](https://github.com/remrama/krank/issues) to request a new corpus (or for any other reason).
 
 Adding a new corpus does not require any changes to underlying code. It only needs to be added to the [registry.yaml](./src/krank/data/registry.yaml) file (and one line to [mkdocs.yaml](./docs/mkdocs.yaml)). Browse that for other corpora and see what would need to be filled out for the new dataset. To keep things separate, most of the corpus curation code is over in the [krank sources collection](https://github.com/krank-sources), a set of repositories under a single organization heading. But if you want a new dataset there, place an Issue here in this repository.
