@@ -4,21 +4,21 @@ This module defines pandera schemas for validating dataframes used throughout
 the krank package to ensure data quality and consistency.
 """
 
-import pandera.pandas as pa
+from pandera.pandas import DataFrameModel, Field
 from pandera.typing import Series
 
 __all__ = ["ReportsSchema", "AuthorsSchema", "AggregateReportsSchema"]
 
 
-class ReportsSchema(pa.DataFrameModel):
+class ReportsSchema(DataFrameModel):
     """Schema for validating corpus reports dataframes.
 
     Reports dataframes contain dream reports and associated report-level metadata,
     excluding author-specific columns. The exact columns will vary by corpus.
     """
 
-    author: Series[str] = pa.Field(coerce=True, nullable=False)
-    report: Series[str] = pa.Field(coerce=True, nullable=False)
+    author: Series[str] = Field(coerce=True, nullable=False)
+    report: Series[str] = Field(coerce=True, nullable=False)
 
     class Config:
         """Configuration for ReportsSchema."""
@@ -27,14 +27,14 @@ class ReportsSchema(pa.DataFrameModel):
         coerce = True  # Coerce data types if possible
 
 
-class AuthorsSchema(pa.DataFrameModel):
+class AuthorsSchema(DataFrameModel):
     """Schema for validating corpus authors dataframes.
 
     Authors dataframes contain unique author IDs and their associated metadata.
     Each author appears only once.
     """
 
-    author: Series[str] = pa.Field(coerce=True, nullable=False, unique=True)
+    author: Series[str] = Field(coerce=True, nullable=False, unique=True)
 
     class Config:
         """Configuration for AuthorsSchema."""
@@ -43,16 +43,16 @@ class AuthorsSchema(pa.DataFrameModel):
         coerce = True  # Coerce data types if possible
 
 
-class AggregateReportsSchema(pa.DataFrameModel):
+class AggregateReportsSchema(DataFrameModel):
     """Schema for validating aggregate reports dataframe.
 
     The aggregate reports dataframe combines all corpora into a single file
     for distribution as a release artifact.
     """
 
-    corpus: Series[str] = pa.Field(coerce=True, nullable=False)
-    author: Series[str] = pa.Field(coerce=True, nullable=False)
-    report: Series[str] = pa.Field(coerce=True, nullable=False)
+    corpus: Series[str] = Field(coerce=True, nullable=False)
+    author: Series[str] = Field(coerce=True, nullable=False)
+    report: Series[str] = Field(coerce=True, nullable=False)
 
     class Config:
         """Configuration for AggregateReportsSchema."""
