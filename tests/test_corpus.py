@@ -47,6 +47,200 @@ def test_normalize_text_preserves_original():
     assert df["report"].iloc[0] == original_value
 
 
+def test_normalize_text_curly_quotes():
+    """Test that curly quotes are converted to straight quotes."""
+    df = pd.DataFrame(
+        {
+            "report": [
+                "\u201cDouble curly quotes\u201d",  # Surrounding - will be stripped
+                "\u2018Single curly quotes\u2019",  # Surrounding - will be stripped
+                "Mixed \u201cleft\u201d and \u2018right\u2019 quotes",  # Internal - preserved
+                "Text with \u201cquoted phrase\u201d inside",  # Internal - preserved
+            ]
+        }
+    )
+
+    result = _corpus._normalize_text(df, "report")
+
+    expected = [
+        "Double curly quotes",  # Surrounding quotes stripped
+        "Single curly quotes",  # Surrounding quotes stripped
+        'Mixed "left" and \'right\' quotes',  # Internal quotes preserved and converted
+        'Text with "quoted phrase" inside',  # Internal quotes preserved and converted
+    ]
+
+    assert result["report"].tolist() == expected
+
+
+def test_normalize_text_ellipsis():
+    """Test that ellipsis character is replaced with three dots."""
+    df = pd.DataFrame(
+        {
+            "report": [
+                "Text with\u2026 ellipsis",
+                "Multiple\u2026 ellipses\u2026 here",
+                "No ellipsis here",
+            ]
+        }
+    )
+
+    result = _corpus._normalize_text(df, "report")
+
+    expected = [
+        "Text with... ellipsis",
+        "Multiple... ellipses... here",
+        "No ellipsis here",
+    ]
+
+    assert result["report"].tolist() == expected
+
+
+def test_normalize_text_surrounding_quotes():
+    """Test that surrounding quotes are stripped."""
+    df = pd.DataFrame(
+        {
+            "report": [
+                '"Entire text in double quotes"',
+                "'Entire text in single quotes'",
+                'Text with "inner quotes" preserved',
+                "No quotes",
+                '"',  # Single quote char
+            ]
+        }
+    )
+
+    result = _corpus._normalize_text(df, "report")
+
+    expected = [
+        "Entire text in double quotes",
+        "Entire text in single quotes",
+        'Text with "inner quotes" preserved',
+        "No quotes",
+        '"',  # Single char not stripped
+    ]
+
+    assert result["report"].tolist() == expected
+
+
+def test_normalize_text_unicode_normalization():
+    """Test that NFC unicode normalization is applied."""
+    # Create text with decomposed unicode (NFD form)
+    # café with decomposed é (e + combining acute accent)
+    nfd_text = "cafe\u0301"  # NFD form
+    nfc_text = "café"  # NFC form
+
+    df = pd.DataFrame({"report": [nfd_text]})
+
+    result = _corpus._normalize_text(df, "report")
+
+    # Should be normalized to NFC
+    assert result["report"].iloc[0] == nfc_text
+
+
+def test_normalize_text_mojibake():
+    """Test that mojibake is fixed."""
+    # Example of mojibake: UTF-8 text incorrectly decoded as Latin-1
+    df = pd.DataFrame(
+        {
+            "report": [
+                "Ã©",  # Should be é
+                "test text",  # Normal text should be unchanged
+            ]
+        }
+    )
+
+    result = _corpus._normalize_text(df, "report")
+
+    # Mojibake should be fixed
+    assert result["report"].iloc[0] == "é"
+    assert result["report"].iloc[1] == "test text"
+
+
+def test_normalize_text_replacement_character():
+    """Test handling of replacement character (�)."""
+    df = pd.DataFrame(
+        {
+            "report": [
+                "Text with replacement \ufffd character",
+                "Normal text",
+            ]
+        }
+    )
+
+    result = _corpus._normalize_text(df, "report")
+
+    # ftfy with replace_lossy_sequences=True should handle this
+    # The exact behavior depends on context, but it should not error
+    assert isinstance(result["report"].iloc[0], str)
+    assert isinstance(result["report"].iloc[1], str)
+
+
+def test_normalize_text_empty_reports_error():
+    """Test that empty reports after normalization raise an error."""
+    df = pd.DataFrame(
+        {
+            "report": [
+                "Valid text",
+                "   ",  # Only whitespace - becomes empty after strip
+                "Another valid text",
+            ]
+        }
+    )
+
+    with pytest.raises(ValueError, match="empty dream report"):
+        _corpus._normalize_text(df, "report")
+
+
+def test_normalize_text_empty_reports_initially_empty():
+    """Test that initially empty reports raise an error."""
+    df = pd.DataFrame(
+        {
+            "report": [
+                "Valid text",
+                "",  # Empty string
+            ]
+        }
+    )
+
+    with pytest.raises(ValueError, match="empty dream report"):
+        _corpus._normalize_text(df, "report")
+
+
+def test_normalize_text_combined_issues():
+    """Test normalization with multiple issues in single text."""
+    df = pd.DataFrame(
+        {
+            "report": [
+                '  "\u201cMixed\u201d issues\u2026  with   spaces\nand newlines"  ',
+            ]
+        }
+    )
+
+    result = _corpus._normalize_text(df, "report")
+
+    # Should have:
+    # - Stripped outer whitespace
+    # - Stripped surrounding quotes (the outer ")
+    # - Converted curly quotes to straight
+    # - Replaced ellipsis with ...
+    # - Collapsed whitespace
+    expected = '"Mixed" issues... with spaces and newlines'
+
+    assert result["report"].iloc[0] == expected
+
+
+def test_strip_surrounding_quotes():
+    """Test the helper function for stripping quotes."""
+    assert _corpus._strip_surrounding_quotes('"quoted"') == "quoted"
+    assert _corpus._strip_surrounding_quotes("'quoted'") == "quoted"
+    assert _corpus._strip_surrounding_quotes('text with "quotes" inside') == 'text with "quotes" inside'
+    assert _corpus._strip_surrounding_quotes("no quotes") == "no quotes"
+    assert _corpus._strip_surrounding_quotes('"') == '"'  # Single char
+    assert _corpus._strip_surrounding_quotes("'") == "'"  # Single char
+    assert _corpus._strip_surrounding_quotes('""') == ""  # Empty after strip
+    assert _corpus._strip_surrounding_quotes('"mismatched\'') == '"mismatched\''  # Not stripped
+
+
 def test_corpus_init():
     """Test Corpus initialization."""
     metadata = {"title": "Test"}
