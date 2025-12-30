@@ -65,7 +65,7 @@ def test_normalize_text_curly_quotes():
     expected = [
         "Double curly quotes",  # Surrounding quotes stripped
         "Single curly quotes",  # Surrounding quotes stripped
-        'Mixed "left" and \'right\' quotes',  # Internal quotes preserved and converted
+        "Mixed \"left\" and 'right' quotes",  # Internal quotes preserved and converted
         'Text with "quoted phrase" inside',  # Internal quotes preserved and converted
     ]
 
@@ -124,7 +124,7 @@ def test_normalize_text_surrounding_quotes():
 
 def test_normalize_text_quotes_with_whitespace():
     """Test that whitespace inside quotes is properly handled.
-    
+
     This tests the specific case mentioned in PR feedback where whitespace
     within quotes should be removed after stripping the quotes.
     """
