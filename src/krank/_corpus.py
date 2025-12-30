@@ -252,27 +252,18 @@ class Corpus:
         """
         lines = [f"Corpus: {self.name}"]
 
-        # Add metadata fields in a consistent order
-        metadata_keys = ["title", "description", "version", "citations"]
+        # Add required metadata fields
+        lines.append(f"  Title: {self.metadata['title']}")
+        lines.append(f"  Description: {self.metadata['description']}")
+        lines.append(f"  Version: {self.metadata['version']}")
 
-        for key in metadata_keys:
-            value = self.metadata.get(key)
-
-            if key == "citations" and value:
-                # Show all citations with only authors and year, separated by semicolons
-                short_citations = [_extract_author_year(cit) for cit in value]
-                citation_str = "; ".join(short_citations)
-                label = key.title()
-                lines.append(f"  {label}: {citation_str}")
-            elif value:
-                # Regular field
-                label = key.title()
-                lines.append(f"  {label}: {value}")
-            else:
-                # Show N/A for missing fields (except citations which is optional)
-                if key != "citations":
-                    label = key.title()
-                    lines.append(f"  {label}: N/A")
+        # Add optional citations field
+        citations = self.metadata.get("citations")
+        if citations:
+            # Show all citations with only authors and year, separated by semicolons
+            short_citations = [_extract_author_year(cit) for cit in citations]
+            citation_str = "; ".join(short_citations)
+            lines.append(f"  Citations: {citation_str}")
 
         return "\n".join(lines)
 
@@ -308,7 +299,7 @@ class Corpus:
         use _load_and_normalize() directly to load the dataframe in place.
         """
         df = self._load()
-        author_columns = self.metadata.get("author_columns", [])
+        author_columns = self.metadata["author_columns"]
         reports_df = df.drop(columns=author_columns).copy()
         # Validate the reports dataframe with pandera
         reports_df = ReportsSchema.validate(reports_df)
@@ -323,17 +314,9 @@ class Corpus:
         pd.DataFrame
             DataFrame containing unique author IDs and their associated metadata.
             Each author appears only once.
-
-        Raises
-        ------
-        AssertionError
-            If 'author_columns' is missing from the corpus metadata.
         """
-        assert "author_columns" in self.metadata, (
-            "Corpus metadata missing 'author_columns'"
-        )
         df = self._load()
-        author_columns = self.metadata.get("author_columns", [])
+        author_columns = self.metadata["author_columns"]
         cols = ["author"] + author_columns
         authors_df = df[cols].drop_duplicates().reset_index(drop=True)
         # Validate the authors dataframe with pandera
@@ -387,10 +370,9 @@ class Corpus:
         """
         if self._df is None:
             df = pd.read_csv(self._path, encoding="utf-8")
-            column_map = self.metadata.get("column_map", {})
-            if column_map:
-                column_map_reversed = {v: k for k, v in column_map.items()}
-                df = df.rename(columns=column_map_reversed)
+            column_map = self.metadata["column_map"]
+            column_map_reversed = {v: k for k, v in column_map.items()}
+            df = df.rename(columns=column_map_reversed)
             df = _normalize_text(df, "report")
             self._df = df
         return self._df

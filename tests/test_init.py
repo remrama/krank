@@ -37,12 +37,15 @@ def test_info(mock_registry, mock_corpus_csv, capsys):
                 assert "Smith" in captured.out
 
 
-def test_info_missing_fields(mock_registry, mock_corpus_csv, capsys):
-    """Test info function with missing metadata fields."""
+def test_info_with_required_fields(mock_registry, mock_corpus_csv, capsys):
+    """Test info function with all required fields present."""
     with patch("krank._registry.load_registry", return_value=mock_registry):
         with patch("krank._registry.get_entry") as mock_get_entry:
             with patch("krank._registry.fetch_corpus", return_value=mock_corpus_csv):
                 mock_get_entry.return_value = {
+                    "title": "Test Corpus",
+                    "description": "A test corpus",
+                    "version": "1",
                     "column_map": {
                         "report": "Report Text",
                         "author": "Author ID",
@@ -53,9 +56,9 @@ def test_info_missing_fields(mock_registry, mock_corpus_csv, capsys):
                 krank.info("test_corpus")
                 captured = capsys.readouterr()
 
-                # Should show N/A for missing fields
-                assert "Title: N/A" in captured.out
-                assert "Description: N/A" in captured.out
+                # Should show actual values for required fields
+                assert "Title: Test Corpus" in captured.out
+                assert "Description: A test corpus" in captured.out
 
 
 def test_list_collections(mock_registry):

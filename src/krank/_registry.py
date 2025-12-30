@@ -96,7 +96,7 @@ def get_entry(name: str, version: str = None) -> dict:
     if version is None:
         version = entry["latest"]
 
-    versions = entry.get("versions", {})
+    versions = entry["versions"]
     if version not in versions:
         available_versions = ", ".join(sorted(versions.keys()))
         raise KeyError(

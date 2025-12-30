@@ -108,7 +108,7 @@ def list_versions(name: str) -> list[str]:
     if name not in corpora:
         available = ", ".join(sorted(corpora.keys()))
         raise KeyError(f"Corpus '{name}' not found. Available: {available}")
-    return sorted(corpora[name].get("versions", {}).keys())
+    return sorted(corpora[name]["versions"].keys())
 
 
 def load(name: str, version: str = None) -> _corpus.Corpus:
