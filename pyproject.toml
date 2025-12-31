@@ -71,4 +71,5 @@ convention = "numpy"
 docstring-code-format = false
 docstring-code-line-length = 88
 indent-style = "space"
+line-ending = "lf"
 quote-style = "double"

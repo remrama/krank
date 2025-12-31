@@ -18,5 +18,4 @@ jobs:
         with:
           # --check to not write changes
           # --diff to show the the full changes that would be made
-          # --preview is required to silence warning about output-format instability
-          args: "format --check --diff --output-format=github --preview"
+          args: "format --check --diff"
