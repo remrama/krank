@@ -16,7 +16,7 @@ jobs:
         if: always()
         uses: astral-sh/ruff-action@v3
         with:
-          # --check to not write changes, only print 1 line with number of files to be changed
+          # --check to not write changes
           # --diff to show the the full changes that would be made
-          # --preview mode is required to silence warning about output-format instability
-          args: "format --check --diff --output-format=full --preview"
+          # --preview is required to silence warning about output-format instability
+          args: "format --check --diff --output-format=github --preview"
