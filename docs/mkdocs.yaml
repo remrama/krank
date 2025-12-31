@@ -23,6 +23,11 @@ theme:
     - navigation.expand
     - toc.integrate
 
+extra:
+  generator: true
+
+copyright: Copyright &copy; 2025 Sleep and Dream Database
+
 plugins:
   - search
 

@@ -7,9 +7,16 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: "Linting"
-        uses: astral-sh/ruff-action@v3
-      - name: "Formatting"
+      - name: Run Ruff Linter
         uses: astral-sh/ruff-action@v3
         with:
-          args: "format --check --diff"
+          args: "check --output-format=github"
+      - name: Run Ruff Formatter
+        # If always to run formatter even if linter fails
+        if: always()
+        uses: astral-sh/ruff-action@v3
+        with:
+          # --check to not write changes, only print 1 line with number of files to be changed
+          # --diff to show the the full changes that would be made
+          # --preview mode is required to silence warning about output-format instability
+          args: "format --check --diff --output-format=full --preview"

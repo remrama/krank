@@ -127,9 +127,7 @@ def _normalize_text(df: pd.DataFrame, text_column: str) -> pd.DataFrame:
     those downloaded directly from source archives due to this normalization.**
     """
     if not isinstance(df, pd.DataFrame):
-        raise TypeError(
-            f"df must be a pandas DataFrame, got {type(df).__name__}"
-        )
+        raise TypeError(f"df must be a pandas DataFrame, got {type(df).__name__}")
     if not isinstance(text_column, str):
         raise TypeError(
             f"text_column must be a string, got {type(text_column).__name__}"

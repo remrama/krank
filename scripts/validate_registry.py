@@ -31,7 +31,9 @@ def load_yaml(path: Path) -> dict:
 
 def load_schema() -> dict:
     """Load the JSON schema from registry-schema.yaml."""
-    schema_path = Path(__file__).parent.parent / "src" / "krank" / "data" / "registry-schema.yaml"
+    schema_path = (
+        Path(__file__).parent.parent / "src" / "krank" / "data" / "registry-schema.yaml"
+    )
     return load_yaml(schema_path)
 
 
@@ -50,13 +52,15 @@ def validate_schema(registry_data: dict) -> tuple[bool, list[str]]:
     """
     errors = []
     schema = load_schema()
-    
+
     # Create a validator with format checker
     validator = Draft7Validator(schema, format_checker=FormatChecker())
-    
+
     # Validate and collect errors
-    validation_errors = sorted(validator.iter_errors(registry_data), key=lambda e: e.path)
-    
+    validation_errors = sorted(
+        validator.iter_errors(registry_data), key=lambda e: e.path
+    )
+
     if not validation_errors:
         # Additional custom validations
         # Check that 'latest' version exists in 'versions'
@@ -68,19 +72,17 @@ def validate_schema(registry_data: dict) -> tuple[bool, list[str]]:
                     f"  ❌ corpora -> {corpus_name} -> latest: "
                     f"Version '{latest}' not found in versions {list(versions.keys())}"
                 )
-    
+
     for error in validation_errors:
         # Format the error path
         path = " -> ".join(str(p) for p in error.path) if error.path else "root"
         msg = error.message
         errors.append(f"  ❌ {path}: {msg}")
-    
+
     return len(errors) == 0, errors
 
 
-def validate_alphabetical_order(
-    items: dict, name: str
-) -> tuple[bool, list[str]]:
+def validate_alphabetical_order(items: dict, name: str) -> tuple[bool, list[str]]:
     """Validate that dictionary keys are in alphabetical order.
 
     Parameters
@@ -164,7 +166,11 @@ def main() -> int:
     parser.add_argument(
         "--registry-path",
         type=Path,
-        default=Path(__file__).parent.parent / "src" / "krank" / "data" / "registry.yaml",
+        default=Path(__file__).parent.parent
+        / "src"
+        / "krank"
+        / "data"
+        / "registry.yaml",
         help="Path to registry.yaml file",
     )
     args = parser.parse_args()
@@ -248,9 +254,7 @@ def main() -> int:
         for error in all_errors:
             print(error)
         print()
-        print(
-            "Please fix the errors above and run validation again."
-        )
+        print("Please fix the errors above and run validation again.")
         return 1
 
 
