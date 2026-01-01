@@ -1,6 +1,6 @@
 # zhang2019
 
-Dream reports collected from a laboratory polysomnography study
+This corpus contains dream reports collected from participants in a laboratory polysomnography study conducted by Zhang and Wamsley and published in 2019. The dreams were collected using the serial awakening method, where participants were awakened during different sleep stages to report their dreams. The dataset includes various metadata about the participants and the sleep conditions.
 
 ## Overview
 

@@ -138,7 +138,8 @@ def generate_corpus_page(name: str, info: dict, versions: dict) -> str:
     replacements = {
         "{{ name }}": name,
         "{{ title }}": info.get("title", "N/A"),
-        "{{ description }}": info.get("description", ""),
+        "{{ brief_description }}": info.get("brief_description", ""),
+        "{{ long_description }}": info.get("long_description", ""),
         "{{ environment }}": info.get("environment", "N/A"),
         "{{ probe }}": info.get("probe", "N/A"),
         "{{ doi }}": version_info.get("doi", "N/A"),
@@ -178,8 +179,8 @@ def generate_index_page(corpora: dict) -> str:
 
     rows = []
     for name, entry in sorted(corpora.items()):
-        desc = entry.get("description", "")[:50]
-        if len(entry.get("description", "")) > 50:
+        desc = entry["brief_description"][:50]
+        if len(entry["brief_description"]) > 50:
             desc += "..."
         corpus = krank.load(name, version=entry["latest"])
         n_reports = len(corpus.reports)

@@ -15,7 +15,8 @@ collections:
 corpora:
   hvdc:
     title: "Hall & Van de Castle Norms"
-    description: "Historically significant collection of dream reports used to establish normative data for the Hall and Van de Castle coding system."
+    brief_description: "Historically significant collection of dream reports"
+    long_description: "This corpus contains dream reports collected by Calvin S. Hall and Robert L. Van de Castle in the 1960s to establish normative data for their dream content analysis system. They were used to establish normative data for the Hall and Van de Castle coding system. The dreams have been widely used in dream research for comparative studies."
     citations:
       - "Domhoff, G. W., & Schneider, A. (2008). Studying dream content using the archive and search engine on DreamBank.net. Consciousness and Cognition, 17(4), 1238-1247. https://doi.org/10.1016/j.concog.2008.06.010"
       - "Hall, C. S., & Van de Castle, R. L. (1966). The content analysis of dreams. Appleton-Century-Crofts."
@@ -35,7 +36,8 @@ corpora:
         doi: "10.5281/zenodo.18089278"
   ucsc1996:
     title: "UCSC, 1996"
-    description: "A DreamBank collection from women ages 18-24 at the University of California Santa Cruz in 1996."
+    brief_description: "Women ages 18-24 at the University of California Santa Cruz in 1996"
+    long_description: "This corpus contains dream reports collected from women ages 18-24 at the University of California Santa Cruz in 1996. It is part of the DreamBank collection and has been used in various dream research studies."
     citations:
       - "Domhoff, G. W., & Schneider, A. (2008). Studying dream content using the archive and search engine on DreamBank.net. Consciousness and Cognition, 17(4), 1238-1247. https://doi.org/10.1016/j.concog.2008.06.010"
     environment: "unknown"
@@ -55,7 +57,8 @@ corpora:
         doi: "10.5281/zenodo.18099365"
   urbina1975:
     title: "Urbina & Grey, 1975"
-    description: "Dreams from college students collected in Lima, Peru in 1970 and translated into English."
+    brief_description: "Dreams from college students collected in Lima, Peru in 1970 and translated into English"
+    long_description: "This corpus contains dream reports collected from college students in Lima, Peru in 1970 by Urbina and Grey. The dreams were originally recorded in Spanish and later translated into English."
     citations:
       - "Domhoff, G. W., & Schneider, A. (2008). Studying dream content using the archive and search engine on DreamBank.net. Consciousness and Cognition, 17(4), 1238-1247. https://doi.org/10.1016/j.concog.2008.06.010"
       - "Urbina, S. P., & Grey, A. (1975). Cultural and Sex Differences in the Sex Distribution of Dream Characters. Journal of Cross-Cultural Psychology, 6, 358-364. https://doi.org/10.1177/002202217563008"
@@ -75,7 +78,8 @@ corpora:
         doi: "10.5281/zenodo.18091505"
   zhang2019:
     title: "Zhang & Wamsley, 2019"
-    description: "Dream reports collected from a laboratory polysomnography study."
+    brief_description: "Dream reports collected from a laboratory polysomnography study"
+    long_description: "This corpus contains dream reports collected from participants in a laboratory polysomnography study conducted by Zhang and Wamsley and published in 2019. The dreams were collected using the serial awakening method, where participants were awakened during different sleep stages to report their dreams. The dataset includes various metadata about the participants and the sleep conditions."
     citations:
       - "Zhang, J., & Wamsley, E. J. (2019). EEG predictors of dreaming outside of REM sleep. Psychophysiology, 56(7), e13368. https://doi.org/10.1111/psyp.13368"
       - "Wong, W., Herzog, R., Andrade, K. C., Andrillon, T., De Araujo, D. B., Arnulf, I., ... & Tsuchiya, N. (2025). A dream EEG and mentation database. Nature Communications, 16(1), 7495. https://doi.org/10.1038/s41467-025-61945-1"
