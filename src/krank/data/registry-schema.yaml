@@ -52,7 +52,6 @@ properties:
     additionalProperties:
       type: object
       required:
-        - krank_sources_repo
         - title
         - description
         - citations
@@ -64,10 +63,6 @@ properties:
         - latest
         - versions
       properties:
-        krank_sources_repo:
-          type: string
-          description: Repository name in krank-sources organization
-        
         title:
           type: string
           description: Human-readable corpus title

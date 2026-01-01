@@ -29,7 +29,6 @@ def valid_registry():
         },
         "corpora": {
             "test_corpus": {
-                "krank_sources_repo": "test-repo",
                 "title": "Test Corpus",
                 "description": "A test corpus",
                 "citations": ["Test citation"],

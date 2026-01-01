@@ -14,7 +14,6 @@ collections:
 
 corpora:
   hvdc:
-    krank_sources_repo: "dreambank"
     title: "Hall & Van de Castle Norms"
     description: "Historically significant collection of dream reports used to establish normative data for the Hall and Van de Castle coding system."
     citations:
@@ -35,7 +34,6 @@ corpora:
         hash: "md5:bd376d9dcc77f5369e7f4a058a1ba166"
         doi: "10.5281/zenodo.18089278"
   ucsc1996:
-    krank_sources_repo: "dreambank"
     title: "UCSC, 1996"
     description: "A DreamBank collection from women ages 18-24 at the University of California Santa Cruz in 1996."
     citations:
@@ -56,7 +54,6 @@ corpora:
         hash: "md5:caf94dc6bac916330caeb200e60c5671"
         doi: "10.5281/zenodo.18099365"
   urbina1975:
-    krank_sources_repo: "dreambank"
     title: "Urbina & Grey, 1975"
     description: "Dreams from college students collected in Lima, Peru in 1970 and translated into English."
     citations:
@@ -77,7 +74,6 @@ corpora:
         hash: "md5:05197362b787f8bef2e7c11fb9b81bf1"
         doi: "10.5281/zenodo.18091505"
   zhang2019:
-    krank_sources_repo: "zhang2019"
     title: "Zhang & Wamsley, 2019"
     description: "Dream reports collected from a laboratory polysomnography study"
     citations:
