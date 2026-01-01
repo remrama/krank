@@ -1,5 +1,6 @@
 __pycache__/
 .DS_Store
+.ipynb_checkpoints
 
 # Docs
 site/
@@ -7,7 +8,7 @@ site/
 # Pip
 *.egg-info/
 
-# Any output that is part of curation process
+# Curated files
 output/
 
 # Testing

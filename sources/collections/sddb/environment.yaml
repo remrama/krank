@@ -1,0 +1,17 @@
+name: sddb
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python==3.14.*
+  - ftfy==6.3.*
+  - ipykernel==6.31.*
+  - jupyterlab==4.5.*
+  - matplotlib==3.10.*
+  - numpy==2.3.*
+  - pandas==2.3.*
+  - Pillow==12.0.*
+  - pooch==1.8.*
+  - seaborn==0.13.*
+  - tqdm==4.67.*
+  - wordcloud==1.9.*
