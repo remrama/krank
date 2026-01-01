@@ -106,3 +106,9 @@ This script checks:
 - Proper hash formats and URLs
 
 The validation runs automatically as part of the test suite in CI.
+
+## Credits
+
+This project would not be possible without the work of the [**Fatiando a Terra Project**](https://www.fatiando.org), namely a heavy dependency on [pooch](https://www.github.com/fatiando/pooch), an inspiration from [ensaio](https://www.github.com/fatiando/ensaio), and a structural model from the [Fatiando a Terra FAIR data collection](https://github.com/fatiando-data).
+
+> Uieda, L., V. C. Oliveira Jr, and V. C. F. Barbosa (2013), Modeling the Earth with Fatiando a Terra, _Proceedings of the 12th Python in Science Conference_, pp. 91-98. doi:[10.25080/Majora-8b375195-010](https://doi.org/10.25080/Majora-8b375195-010)

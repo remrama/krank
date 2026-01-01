@@ -7,8 +7,8 @@ site/
 # Pip
 *.egg-info/
 
-# Aggregated reports file
-reports.csv
+# Any output that is part of curation process
+output/
 
 # Testing
 .coverage

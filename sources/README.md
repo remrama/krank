@@ -6,10 +6,7 @@ Each repository here contains Python code that downloads, inspects, preprocesses
 
 The output datasets are accessible as tabular CSV files through their respective Zenodo archive or as pandas dataframes through the Python package [krank](https://github.com/remrama/krank).
 
-> [!NOTE]
-> **Credits:** The structure and underlying code of these folders are modeled heavily after the [Fatiando a Terra FAIR data collection](https://github.com/fatiando-data). This overall project would not be possible without other products from the [**Fatiando a Terra Project**](https://www.fatiando.org), namely [pooch](https://www.github.com/fatiando/pooch) for data access and [ensaio](https://www.github.com/fatiando/ensaio) as inspiration for the broader [krank](https://github.com/remrama/krank) project.
-> 
-> > Uieda, L., V. C. Oliveira Jr, and V. C. F. Barbosa (2013), Modeling the Earth with Fatiando a Terra, _Proceedings of the 12th Python in Science Conference_, pp. 91-98. doi:[10.25080/Majora-8b375195-010](https://doi.org/10.25080/Majora-8b375195-010)
+> 🤝 **Credits:** The structure and underlying code of this folder are modeled heavily after the those found within the [Fatiando a Terra FAIR data collection](https://github.com/fatiando-data). See the top-level krank [README](../README.md#contributing) for details.
 
 ---
 
@@ -39,3 +36,21 @@ The metadata, if present, is adjusted as needed to pass the following checks:
 * ✅ No categorical values represented as integers
 * ✅ Sensible values (e.g., typos, positive age values)
 * ✅ Consistency across authors
+
+---
+
+<h2 align="center">Versioning</h2>
+
+All output is stored in version-controlled Zenodo archives, where each Zenodo record has its own version history. They follow a general semver MAJOR.MINOR.PATCH structure, where:
+
+* MAJOR releases involve changes to schema (new columns, renamed columns, changed semantics)
+* MINOR releases involve new additions to data (more rews, new optional columns)
+* PATCH releases involve small fixes (typos, encoding issues, metadata corrections)
+
+Note this is not _strictly_ semver because any changes to the dataset (including MINOR and PATCH) are probably "breaking" as far as analyses and results go. Therefore, always stay up to date on new dataset versions, regardless of the release type.
+
+While these rules do not relate directly to krank package versioning, they will inherently influence because the `registry.yaml` file in krank will need to be updated every time a corpus is added or bumped. See the krank [README](../README.md) for details on krank versioning.
+
+* Major releases involve changes to HTML output
+* Minor releases involve changes to tabular DreamBank output
+* Patch releases involve changes to sub-corpora output (or any other non-functional changes)
