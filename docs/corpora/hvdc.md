@@ -1,6 +1,6 @@
 # hvdc
 
-Historically significant collection of dream reports used to establish normative data for the Hall and Van de Castle coding system.
+This corpus contains dream reports collected by Calvin S. Hall and Robert L. Van de Castle in the 1960s to establish normative data for their dream content analysis system. They were used to establish normative data for the Hall and Van de Castle coding system. The dreams have been widely used in dream research for comparative studies.
 
 ## Overview
 

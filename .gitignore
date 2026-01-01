@@ -1,6 +1,7 @@
 __pycache__/
 .DS_Store
 .ipynb_checkpoints
+.ruff_cache/
 
 # Docs
 site/

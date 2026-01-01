@@ -1,6 +1,6 @@
 # urbina1975
 
-Dreams from college students collected in Lima, Peru in 1970 and translated into English.
+This corpus contains dream reports collected from college students in Lima, Peru in 1970 by Urbina and Grey. The dreams were originally recorded in Spanish and later translated into English.
 
 ## Overview
 

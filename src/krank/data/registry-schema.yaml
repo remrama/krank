@@ -25,15 +25,20 @@ properties:
       type: object
       required:
         - title
+        - brief_description
+        - long_description
         - url
         - corpora
       properties:
         title:
           type: string
           description: Human-readable collection name
-        description:
+        brief_description:
           type: string
-          description: Optional description of the collection
+          description: 1 sentence brief description of the collection
+        long_description:
+          type: string
+          description: 1 paragraph detailed description of the collection
         url:
           type: string
           format: uri
@@ -53,7 +58,8 @@ properties:
       type: object
       required:
         - title
-        - description
+        - brief_description
+        - long_description
         - citations
         - environment
         - probe
@@ -67,9 +73,13 @@ properties:
           type: string
           description: Human-readable corpus title
         
-        description:
+        brief_description:
           type: string
-          description: Description of the corpus
+          description: 1 short sentence describing the corpus
+        
+        long_description:
+          type: string
+          description: 1 paragraph describing the corpus in detail
         
         citations:
           type: array

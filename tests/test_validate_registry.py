@@ -22,7 +22,8 @@ def valid_registry():
         "collections": {
             "test_collection": {
                 "title": "Test Collection",
-                "description": "A test collection",
+                "brief_description": "A test collection",
+                "long_description": "A test collection with detailed information.",
                 "url": "https://example.com",
                 "corpora": ["test_corpus"],
             }
@@ -30,7 +31,8 @@ def valid_registry():
         "corpora": {
             "test_corpus": {
                 "title": "Test Corpus",
-                "description": "A test corpus",
+                "brief_description": "A test corpus",
+                "long_description": "A test corpus with detailed information.",
                 "citations": ["Test citation"],
                 "environment": "lab",
                 "probe": "serial awakening",

@@ -4,7 +4,7 @@ This script compiles all available corpora into a single CSV file for distributi
 as a release artifact. Each report is tagged with its source corpus and version.
 """
 
-import os
+from csv import QUOTE_NONNUMERIC
 
 import pandas as pd
 
@@ -35,12 +35,12 @@ def compile_single_corpus(corpus_name: str) -> pd.DataFrame:
     return df
 
 
-def build_aggregate(output_path: str = "./output/reports.csv") -> None:
+def build_aggregate(output_path: str = "reports.csv") -> None:
     """Load all corpora reports and combine into single CSV.
 
     Parameters
     ----------
-    output_path : str, default="./output/reports.csv"
+    output_path : str, default="reports.csv"
         Path where the aggregate CSV file should be written.
 
     Notes
@@ -48,8 +48,6 @@ def build_aggregate(output_path: str = "./output/reports.csv") -> None:
     The output CSV uses UTF-8-BOM encoding for improved Excel compatibility
     and numeric quoting for all fields.
     """
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
     corpora = krank.list_corpora()
 
     df = pd.concat([compile_single_corpus(name) for name in corpora], ignore_index=True)
@@ -65,7 +63,7 @@ def build_aggregate(output_path: str = "./output/reports.csv") -> None:
         mode="w",
         encoding="utf-8-sig",  # for improved Excel compatibility
         lineterminator="\n",
-        quoting=2,  # 2 = QUOTE_NONNUMERIC
+        quoting=QUOTE_NONNUMERIC,
         quotechar='"',
         doublequote=True,
     )

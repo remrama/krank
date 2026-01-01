@@ -1,6 +1,6 @@
 # {{ name }}
 
-{{ description }}
+{{ long_description }}
 
 ## Overview
 
