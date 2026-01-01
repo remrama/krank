@@ -41,8 +41,8 @@ Dreams from college students collected in Lima, Peru in 1970 and translated into
 
 ## Source
 
-- **Original data and processing code**: [Notebook](https://github.com/krank-sources/dreambank)
-- **Processed data file**: [Zenodo](https://doi.org/10.5281/zenodo.18091505)
+- **Processing code**: [Notebook](http://github.com/remrama/krank/blob/main/sources/urbina1975/prepare.ipynb)
+- **Processed file**: [Zenodo](https://doi.org/10.5281/zenodo.18091505)
 
 ## Version History
 

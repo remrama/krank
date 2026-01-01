@@ -41,8 +41,8 @@ Historically significant collection of dream reports used to establish normative
 
 ## Source
 
-- **Original data and processing code**: [Notebook](https://github.com/krank-sources/dreambank)
-- **Processed data file**: [Zenodo](https://doi.org/10.5281/zenodo.18089278)
+- **Processing code**: [Notebook](http://github.com/remrama/krank/blob/main/sources/hvdc/prepare.ipynb)
+- **Processed file**: [Zenodo](https://doi.org/10.5281/zenodo.18089278)
 
 ## Version History
 

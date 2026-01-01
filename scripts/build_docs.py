@@ -143,7 +143,6 @@ def generate_corpus_page(name: str, info: dict, versions: dict) -> str:
         "{{ probe }}": info.get("probe", "N/A"),
         "{{ doi }}": version_info.get("doi", "N/A"),
         "{{ source_url }}": info.get("source_url", ""),
-        "{{ krank_sources_repo }}": info.get("krank_sources_repo", ""),
         "{{ download_url }}": version_info.get("download_url", ""),
         "{{ citation_text }}": get_citation_text(),
         "{{ report_columns_table }}": build_fields_table("report"),

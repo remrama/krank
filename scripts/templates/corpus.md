@@ -39,8 +39,8 @@
 
 ## Source
 
-- **Original data and processing code**: [Notebook](https://github.com/krank-sources/{{ krank_sources_repo }})
-- **Processed data file**: [Zenodo](https://doi.org/{{ doi }})
+- **Processing code**: [Notebook](http://github.com/remrama/krank/blob/main/sources/{{ name }}/prepare.ipynb)
+- **Processed file**: [Zenodo](https://doi.org/{{ doi }})
 
 ## Version History
 
