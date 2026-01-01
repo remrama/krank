@@ -58,7 +58,7 @@ krank = ["krank/data/registry.yaml", "krank/data/registry-schema.yaml"]
 line-length = 88
 target-version = "py314"
 lint.select = ["E4", "E7", "E9", "F", "I", "NPY201"]
-exclude = ["docs"]
+exclude = ["docs", "sources"]
 output-format = "full"
 
 [tool.ruff.lint.per-file-ignores]
