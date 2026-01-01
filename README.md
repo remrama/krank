@@ -87,9 +87,20 @@ corpus.reports.head()
 
 Open an [Issue](https://github.com/remrama/krank/issues) to request a new corpus (or for any other reason).
 
-Adding a new corpus does not require any changes to underlying code. It only needs to be added to the [registry.yaml](./src/krank/data/registry.yaml) file (and one line to [mkdocs.yaml](./docs/mkdocs.yaml)). Browse that for other corpora and see what would need to be filled out for the new dataset. To keep things separate, most of the corpus curation code is over in the [krank sources collection](https://github.com/krank-sources), a set of repositories under a single organization heading. But if you want a new dataset there, place an Issue here in this repository.
+Adding a new corpus involves the following steps:
 
-The registry follows a JSON schema defined in [registry-schema.yaml](./src/krank/data/registry-schema.yaml). This file documents all required and optional fields with descriptions.
+1. Adding a `sources/<name>/prepare.ipynb` that exports a single CSV file.
+2. Creating a new Zenodo archive with that CSV file.
+3. Add the corpus info to the [registry.yaml](./src/krank/data/registry.yaml) file (See [registry-schema.yaml](./src/krank/data/registry-schema.yaml) for what fields are required.)
+4. Add the corpus to [mkdocs.yaml](./docs/mkdocs.yaml).
+
+## Versioning
+
+Follows a modified semver structure, where, given a version number MAJOR.MINOR.PATCH, increment the:
+
+1. MAJOR version when there are incompatible API changes _or an existing corpus is removed_.
+2. MINOR version when functionality is added in a backward compatible manner _or a new corpus is added_.
+3. PATCH version when backward compatible bug fixes are added _or an existing corpus gets a new release_.
 
 ### Validating Registry Changes
 
@@ -106,3 +117,9 @@ This script checks:
 - Proper hash formats and URLs
 
 The validation runs automatically as part of the test suite in CI.
+
+## Credits
+
+This project would not be possible without the work of the [**Fatiando a Terra Project**](https://www.fatiando.org), namely a heavy dependency on [pooch](https://www.github.com/fatiando/pooch), an inspiration from [ensaio](https://www.github.com/fatiando/ensaio), and a structural model from the [Fatiando a Terra FAIR data collection](https://github.com/fatiando-data).
+
+> Uieda, L., V. C. Oliveira Jr, and V. C. F. Barbosa (2013), Modeling the Earth with Fatiando a Terra, _Proceedings of the 12th Python in Science Conference_, pp. 91-98. doi:[10.25080/Majora-8b375195-010](https://doi.org/10.25080/Majora-8b375195-010)

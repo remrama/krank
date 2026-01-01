@@ -1,5 +1,6 @@
 __pycache__/
 .DS_Store
+.ipynb_checkpoints
 
 # Docs
 site/
@@ -7,8 +8,8 @@ site/
 # Pip
 *.egg-info/
 
-# Aggregated reports file
-reports.csv
+# Curated files
+output/
 
 # Testing
 .coverage

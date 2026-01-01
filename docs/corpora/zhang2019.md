@@ -45,8 +45,8 @@ Dream reports collected from a laboratory polysomnography study
 
 ## Source
 
-- **Original data and processing code**: [Notebook](https://github.com/krank-sources/zhang2019)
-- **Processed data file**: [Zenodo](https://doi.org/10.5281/zenodo.18050635)
+- **Processing code**: [Notebook](http://github.com/remrama/krank/blob/main/sources/zhang2019/prepare.ipynb)
+- **Processed file**: [Zenodo](https://doi.org/10.5281/zenodo.18050635)
 
 ## Version History
 
