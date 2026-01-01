@@ -3,7 +3,7 @@ name: final-once-over
 description: Guide for a final once-over code whenever changes are made or asked to review. Use this as a last step after making any changes or after reviewing code.
 ---
 
-To perform a final once-ver failing GitHub Actions workflows in a pull request, follow this process, using tools provided from the GitHub MCP Server:
+To perform a final once-over after implementing code changes or reviewing code, follow this process:
 
 1. Review all changed files for typos or inconsistencies with Ruff configuration
 2. Review all changed files for consistencies with unchanged files
