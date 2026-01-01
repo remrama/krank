@@ -87,9 +87,12 @@ corpus.reports.head()
 
 Open an [Issue](https://github.com/remrama/krank/issues) to request a new corpus (or for any other reason).
 
-Adding a new corpus does not require any changes to underlying code. It only needs to be added to the [registry.yaml](./src/krank/data/registry.yaml) file (and one line to [mkdocs.yaml](./docs/mkdocs.yaml)). Browse that for other corpora and see what would need to be filled out for the new dataset. To keep things separate, most of the corpus curation code is over in the [krank sources collection](https://github.com/krank-sources), a set of repositories under a single organization heading. But if you want a new dataset there, place an Issue here in this repository.
+Adding a new corpus involves the following steps:
 
-The registry follows a JSON schema defined in [registry-schema.yaml](./src/krank/data/registry-schema.yaml). This file documents all required and optional fields with descriptions.
+1. Adding a `sources/<name>/prepare.ipynb` that exports a single CSV file.
+2. Creating a new Zenodo archive with that CSV file.
+3. Add the corpus info to the [registry.yaml](./src/krank/data/registry.yaml) file (See [registry-schema.yaml](./src/krank/data/registry-schema.yaml) for what fields are required.)
+4. Add the corpus to [mkdocs.yaml](./docs/mkdocs.yaml).
 
 ## Versioning
 
