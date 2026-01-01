@@ -77,6 +77,28 @@ python scripts/validate_registry.py
 
 This validates: schema compliance, alphabetical ordering, and collection-corpus reference integrity.
 
+### Documentation
+
+Install documentation dependencies:
+
+```bash
+pip install -e ".[docs]"
+```
+
+Build documentation locally:
+
+```bash
+mkdocs build --config-file docs/mkdocs.yaml
+```
+
+Serve documentation locally (with live reload):
+
+```bash
+mkdocs serve --config-file docs/mkdocs.yaml
+```
+
+The documentation site is output to `site/`.
+
 ## Project Layout
 
 ```
@@ -95,6 +117,18 @@ krank/
 │   ├── test_schemas.py     # DataFrame schema tests
 │   ├── test_validate_registry.py  # Registry validation tests
 │   └── test_validation.py  # Input validation tests
+├── docs/                   # MkDocs documentation source
+│   ├── mkdocs.yaml         # MkDocs configuration
+│   ├── index.md            # Homepage
+│   ├── getting-started.md  # Getting started guide
+│   ├── usage.md            # Usage documentation
+│   ├── CHANGELOG.md        # Changelog
+│   ├── corpora/            # Per-corpus documentation pages
+│   └── images/             # Documentation images
+├── sources/                # Raw corpus curation code
+│   ├── README.md           # Curation guidelines and versioning
+│   └── <corpus_name>/      # Per-corpus processing (e.g., hvdc/, ucsc1996/)
+│       └── prepare.ipynb   # Jupyter notebook to download, clean, validate data
 ├── scripts/
 │   └── validate_registry.py  # Registry validation script (used in CI)
 ├── pyproject.toml          # Project configuration (deps, pytest, ruff)
@@ -132,6 +166,18 @@ Steps:
 2. Run linting: `ruff check --output-format=github`
 3. Run formatting check: `ruff format --check --diff`
 
+### docs.yaml (Documentation)
+
+Runs on: push to main, pull requests to main
+
+Steps:
+
+1. Checkout repository
+2. Setup Python 3.11
+3. Install docs dependencies: `pip install .[docs]`
+4. Build docs: `mkdocs build --config-file docs/mkdocs.yaml`
+5. Deploy to GitHub Pages (on main branch only)
+
 ## Key Implementation Details
 
 ### Registry Format
@@ -152,6 +198,15 @@ The `registry.yaml` file must:
 ### Text Normalization
 
 The `_normalize_text()` function in `_corpus.py` uses `ftfy` for Unicode normalization and handles curly quotes, ellipses, and mojibake.
+
+### Corpus Curation (sources/)
+
+Each corpus has a subdirectory in `sources/` containing:
+
+- `prepare.ipynb`: Jupyter notebook that downloads, cleans, and validates raw data
+- Output: Cleaned CSV uploaded to Zenodo with versioning (MAJOR.MINOR.PATCH)
+
+Curation applies: UTF-8 encoding fixes (ftfy), whitespace cleanup, empty cell removal, duplicate checks, and metadata validation. See `sources/README.md` for full guidelines.
 
 ## Testing Patterns
 
