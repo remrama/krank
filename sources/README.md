@@ -41,16 +41,12 @@ The metadata, if present, is adjusted as needed to pass the following checks:
 
 <h2 align="center">Versioning</h2>
 
-All output is stored in version-controlled Zenodo archives, where each Zenodo record has its own version history. They follow a general semver MAJOR.MINOR.PATCH structure, where:
+All output is stored in version-controlled Zenodo archives, where each Zenodo record has its own version history. The corpora follow a modified semver structure, where, given a version number MAJOR.MINOR.PATCH, increment the:
 
-* MAJOR releases involve changes to schema (new columns, renamed columns, changed semantics)
-* MINOR releases involve new additions to data (more rews, new optional columns)
-* PATCH releases involve small fixes (typos, encoding issues, metadata corrections)
+1. MAJOR version when there are changes to schema (new columns, renamed columns, changed semantics)
+2. MINOR version when there are new additions to data (more rews, new optional columns)
+3. PATCH version when there are small fixes (typos, encoding issues, metadata corrections)
 
 Note this is not _strictly_ semver because any changes to the dataset (including MINOR and PATCH) are probably "breaking" as far as analyses and results go. Therefore, always stay up to date on new dataset versions, regardless of the release type.
 
 While these rules do not relate directly to krank package versioning, they will inherently influence because the `registry.yaml` file in krank will need to be updated every time a corpus is added or bumped. See the krank [README](../README.md) for details on krank versioning.
-
-* Major releases involve changes to HTML output
-* Minor releases involve changes to tabular DreamBank output
-* Patch releases involve changes to sub-corpora output (or any other non-functional changes)

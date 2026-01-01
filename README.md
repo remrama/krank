@@ -91,6 +91,14 @@ Adding a new corpus does not require any changes to underlying code. It only nee
 
 The registry follows a JSON schema defined in [registry-schema.yaml](./src/krank/data/registry-schema.yaml). This file documents all required and optional fields with descriptions.
 
+## Versioning
+
+Follows a modified semver structure, where, given a version number MAJOR.MINOR.PATCH, increment the:
+
+1. MAJOR version when there are incompatible API changes _or an existing corpus is removed_.
+2. MINOR version when functionality is added in a backward compatible manner _or a new corpus is added_.
+3. PATCH version when backward compatible bug fixes are added _or an existing corpus gets a new release_.
+
 ### Validating Registry Changes
 
 After making changes to the registry, validate them locally using:
