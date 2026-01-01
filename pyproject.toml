@@ -42,7 +42,7 @@ Source = "https://github.com/remrama/krank"
 
 [project.optional-dependencies]
 dev = ["ruff>=0.14", "pytest>=8.0", "pytest-cov>=6.0", "jsonschema>=4.0"]
-docs = ["mkdocs-material>=9.0"]
+docs = ["mkdocs-material>=9.0", "mkdocs-jupyter>=0.25"]
 
 [tool.setuptools.dynamic]
 version = {attr = "krank.__version__"}
