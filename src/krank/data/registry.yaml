@@ -1,13 +1,16 @@
 collections:
   dreambank:
     title: "DreamBank"
-    description: "..."
+    brief_description: "..."
+    long_description: "..."
     url: "https://dreambank.net"
     corpora:
       - hvdc
       - urbina1975
   sddb:
     title: "Sleep and Dream Database"
+    brief_description: "..."
+    long_description: "..."
     url: "https://sleepanddreamdatabase.org"
     corpora:
       - hvdc
