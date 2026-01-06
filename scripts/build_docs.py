@@ -6,16 +6,17 @@ and summary statistics. It also generates an index page listing all corpora.
 """
 
 import re
+import shutil
 from pathlib import Path
 
 import krank
 
 DOCS_DIR = Path(__file__).parent.parent / "docs" / "corpora"
+SOURCES_DIR = Path(__file__).parent.parent / "sources"
 REGISTRY_PATH = (
     Path(__file__).parent.parent / "src" / "krank" / "data" / "registry.yaml"
 )
 TEMPLATES_DIR = Path(__file__).parent / "templates"
-
 
 def load_template(name: str) -> str:
     """Load a markdown template by name.
@@ -215,6 +216,13 @@ def main():
         output_path = DOCS_DIR / f"{name}.md"
         output_path.write_text(content, encoding="utf-8")
         print(f"Generated {output_path}")
+    
+    # Copy individual processing notebooks
+    for name, entry in corpora.items():
+        source_notebook = SOURCES_DIR / name / "prepare.ipynb"
+        target_notebook = DOCS_DIR / "notebooks" / name / "prepare.ipynb"
+        target_notebook.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source_notebook, target_notebook)
 
     # Generate index page
     index_content = generate_index_page(corpora)

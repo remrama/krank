@@ -19,7 +19,6 @@
 
 {{ citation_text }}
 
-
 ## Columns
 
 ### Reports
@@ -39,7 +38,7 @@
 
 ## Source
 
-- **Processing code**: [Notebook](http://github.com/remrama/krank/blob/main/sources/{{ name }}/prepare.ipynb)
+- **Processing code**: [Notebook](notebooks/{{ name }}/prepare.ipynb)
 - **Processed file**: [Zenodo](https://doi.org/{{ doi }})
 
 ## Version History
