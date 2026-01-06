@@ -17,6 +17,7 @@ Exit codes:
 import argparse
 import sys
 from importlib import resources
+from pathlib import Path
 
 import yaml
 from jsonschema import Draft7Validator, FormatChecker
