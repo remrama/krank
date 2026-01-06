@@ -18,6 +18,7 @@ REGISTRY_PATH = (
 )
 TEMPLATES_DIR = Path(__file__).parent / "templates"
 
+
 def load_template(name: str) -> str:
     """Load a markdown template by name.
 
@@ -216,7 +217,7 @@ def main():
         output_path = DOCS_DIR / f"{name}.md"
         output_path.write_text(content, encoding="utf-8")
         print(f"Generated {output_path}")
-    
+
     # Copy individual processing notebooks
     for name, entry in corpora.items():
         source_notebook = SOURCES_DIR / name / "prepare.ipynb"
