@@ -14,14 +14,12 @@ Exit codes:
     1: Validation failed
 """
 
-import argparse
 import sys
 from importlib import resources
 from pathlib import Path
 
 import yaml
 from jsonschema import Draft7Validator, FormatChecker
-
 
 REGISTRY_PATH = resources.files("krank.data").joinpath("registry.yaml")
 REGISTRY_SCHEMA_PATH = resources.files("krank.data").joinpath("registry-schema.yaml")
