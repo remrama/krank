@@ -5,6 +5,7 @@ the registry from YAML, fetching corpus data from remote sources, and accessing
 individual corpus metadata entries.
 """
 
+from importlib import resources
 from pathlib import Path
 
 import pooch
@@ -17,7 +18,7 @@ __all__ = [
 ]
 
 
-_REGISTRY_PATH = _REGISTRY_PATH = Path(__file__).parent / "data" / "registry.yaml"
+_REGISTRY_PATH = resources.files("krank.data").joinpath("registry.yaml")
 _registry_cache = None
 
 

@@ -52,7 +52,7 @@ namespaces = false
 where = ["src"]
 
 [tool.setuptools.package-data]
-krank = ["krank/data/registry.yaml", "krank/data/registry-schema.yaml"]
+krank = ["data/registry.yaml", "data/registry-schema.yaml"]
 
 [tool.coverage.run]
 source = ["src"]

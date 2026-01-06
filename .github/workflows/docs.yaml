@@ -18,18 +18,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      
+
       - name: Install dependencies
         run: pip install .[docs]
-      
+
+      - name: Build docs files
+        run: python scripts/build_docs.py
+
       - name: Build docs
         run: mkdocs build --config-file docs/mkdocs.yaml
-      
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

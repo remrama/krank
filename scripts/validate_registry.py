@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Validate registry.yaml schema, uniqueness, and alphabetical ordering.
 
 This script validates the registry.yaml file against a JSON schema and checks
@@ -15,12 +14,15 @@ Exit codes:
     1: Validation failed
 """
 
-import argparse
 import sys
+from importlib import resources
 from pathlib import Path
 
 import yaml
 from jsonschema import Draft7Validator, FormatChecker
+
+REGISTRY_PATH = resources.files("krank.data").joinpath("registry.yaml")
+REGISTRY_SCHEMA_PATH = resources.files("krank.data").joinpath("registry-schema.yaml")
 
 
 def load_yaml(path: Path) -> dict:
@@ -31,10 +33,7 @@ def load_yaml(path: Path) -> dict:
 
 def load_schema() -> dict:
     """Load the JSON schema from registry-schema.yaml."""
-    schema_path = (
-        Path(__file__).parent.parent / "src" / "krank" / "data" / "registry-schema.yaml"
-    )
-    return load_yaml(schema_path)
+    return load_yaml(REGISTRY_SCHEMA_PATH)
 
 
 def validate_schema(registry_data: dict) -> tuple[bool, list[str]]:
@@ -159,34 +158,16 @@ def validate_collection_references(registry_data: dict) -> tuple[bool, list[str]
 
 
 def main() -> int:
-    """Main validation function."""
-    parser = argparse.ArgumentParser(
-        description="Validate registry.yaml schema and constraints"
-    )
-    parser.add_argument(
-        "--registry-path",
-        type=Path,
-        default=Path(__file__).parent.parent
-        / "src"
-        / "krank"
-        / "data"
-        / "registry.yaml",
-        help="Path to registry.yaml file",
-    )
-    args = parser.parse_args()
-
-    registry_path = args.registry_path
-
-    if not registry_path.exists():
-        print(f"❌ Error: Registry file not found at {registry_path}")
+    if not REGISTRY_PATH.exists():
+        print(f"❌ Error: Registry file not found at {REGISTRY_PATH}")
         return 1
 
-    print(f"🔍 Validating registry at: {registry_path}")
+    print(f"🔍 Validating registry at: {REGISTRY_PATH}")
     print()
 
     # Load the YAML file
     try:
-        registry_data = load_yaml(registry_path)
+        registry_data = load_yaml(REGISTRY_PATH)
     except Exception as e:
         print(f"❌ Failed to load YAML file: {e}")
         return 1
