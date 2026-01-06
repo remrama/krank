@@ -30,6 +30,9 @@ copyright: Copyright &copy; 2025 Sleep and Dream Database
 
 plugins:
   - search
+  - mkdocs-jupyter:
+      execute: false
+      include_source: true
 
 nav:
   - Home: index.md

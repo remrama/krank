@@ -5,13 +5,8 @@ channels:
 dependencies:
   - python==3.14
   - beautifulsoup4
-  - ftfy
   - ipykernel
   - jupyterlab
-  - matplotlib
-  - numpy
   - pandas
-  - Pillow
   - pooch
-  - seaborn
   - tqdm

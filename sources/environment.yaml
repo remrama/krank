@@ -1,4 +1,4 @@
-name: sddb
+name: krank-sources
 channels:
   - conda-forge
   - defaults
