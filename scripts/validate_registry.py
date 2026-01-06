@@ -26,6 +26,7 @@ from jsonschema import Draft7Validator, FormatChecker
 REGISTRY_PATH = resources.files("krank.data").joinpath("registry.yaml")
 REGISTRY_SCHEMA_PATH = resources.files("krank.data").joinpath("registry-schema.yaml")
 
+
 def load_yaml(path: Path) -> dict:
     """Load YAML file and return as dict."""
     with open(path, encoding="utf-8") as f:
@@ -159,7 +160,6 @@ def validate_collection_references(registry_data: dict) -> tuple[bool, list[str]
 
 
 def main() -> int:
-
     if not REGISTRY_PATH.exists():
         print(f"❌ Error: Registry file not found at {REGISTRY_PATH}")
         return 1
