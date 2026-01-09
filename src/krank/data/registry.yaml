@@ -29,7 +29,7 @@ corpora:
     includes_norecall: false
     column_map:
       report: "report"
-      author: "author_id"
+      author: "author"
     author_columns:
       - "sex"
       - "age"
@@ -43,7 +43,7 @@ corpora:
     versions:
       "1":
         download_url: "https://zenodo.org/records/18191334/files/hurovitz1999.csv?download=1"
-        hash: "md5:02c8a6cfaaa122f3459fe1132edaa2d8"
+        hash: "md5:2af24d8982609d34c62fb5c7eda32f8a"
         doi: "10.5281/zenodo.18191334"
   hvdc:
     title: "Hall & Van de Castle Norms"
