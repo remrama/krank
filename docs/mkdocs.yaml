@@ -41,6 +41,7 @@ nav:
   - Changelog: CHANGELOG.md
   - Corpora:
     - Overview: corpora/index.md
+    - hurovitz1999: corpora/hurovitz1999.md
     - hvdc: corpora/hvdc.md
     - ucsc1996: corpora/ucsc1996.md
     - urbina1975: corpora/urbina1975.md

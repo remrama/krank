@@ -5,6 +5,7 @@ collections:
     long_description: "..."
     url: "https://dreambank.net"
     corpora:
+      - hurovitz1999
       - hvdc
       - urbina1975
   sddb:
@@ -16,6 +17,34 @@ collections:
       - hvdc
 
 corpora:
+  hurovitz1999:
+    title: "Hurovitz et al., 1999"
+    brief_description: "Dreams from blind individuals, sourced from DreamBank"
+    long_description: "This corpus contains dreams from the DreamBank collection. The two datasets Blind dreamers (F) and Blind dreamers (M) were merged and author data extracted from additional metadata available in DreamBank. The dataset was analyzed and published in Hurovitz et al. (1999)."
+    citations:
+      - "Domhoff, G. W., & Schneider, A. (2008). Studying dream content using the archive and search engine on DreamBank.net. Consciousness and Cognition, 17(4), 1238-1247. https://doi.org/10.1016/j.concog.2008.06.010"
+      - "Hurovitz, C. S., Dunn, S., Domhoff, G. W., & Fiss, H. (1999). The dreams of blind men and women: A replication and extension of previous findings. Dreaming, 9(2), 183-193. https://doi.org/10.1023/A:1021397817164"
+    environment: "unknown"
+    probe: "unknown"
+    includes_norecall: false
+    column_map:
+      report: "report"
+      author: "author"
+    author_columns:
+      - "sex"
+      - "age"
+      - "years_education"
+      - "occupation"
+      - "retired"
+      - "years_blind"
+      - "nature_blindness"
+      - "degree_blindness"
+    latest: "1"
+    versions:
+      "1":
+        download_url: "https://zenodo.org/records/18191334/files/hurovitz1999.csv?download=1"
+        hash: "md5:2af24d8982609d34c62fb5c7eda32f8a"
+        doi: "10.5281/zenodo.18191334"
   hvdc:
     title: "Hall & Van de Castle Norms"
     brief_description: "Historically significant collection of dream reports"
