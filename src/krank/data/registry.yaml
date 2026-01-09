@@ -42,9 +42,9 @@ corpora:
     latest: "1"
     versions:
       "1":
-        download_url: "https://zenodo.org/records/18089278/files/hvdc.csv?download=1"
-        hash: "md5:bd376d9dcc77f5369e7f4a058a1ba166"
-        doi: "10.5281/zenodo.18089278"
+        download_url: "https://zenodo.org/records/18191334/files/hurovitz1999.csv?download=1"
+        hash: "md5:d489ef5d3ba4c5576acc609c1821c15f"
+        doi: "10.5281/zenodo.18191334"
   hvdc:
     title: "Hall & Van de Castle Norms"
     brief_description: "Historically significant collection of dream reports"
