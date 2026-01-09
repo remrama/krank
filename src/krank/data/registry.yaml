@@ -43,7 +43,7 @@ corpora:
     versions:
       "1":
         download_url: "https://zenodo.org/records/18191334/files/hurovitz1999.csv?download=1"
-        hash: "md5:d489ef5d3ba4c5576acc609c1821c15f"
+        hash: "md5:02c8a6cfaaa122f3459fe1132edaa2d8"
         doi: "10.5281/zenodo.18191334"
   hvdc:
     title: "Hall & Van de Castle Norms"
