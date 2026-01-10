@@ -61,7 +61,7 @@ corpus.metadata["title"]
 # 'Zhang & Wamsley 2019 Dream Reports'
 corpus.metadata["hash"]
 # 'md5:a61a3c56f4ee8c14e4a6466044df88f8'
-corpus.metadata["description"]
+corpus.metadata["brief_description"]
 # 'Dream reports collected from a laboratory polysomnography study'
 
 # Return unique authors and their associated metadata in a tidy dataframe.

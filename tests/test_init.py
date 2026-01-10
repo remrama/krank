@@ -14,7 +14,7 @@ def test_info(mock_registry, mock_corpus_csv, capsys):
             with patch("krank._registry.fetch_corpus", return_value=mock_corpus_csv):
                 mock_get_entry.return_value = {
                     "title": "Test Corpus",
-                    "description": "A test corpus",
+                    "brief_description": "A test corpus",
                     "version": "1",
                     "citations": [
                         "Smith, J. (2024). Test citation. Journal, 1(1), 1-10."
@@ -44,7 +44,7 @@ def test_info_with_required_fields(mock_registry, mock_corpus_csv, capsys):
             with patch("krank._registry.fetch_corpus", return_value=mock_corpus_csv):
                 mock_get_entry.return_value = {
                     "title": "Test Corpus",
-                    "description": "A test corpus",
+                    "brief_description": "A test corpus",
                     "version": "1",
                     "column_map": {
                         "report": "Report Text",

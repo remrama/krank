@@ -303,7 +303,7 @@ def test_corpus_str():
     """Test Corpus __str__ method shows descriptive metadata."""
     metadata = {
         "title": "Test Corpus",
-        "description": "A test corpus for unit testing",
+        "brief_description": "A test corpus for unit testing",
         "version": "1",
         "citations": [
             "Smith, J., & Doe, A. (2024). Test dreams. Journal of Dreams, 1(1), 1-10.",
@@ -330,7 +330,7 @@ def test_corpus_str_with_required_fields():
     """Test Corpus __str__ with all required metadata fields."""
     metadata = {
         "title": "Test Corpus",
-        "description": "A test corpus",
+        "brief_description": "A test corpus",
         "version": "1",
     }
     corpus = _corpus.Corpus("test", metadata, Path("/tmp/test.csv"))
