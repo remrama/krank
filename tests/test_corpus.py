@@ -330,7 +330,7 @@ def test_corpus_str_with_required_fields():
     """Test Corpus __str__ with all required metadata fields."""
     metadata = {
         "title": "Test Corpus",
-        "description": "A test corpus",
+        "brief_description": "A test corpus",
         "version": "1",
     }
     corpus = _corpus.Corpus("test", metadata, Path("/tmp/test.csv"))
