@@ -69,7 +69,7 @@ def test_get_entry_invalid_version(mock_registry):
 
 def test_fetch_corpus(mock_registry, tmp_path):
     """Test fetching a corpus file."""
-    mock_path = tmp_path / "test_corpus_v1.csv"
+    mock_path = tmp_path / "test_corpus-v1.csv"
     mock_path.write_text("Report Text,Author ID\nTest,A1\n")
 
     with patch("krank._registry.load_registry", return_value=mock_registry):
@@ -90,4 +90,4 @@ def test_fetch_corpus(mock_registry, tmp_path):
                     mock_retrieve.call_args[1]["url"] == "https://example.com/test.csv"
                 )
                 assert mock_retrieve.call_args[1]["known_hash"] == "md5:abc123"
-                assert mock_retrieve.call_args[1]["fname"] == "test_corpus_v1.csv"
+                assert mock_retrieve.call_args[1]["fname"] == "test_corpus-v1.csv"
