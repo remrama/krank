@@ -252,7 +252,7 @@ class Corpus:
 
         # Add required metadata fields
         lines.append(f"  Title: {self.metadata['title']}")
-        lines.append(f"  Description: {self.metadata['description']}")
+        lines.append(f"  Description: {self.metadata['brief_description']}")
         lines.append(f"  Version: {self.metadata['version']}")
 
         # Add optional citations field
