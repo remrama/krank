@@ -49,7 +49,7 @@ def test_get_entry_with_version(mock_registry):
         entry = _registry.get_entry("test_corpus", version="2")
 
         assert entry["version"] == "2"
-        assert entry["download_url"] == "https://example.com/test_v2.csv"
+        assert entry["download_url"] == "https://example.com/test-v2.csv"
         assert entry["hash"] == "md5:def456"
 
 
