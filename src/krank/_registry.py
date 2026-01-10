@@ -45,14 +45,14 @@ def fetch_corpus(name: str, version: str = None) -> Path:
     entry = get_entry(name, version=version)
 
     # Use version in filename for cache separation
-    filename = f"{name}_v{entry['version']}.csv"
+    filename = f"{name}-v{entry['version']}.csv"
 
     # Fetch with pooch
     fname = pooch.retrieve(
         url=entry["download_url"],
         known_hash=entry["hash"],
         fname=filename,
-        path=pooch.os_cache("krank"),
+        path=pooch.os_cache("pooch").joinpath("krank"),
     )
     path = Path(fname)
     return path

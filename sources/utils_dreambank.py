@@ -20,7 +20,7 @@ __all__ = [
 ]
 
 _HTML_ENCODING = "ISO-8859-1"
-_CACHE_DIR = pooch.os_cache("pooch").joinpath("dreambank")
+_CACHE_DIR = pooch.os_cache("pooch").joinpath("krank").joinpath("dreambank")
 _REGISTRY = {
     "v2": {
         "url": "https://zenodo.org/records/18159468/files/dreambank.tar.xz?download=1",
