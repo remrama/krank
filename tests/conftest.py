@@ -11,14 +11,14 @@ def mock_registry():
         "collections": {
             "test_collection": {
                 "title": "Test Collection",
-                "description": "A test collection",
+                "brief_description": "A test collection",
                 "corpora": ["test_corpus"],
             }
         },
         "corpora": {
             "test_corpus": {
                 "title": "Test Corpus",
-                "description": "A test corpus",
+                "brief_description": "A test corpus",
                 "citations": ["Test citation"],
                 "column_map": {
                     "report": "Report Text",
