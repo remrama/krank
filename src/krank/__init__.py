@@ -2,7 +2,7 @@
 
 from . import _corpus, _registry
 
-__version__ = "0.1.0.dev2"
+__version__ = "0.1.0"
 
 __all__ = [
     "info",

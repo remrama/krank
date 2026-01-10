@@ -34,7 +34,7 @@ def mock_registry():
                         "hash": "md5:abc123",
                     },
                     "2": {
-                        "download_url": "https://example.com/test_v2.csv",
+                        "download_url": "https://example.com/test-v2.csv",
                         "hash": "md5:def456",
                     },
                 },
